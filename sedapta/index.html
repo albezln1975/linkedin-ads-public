@@ -633,6 +633,9 @@ async function loadData() {
     // Converti campaigns → RAW
     RAW = (data.campaigns || []).map(convertRecord);
 
+    // Carica risoluzione URN → nome (popolata dal sync)
+    URN_NAMES = data.pivotNames || {};
+
     // Costruisci DEMO dal blocco demographics del JSON
     DEMO_FULL = buildDEMO(data.demographics || {});
 
@@ -714,7 +717,12 @@ const PIVOT_NAMES = {
 };
 
 function urnTail(urn){ return urn ? urn.split(':').pop() : ''; }
+
+// URN → nome risolto dal sync (data.pivotNames). Popolato in loadData.
+let URN_NAMES = {};
+
 function resolveName(pivotType, urn){
+  if (URN_NAMES[urn]) return URN_NAMES[urn];
   const tail = urnTail(urn);
   return (PIVOT_NAMES[pivotType] && PIVOT_NAMES[pivotType][tail]) || urn || '—';
 }
