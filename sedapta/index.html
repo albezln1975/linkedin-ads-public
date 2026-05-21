@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Ads Report · MALLEI 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --navy:    #062040;
+  --navy2:   #0A3060;
+  --navy3:   #0E4080;
+  --li-blue: #0A66C2;
+  --green:   #10B981;
+  --red:     #EF4444;
+  --amber:   #F59E0B;
+  --teal:    #0CC4B0;
+  --purple:  #8B5CF6;
+  --bg:      #EFF3F8;
+  --bg2:     #F7F9FC;
+  --white:   #FFFFFF;
+  --border:  #DDE4EE;
+  --border2: #C8D4E2;
+  --text:    #0A1E35;
+  --text2:   #3A5575;
+  --text3:   #7A96B2;
+  --shadow:  0 1px 3px rgba(6,32,64,0.08), 0 1px 2px rgba(6,32,64,0.05);
+  --shadow-md: 0 4px 12px rgba(6,32,64,0.10), 0 2px 4px rgba(6,32,64,0.06);
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; }
+
+/* ── HEADER ── */
+.header {
+  background: var(--navy);
+  padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; position: sticky; top: 0; z-index: 300;
+}
+.header-left { display: flex; align-items: center; gap: 14px; }
+.li-icon {
+  width: 28px; height: 28px; background: #0A66C2; border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-weight: 600; font-size: 12px; color: #fff; flex-shrink: 0;
+}
+.header-title { font-size: 14px; font-weight: 600; color: #fff; }
+.header-title span { color: rgba(255,255,255,0.45); font-weight: 400; }
+
+/* ── NAV TABS ── */
+.nav-tabs {
+  display: flex; align-items: center; gap: 2px;
+  background: rgba(255,255,255,0.07); border-radius: 6px; padding: 3px;
+}
+.nav-tab {
+  padding: 5px 16px; border-radius: 4px;
+  font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.55);
+  cursor: pointer; text-decoration: none; transition: all 0.15s;
+  border: none; background: transparent;
+}
+.nav-tab:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); }
+.nav-tab.active { background: rgba(255,255,255,0.15); color: #fff; }
+
+.header-right { display: flex; align-items: center; gap: 10px; }
+.period-label { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.4); }
+
+select.date-filter {
+  appearance: none; background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2); border-radius: 6px;
+  color: #fff; font-family: var(--sans); font-size: 12px; font-weight: 500;
+  padding: 5px 28px 5px 10px; cursor: pointer; outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 9px center;
+}
+select.date-filter:hover { background-color: rgba(255,255,255,0.15); }
+select.date-filter option { background: #0A3060; color: #fff; }
+
+/* ── KPI BAR ── */
+.kpi-bar { background: var(--navy2); padding: 0 40px; }
+.kpi-strip { display: flex; border-left: 1px solid rgba(255,255,255,0.08); }
+.kpi-cell {
+  flex: 1; padding: 14px 18px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.kpi-name { font-size: 10px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 3px; }
+.kpi-val { font-family: var(--mono); font-size: 22px; font-weight: 600; color: #fff; line-height: 1; letter-spacing: -0.5px; }
+.kpi-val .unit { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.55); margin-left: 1px; }
+.kpi-delta { margin-top: 4px; display: flex; align-items: center; gap: 3px; font-family: var(--mono); font-size: 10px; font-weight: 500; }
+.delta-up   { color: #34D399; }
+.delta-down { color: #FC8181; }
+.delta-na   { color: rgba(255,255,255,0.3); font-style: italic; }
+
+/* ── SECTIONS ── */
+.section { display: none; padding: 28px 40px 60px; max-width: 1440px; margin: 0 auto; }
+.section.active { display: block; }
+
+/* ── CARD ── */
+.card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; margin-bottom: 22px; }
+.card-header {
+  background: var(--navy); padding: 10px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-title { font-size: 12px; font-weight: 600; color: #fff; letter-spacing: 0.3px; }
+
+/* ── SORT CONTROLS ── */
+.sort-controls { display: flex; align-items: center; gap: 8px; }
+.sort-controls label { font-size: 11px; color: rgba(255,255,255,0.55); }
+select.sort-select {
+  appearance: none; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px; color: #fff; font-family: var(--sans); font-size: 11px;
+  padding: 3px 20px 3px 8px; cursor: pointer; outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 7px center;
+}
+select.sort-select option { background: #0A3060; }
+
+/* ── CAMPAIGN TABLE ── */
+.camp-table { width: 100%; border-collapse: collapse; }
+.camp-table thead tr { background: rgba(10,48,96,0.05); border-bottom: 2px solid var(--border2); }
+.camp-table th {
+  padding: 9px 13px; font-size: 10px; font-weight: 600; letter-spacing: 0.8px;
+  text-transform: uppercase; color: var(--navy2); text-align: right;
+  white-space: nowrap; cursor: pointer; user-select: none;
+}
+.camp-table th:first-child { text-align: left; min-width: 200px; }
+.camp-table th:nth-child(2) { text-align: left; }
+.camp-table th .si::after { content: ' ⇅'; color: var(--text3); font-size: 9px; }
+.camp-table th.sa .si::after { content: ' ▲'; color: var(--navy2); }
+.camp-table th.sd .si::after { content: ' ▼'; color: var(--navy2); }
+.camp-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+.camp-table tbody tr:hover { background: #F0F6FF; }
+.camp-table tbody tr:nth-child(even) { background: var(--bg2); }
+.camp-table tbody tr:nth-child(even):hover { background: #F0F6FF; }
+.camp-table td { padding: 10px 13px; text-align: right; font-family: var(--mono); font-size: 12px; color: var(--text); }
+.camp-table td:first-child { text-align: left; font-family: var(--sans); font-size: 12px; font-weight: 500; }
+.camp-table td .sub { display: block; font-size: 10px; font-weight: 400; color: var(--text3); margin-top: 1px; font-family: var(--sans); }
+.badge { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 500; font-family: var(--sans); }
+.b-video  { background: #EFF6FF; color: #2563EB; border: 1px solid #BFDBFE; }
+.b-lead   { background: #F0FDF4; color: #16A34A; border: 1px solid #BBF7D0; }
+.b-engage { background: #FFF7ED; color: #C2410C; border: 1px solid #FED7AA; }
+.camp-table tfoot tr { background: var(--navy); border-top: 2px solid var(--navy3); }
+.camp-table tfoot td { font-family: var(--mono); font-size: 12px; font-weight: 600; color: #fff; padding: 10px 13px; text-align: right; }
+.camp-table tfoot td:first-child { text-align: left; font-family: var(--sans); font-weight: 700; }
+.tbl-footer { display: flex; align-items: center; justify-content: flex-end; padding: 8px 14px; border-top: 1px solid var(--border); background: var(--bg2); font-family: var(--mono); font-size: 10px; color: var(--text3); }
+
+/* ── CHARTS ── */
+.charts-row { display: grid; grid-template-columns: 1fr 320px; gap: 20px; margin-bottom: 22px; }
+.chart-card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; }
+.chart-head { padding: 13px 18px 12px; border-bottom: 1px solid var(--border); }
+.chart-title { font-size: 12px; font-weight: 600; color: var(--navy); }
+.chart-sub   { font-size: 10px; color: var(--text3); margin-top: 2px; }
+.chart-body  { padding: 16px 18px 18px; }
+.cw  { position: relative; height: 240px; }
+.cw2 { position: relative; height: 190px; }
+
+/* ── DONUT LEGEND ── */
+.dl { margin-top: 12px; display: flex; flex-direction: column; gap: 7px; }
+.di { display: flex; align-items: center; gap: 9px; }
+.dd { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+.dn { font-size: 11px; color: var(--text2); flex: 1; }
+.dv { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--text); }
+.dp { font-family: var(--mono); font-size: 10px; color: var(--text3); width: 38px; text-align: right; }
+
+/* ── DOC METRICS (full width) ── */
+.doc-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; padding: 18px; }
+.doc-m { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 14px 12px; text-align: center; }
+.doc-m-val { font-family: var(--mono); font-size: 20px; font-weight: 600; color: var(--navy2); line-height: 1; }
+.doc-m-val.g { color: var(--green); }
+.doc-m-val.a { color: var(--amber); }
+.doc-m-val.b { color: var(--li-blue); }
+.doc-m-label { font-size: 9px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text3); margin-top: 5px; }
+
+/* ── DEMOGRAPHICS ── */
+.grid-2   { display: grid; grid-template-columns: 1fr 1fr;   gap: 20px; margin-bottom: 22px; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr;  gap: 20px; margin-bottom: 22px; }
+.grid-3   { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 22px; }
+.dem-block { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); padding: 20px; }
+.dem-title { font-size: 12px; font-weight: 600; color: var(--navy); margin-bottom: 16px; letter-spacing: 0.2px; }
+
+.hbar-list { display: flex; flex-direction: column; gap: 8px; }
+.hbar-header { display: grid; gap: 10px; margin-bottom: 8px; }
+.hbar-header.c4 { grid-template-columns: 160px 1fr 55px 52px; }
+.hbar-header.c4w { grid-template-columns: 190px 1fr 55px 52px; }
+.hbar-header.c4s { grid-template-columns: 130px 1fr 65px 52px; }
+.hcol { font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text3); }
+.hcol.r { text-align: right; }
+
+.hbar-item { display: grid; gap: 10px; align-items: center; }
+.hbar-item.c4  { grid-template-columns: 160px 1fr 55px 52px; }
+.hbar-item.c4w { grid-template-columns: 190px 1fr 55px 52px; }
+.hbar-item.c4s { grid-template-columns: 130px 1fr 65px 52px; }
+
+.hname { font-size: 11px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.htrack { background: #EFF3F8; border-radius: 3px; height: 8px; overflow: hidden; }
+.hfill  { height: 100%; border-radius: 3px; }
+.hpct  { font-family: var(--mono); font-size: 10px; color: var(--text3); text-align: right; }
+.hctr  { font-family: var(--mono); font-size: 10px; text-align: right; }
+.ctr-hi { color: #16A34A; }
+.ctr-md { color: #0C9488; }
+.ctr-lo { color: var(--text3); }
+
+/* city chart */
+.city-wrap { position: relative; height: 300px; }
+/* company list */
+.co-list { display: flex; flex-direction: column; gap: 5px; }
+.co-item { display: grid; grid-template-columns: 22px 1fr 65px 42px 50px; align-items: center; gap: 10px; padding: 7px 9px; border-radius: 5px; background: var(--bg); border: 1px solid rgba(0,0,0,0.04); }
+.co-rank { font-family: var(--mono); font-size: 10px; color: var(--text3); text-align: center; }
+.co-name { font-size: 12px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.co-v    { font-family: var(--mono); font-size: 11px; color: var(--text2); text-align: right; }
+.co-c    { font-family: var(--mono); font-size: 11px; color: var(--li-blue); text-align: right; }
+.co-ctr  { font-family: var(--mono); font-size: 10px; text-align: right; }
+
+/* donut wrap */
+.sz-wrap { position: relative; height: 200px; }
+.sz-leg  { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+.sz-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.sz-dot  { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.sz-name { font-size: 11px; color: var(--text2); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sz-pct  { font-family: var(--mono); font-size: 10px; color: var(--text3); }
+
+/* ── LEAD PER CAMPAGNA (sidebar) ── */
+.lcb-item { padding: 9px 0; border-bottom: 1px solid var(--border); }
+.lcb-item:last-child { border-bottom: none; }
+.lcb-name { font-size: 11px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 5px; font-weight: 500; }
+.lcb-row { display: grid; grid-template-columns: 1fr 32px; align-items: center; gap: 8px; }
+.lcb-track { background: var(--bg); border-radius: 3px; height: 7px; overflow: hidden; }
+.lcb-fill { height: 100%; border-radius: 3px; opacity: 0.75; }
+.lcb-val { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--navy2); text-align: right; }
+.lcb-cpl { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-top: 2px; }
+
+/* ── FUNNEL DI CONVERSIONE ── */
+.funnel-wrap {
+  display: grid;
+  grid-template-columns: 1fr 72px 1fr 72px 1fr;
+  align-items: center;
+  padding: 22px 24px 18px;
+}
+.funnel-stage {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 12px 12px;
+  text-align: center;
+}
+.fs-num { font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1; }
+.fs-lbl { font-size: 9px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text3); margin-top: 5px; }
+.fs-track { height: 4px; background: var(--border); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+.fs-fill  { height: 100%; border-radius: 2px; }
+.funnel-conn { text-align: center; padding: 0 4px; }
+.fc-pct  { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--navy2); }
+.fc-arrow { font-size: 20px; color: var(--border2); line-height: 1.2; }
+.fc-lbl  { font-size: 9px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text3); }
+.funnel-footer {
+  display: flex;
+  border-top: 1px solid var(--border);
+  background: var(--bg2);
+}
+.ff-item { flex: 1; text-align: center; padding: 12px 10px; border-right: 1px solid var(--border); }
+.ff-item:last-child { border-right: none; }
+.ff-lbl { display: block; font-size: 9px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text3); margin-bottom: 3px; }
+.ff-val { font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--text); }
+.ff-highlight { color: var(--green); }
+
+/* ── DEMOGRAPHICS NOTICE ── */
+.demo-notice {
+  background: rgba(10,102,194,0.07);
+  border: 1px solid rgba(10,102,194,0.2);
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.demo-notice-icon { font-size: 15px; color: var(--li-blue); flex-shrink: 0; line-height: 1; }
+
+/* ── FOOTER ── */
+.report-footer { padding: 16px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; }
+.ft { font-size: 10px; color: var(--text3); letter-spacing: 0.5px; }
+
+@media (max-width: 1100px) {
+  .charts-row, .grid-2, .grid-2-1, .grid-3 { grid-template-columns: 1fr; }
+  .kpi-strip { flex-wrap: wrap; }
+  .kpi-cell { min-width: 33%; }
+  .section { padding: 20px 20px 40px; }
+  .header, .kpi-bar { padding: 0 20px; }
+  .doc-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── PDF BUTTON ── */
+.pdf-btn {
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 6px; color: #fff; font-family: var(--sans); font-size: 12px;
+  font-weight: 500; padding: 5px 12px; cursor: pointer; transition: background 0.15s;
+}
+.pdf-btn:hover { background: rgba(255,255,255,0.22); }
+
+/* ── PRINT / PDF ── */
+@media print {
+  @page { margin: 12mm; size: A4 portrait; }
+
+  /* Nascondi elementi UI */
+  .pdf-btn, .date-filter, .sort-controls, .nav-tabs,
+  .header-right, .report-footer { display: none !important; }
+
+  /* Header semplificato */
+  .header { position: relative !important; padding: 8px 20px !important; height: auto !important; }
+  .kpi-bar { position: relative !important; }
+
+  /* Layout a colonna singola */
+  .section { display: block !important; padding: 8px 16px !important; }
+  .charts-row, .grid-2, .grid-2-1, .grid-3 { 
+    grid-template-columns: 1fr !important; 
+    gap: 12px !important;
+  }
+
+  /* Carte */
+  .card, .chart-card, .dem-block { 
+    box-shadow: none !important; 
+    border: 1px solid #DDE4EE !important;
+    break-inside: avoid;
+    margin-bottom: 12px !important;
+  }
+
+  /* Grafici ridimensionati */
+  .cw { height: 180px !important; }
+  .cw2 { height: 150px !important; }
+  .city-wrap { height: 200px !important; }
+  .sz-wrap { height: 150px !important; }
+
+  /* KPI bar */
+  .kpi-strip { flex-wrap: wrap !important; }
+  .kpi-cell { min-width: 30% !important; padding: 8px 12px !important; }
+  .kpi-val { font-size: 16px !important; }
+
+  /* Tabella */
+  .camp-table { font-size: 10px !important; }
+  .camp-table th, .camp-table td { padding: 5px 8px !important; }
+
+  /* Sfondo bianco */
+  body { background: #fff !important; }
+  .header { background: #062040 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .kpi-bar { background: #0A3060 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .card-header { background: #062040 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .camp-table tfoot tr { background: #062040 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Evita tagli di pagina */
+  .kpi-bar, .card, .chart-card { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <div class="li-icon">in</div>
+    <div class="header-title">LinkedIn Ads Report <span>· MALLEI Campaign · sedApta</span></div>
+  </div>
+
+  <nav class="nav-tabs">
+    <a class="nav-tab active" href="#" onclick="showSection('performance',this);return false">Performance</a>
+    <a class="nav-tab"        href="#" onclick="showSection('demographics',this);return false">Demographics</a>
+  </nav>
+
+  <div class="header-right">
+    <span class="period-label" id="periodLabel"></span>
+    <span class="period-label" id="lastUpdated" style="opacity:0.5"></span>
+    <div id="loadError" style="display:none;background:#EF4444;color:#fff;padding:6px 14px;border-radius:6px;font-size:11px;max-width:400px"></div>
+    <button onclick="exportPDF()" class="pdf-btn">↓ PDF</button>
+    <select class="date-filter" id="dateFilter" onchange="applyFilter()">
+      <optgroup label="Ultimi giorni">
+        <option value="7">Ultimi 7 giorni</option>
+        <option value="14">Ultimi 14 giorni</option>
+        <option value="30">Ultimi 30 giorni</option>
+        <option value="60">Ultimi 60 giorni</option>
+        <option value="90" selected>Ultimi 90 giorni</option>
+      </optgroup>
+      <optgroup label="Per mese">
+        <option value="m-2026-01">Gennaio 2026</option>
+        <option value="m-2026-02">Febbraio 2026</option>
+        <option value="m-2026-03">Marzo 2026</option>
+        <option value="m-2026-04">Aprile 2026</option>
+      </optgroup>
+    </select>
+  </div>
+</header>
+
+<!-- KPI BAR (visible always) -->
+<div class="kpi-bar"><div class="kpi-strip" id="kpiStrip"></div></div>
+
+<!-- ════════════════════════════════════
+     SECTION 1 — PERFORMANCE
+════════════════════════════════════ -->
+<div class="section active" id="section-performance">
+
+  <!-- CAMPAIGN TABLE -->
+  <div class="card" style="margin-top:0">
+    <div class="card-header">
+      <span class="card-title">Campaigns Overview | Main KPI</span>
+      <div class="sort-controls">
+        <label>Ordina per</label>
+        <select class="sort-select" id="sortBy" onchange="renderTable()">
+          <option value="spend">Spesa ↓</option>
+          <option value="impr">Impressioni ↓</option>
+          <option value="clicks">Clic ↓</option>
+          <option value="leads">Lead ↓</option>
+          <option value="ctr">CTR ↓</option>
+          <option value="cpl">CPL ↓</option>
+          <option value="name">Nome</option>
+        </select>
+        <select class="sort-select" id="sortDir" onchange="renderTable()">
+          <option value="desc">Decrescente</option>
+          <option value="asc">Crescente</option>
+        </select>
+      </div>
+    </div>
+    <table class="camp-table">
+      <thead>
+        <tr>
+          <th onclick="sortCol('name')">Nome Set di Annunci <span class="si"></span></th>
+          <th onclick="sortCol('type')" style="text-align:left">Tipo <span class="si"></span></th>
+          <th onclick="sortCol('spend')">Totale Speso <span class="si"></span></th>
+          <th onclick="sortCol('clicks')">Clic <span class="si"></span></th>
+          <th onclick="sortCol('ctr')">CTR <span class="si"></span></th>
+          <th onclick="sortCol('cpc')">CPC <span class="si"></span></th>
+          <th onclick="sortCol('impr')">Impressions <span class="si"></span></th>
+          <th onclick="sortCol('cpm')">CPM <span class="si"></span></th>
+          <th onclick="sortCol('leads')">Lead <span class="si"></span></th>
+          <th onclick="sortCol('cpl')">CPL <span class="si"></span></th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+      <tfoot id="tableFoot"></tfoot>
+    </table>
+    <div class="tbl-footer" id="tblFooter"></div>
+  </div>
+
+  <!-- TREND + DONUT -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-head">
+        <div class="chart-title">Spesa & Lead — Andamento Settimanale</div>
+        <div class="chart-sub" id="trendSub"></div>
+      </div>
+      <div class="chart-body"><div class="cw"><canvas id="trendChart"></canvas></div></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-head">
+        <div class="chart-title">Lead per Campagna</div>
+        <div class="chart-sub">Distribuzione lead nel periodo selezionato</div>
+      </div>
+      <div class="chart-body" style="padding-top:12px">
+        <div id="leadCampList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUNNEL DI CONVERSIONE (full width) -->
+  <div class="card">
+    <div class="card-header"><span class="card-title">Funnel di Conversione</span></div>
+    <div id="funnelDisplay"></div>
+  </div>
+
+  <div class="report-footer">
+    <span class="ft">FONTE: LINKEDIN CAMPAIGN MANAGER</span>
+    <span class="ft" id="footerPeriod"></span>
+    <span class="ft">CAMPAGNA: MALLEI 12/2025</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     SECTION 2 — DEMOGRAPHICS
+════════════════════════════════════ -->
+<div class="section" id="section-demographics">
+
+  <!-- NOTICE PERIODO FISSO -->
+  <div class="demo-notice">
+    <span class="demo-notice-icon">ℹ</span>
+    I dati demografici sono aggregati sull'intero periodo della campagna e non variano con il filtro temporale. LinkedIn non fornisce breakdown demografici per singolo giorno.
+  </div>
+
+  <!-- SETTORI + DIMENSIONE -->
+  <div class="grid-2-1" style="margin-top:0">
+    <div class="dem-block">
+      <div class="dem-title">Settori Industriali — Top 12</div>
+      <div class="hbar-header c4w">
+        <div class="hcol">Settore</div><div class="hcol">Reach %</div>
+        <div class="hcol r">Impr.</div><div class="hcol r">CTR</div>
+      </div>
+      <div class="hbar-list" id="dSettori"></div>
+    </div>
+    <div class="dem-block">
+      <div class="dem-title">Dimensione Azienda</div>
+      <div class="sz-wrap"><canvas id="sizeDonut"></canvas></div>
+      <div class="sz-leg" id="sizeLeg"></div>
+    </div>
+  </div>
+
+  <!-- SENIORITY + FUNZIONE -->
+  <div class="grid-2">
+    <div class="dem-block">
+      <div class="dem-title">Anzianità Professionale</div>
+      <div class="hbar-header c4s">
+        <div class="hcol">Livello</div><div class="hcol">Distribuzione</div>
+        <div class="hcol r">Impr.</div><div class="hcol r">CTR</div>
+      </div>
+      <div class="hbar-list" id="dSeniority"></div>
+    </div>
+    <div class="dem-block">
+      <div class="dem-title">Funzione Lavorativa — Top 10</div>
+      <div class="hbar-header c4s">
+        <div class="hcol">Funzione</div><div class="hcol">Distribuzione</div>
+        <div class="hcol r">Impr.</div><div class="hcol r">CTR</div>
+      </div>
+      <div class="hbar-list" id="dFunzione"></div>
+    </div>
+  </div>
+
+  <!-- CITTÀ + AZIENDE -->
+  <div class="grid-2">
+    <div class="dem-block">
+      <div class="dem-title">Top 15 Città per Impressioni</div>
+      <div class="city-wrap"><canvas id="cityChart"></canvas></div>
+    </div>
+    <div class="dem-block">
+      <div class="dem-title">Top 15 Aziende Raggiunte</div>
+      <div style="display:grid;grid-template-columns:22px 1fr 65px 42px 50px;gap:10px;margin-bottom:8px">
+        <div class="hcol"></div>
+        <div class="hcol">Azienda</div>
+        <div class="hcol r">Impr.</div>
+        <div class="hcol r">Clic</div>
+        <div class="hcol r">CTR</div>
+      </div>
+      <div class="co-list" id="coList"></div>
+    </div>
+  </div>
+
+  <!-- QUALIFICA (due colonne) -->
+  <div class="dem-block" style="margin-bottom:22px">
+    <div class="dem-title">Qualifiche Professionali — Top 15</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div>
+        <div class="hbar-header c4w" style="margin-bottom:8px">
+          <div class="hcol">Qualifica</div><div class="hcol">Reach</div>
+          <div class="hcol r">Impr.</div><div class="hcol r">CTR</div>
+        </div>
+        <div class="hbar-list" id="dQual1"></div>
+      </div>
+      <div>
+        <div class="hbar-header c4w" style="margin-bottom:8px">
+          <div class="hcol">Qualifica</div><div class="hcol">Reach</div>
+          <div class="hcol r">Impr.</div><div class="hcol r">CTR</div>
+        </div>
+        <div class="hbar-list" id="dQual2"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-footer">
+    <span class="ft">FONTE: LINKEDIN CAMPAIGN MANAGER — DEMOGRAPHIC REPORT</span>
+    <span class="ft">03 GEN 2026 → 02 APR 2026</span>
+    <span class="ft">CAMPAGNA: MALLEI 12/2025</span>
+  </div>
+</div>
+
+<!-- ════════════════ SCRIPTS ════════════════ -->
+<script>
+// ── NAV ──────────────────────────────────────────────
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  el.classList.add('active');
+  // KPI bar only meaningful for performance; hide on demographics
+  document.querySelector('.kpi-bar').style.display = id === 'performance' ? '' : 'none';
+}
+
+// ── CAMPAIGN DATA (caricato dinamicamente da linkedin-ads-data.json) ─────
+let RAW = [];
+let ADSET_META = {};
+
+// Determina il tipo di campagna dal nome
+function detectType(name) {
+  const n = name.toLowerCase();
+  if (n.includes('video view') || n.includes('video post')) return 'video';
+  if (n.includes('engagement') || n.includes('rebrand')) return 'engage';
+  return 'lead';
+}
+
+// Converte un record del nuovo JSON nel formato RAW atteso dal report
+function convertRecord(rec) {
+  return {
+    spend:      rec.spend || 0,
+    impr:       rec.impressions || 0,
+    clicks:     rec.clicks || 0,
+    leads:      rec.leads || 0,
+    reach:      0,           // non disponibile nel nuovo formato
+    vplays:     rec.videoViews || 0,
+    v25:        rec.v25 || 0,
+    v50:        rec.v50 || 0,
+    v75:        rec.v75 || 0,
+    v100:       rec.v100 || 0,
+    form_opens: 0,           // non disponibile nel nuovo formato
+    downloads:  rec.downloads || 0,
+    date:       rec.date,
+    adset:      rec.campaignName
+  };
+}
+
+// Carica il JSON e inizializza il report
+async function loadData() {
+  try {
+    const resp = await fetch('https://raw.githubusercontent.com/albezln1975/linkedin-ads-public/main/linkedin-ads-data.json?t=' + Date.now(), {cache: 'no-store'});
+    if (!resp.ok) throw new Error('JSON non trovato');
+    const data = await resp.json();
+
+    // Aggiorna la data nell'header se disponibile
+    if (data.lastUpdated) {
+      const d = new Date(data.lastUpdated);
+      const label = d.toLocaleDateString('it-IT', {day:'2-digit', month:'short', year:'numeric'});
+      document.getElementById('lastUpdated').textContent = 'Aggiornato: ' + label;
+    }
+
+    // Converti campaigns → RAW
+    RAW = (data.campaigns || []).map(convertRecord);
+
+    // Inizializza le variabili date globali
+    ALL_DATES = [...new Set(RAW.map(r=>r.date))].sort();
+    LAST_DATE = ALL_DATES[ALL_DATES.length-1];
+
+    // Costruisci ADSET_META dai nomi unici
+    const names = [...new Set(RAW.map(r => r.adset))];
+    names.forEach(name => {
+      const type = detectType(name);
+      // Abbrevia il nome per la tabella
+      let short = name
+        .replace('Document Ads -', 'Doc Ads')
+        .replace('Video Post Referenze -', 'Video Post')
+        .replace('Rebrand post -', 'Rebrand')
+        .replace('Supply Chain 1 - 12/2025', 'SC1')
+        .replace('- SA1', '')
+        .trim();
+      ADSET_META[name] = { short, type };
+    });
+
+    // Aggiorna il select dei mesi disponibili
+    updateMonthOptions();
+
+    // Avvia il report
+    applyFilter();
+    renderDemographics();
+
+  } catch (err) {
+    console.error('Errore caricamento dati:', err);
+    document.getElementById('loadError').style.display = 'block';
+    document.getElementById('loadError').textContent =
+      '⚠️ Impossibile caricare i dati da GitHub. Verifica la connessione internet o che il repo sia pubblico.';
+  }
+}
+
+// Aggiorna il select dei mesi in base ai dati reali
+function updateMonthOptions() {
+  const months = [...new Set(RAW.map(r => r.date.slice(0,7)))].sort();
+  const select = document.getElementById('dateFilter');
+  // Rimuovi le opzioni mese esistenti
+  const optgroup = select.querySelector('optgroup[label="Per mese"]');
+  if (optgroup) {
+    optgroup.innerHTML = '';
+    const MO2 = ['','Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno',
+                 'Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+    months.forEach(ym => {
+      const [y, m] = ym.split('-');
+      const opt = document.createElement('option');
+      opt.value = 'm-' + ym.replace('-', '-');
+      opt.textContent = MO2[parseInt(m)] + ' ' + y;
+      optgroup.appendChild(opt);
+    });
+  }
+}
+
+
+// ── DEMOGRAPHICS DATA (statico, periodo completo) ────────
+const DEMO = {
+  settori:[
+    {name:"Produzione macchinari",    views:84496, pct:24.36, ctr:0.224},
+    {name:"Trasporti & Logistica",    views:62378, pct:17.99, ctr:0.415},
+    {name:"Fabb. mezzi di trasporto", views:57805, pct:16.67, ctr:0.187},
+    {name:"Prodotti chimici",         views:38908, pct:11.22, ctr:0.172},
+    {name:"Tecnologia & Internet",    views:37173, pct:10.72, ctr:0.213},
+    {name:"Consulenza aziendale",     views:26937, pct:7.77,  ctr:0.256},
+    {name:"Servizi ingegneristici",   views:24446, pct:7.05,  ctr:0.164},
+    {name:"IT & Consulenza IT",       views:23533, pct:6.79,  ctr:0.229},
+    {name:"Servizi di ricerca",       views:22593, pct:6.51,  ctr:0.173},
+    {name:"Industria manifatturiera", views:20588, pct:5.94,  ctr:0.253},
+    {name:"Linee aeree & Aviazione",  views:20520, pct:5.92,  ctr:0.302},
+    {name:"Import/Export ingrosso",   views:17098, pct:4.93,  ctr:0.421},
+  ],
+  size:[
+    {name:"1001–5000",  views:130845, pct:37.7},
+    {name:"201–500",    views:93007,  pct:26.8},
+    {name:"501–1000",   views:65348,  pct:18.8},
+    {name:"51–200",     views:34570,  pct:10.0},
+    {name:"11–50",      views:33505,  pct:9.7},
+    {name:"2–10",       views:12415,  pct:3.6},
+    {name:"10001+",     views:10721,  pct:3.1},
+  ],
+  seniority:[
+    {name:"Senior",        views:217156, pct:62.6, ctr:0.246},
+    {name:"Amministratore",views:73030,  pct:21.1, ctr:0.199},
+    {name:"Direttore",     views:29929,  pct:8.6,  ctr:0.207},
+    {name:"Livello base",  views:10028,  pct:2.9,  ctr:0.389},
+    {name:"CXO",           views:6191,   pct:1.8,  ctr:0.194},
+    {name:"VP",            views:5903,   pct:1.7,  ctr:0.220},
+    {name:"Proprietario",  views:5689,   pct:1.6,  ctr:0.316},
+    {name:"Partner",       views:3262,   pct:0.9,  ctr:0.215},
+  ],
+  funzione:[
+    {name:"Operazioni",          views:120033, pct:34.6, ctr:0.330},
+    {name:"Ingegneria",          views:63118,  pct:18.2, ctr:0.163},
+    {name:"Informatica",         views:62325,  pct:18.0, ctr:0.218},
+    {name:"Ricerca",             views:51751,  pct:14.9, ctr:0.141},
+    {name:"Project Management",  views:42985,  pct:12.4, ctr:0.219},
+    {name:"Acquisti",            views:40307,  pct:11.6, ctr:0.293},
+    {name:"Vendite",             views:23803,  pct:6.9,  ctr:0.214},
+    {name:"Controllo qualità",   views:23232,  pct:6.7,  ctr:0.142},
+    {name:"Business Dev.",       views:18942,  pct:5.5,  ctr:0.153},
+    {name:"Product Management",  views:15256,  pct:4.4,  ctr:0.203},
+  ],
+  cities:[
+    {name:"Milano",   views:77650, ctr:0.274},
+    {name:"Roma",     views:23136, ctr:0.195},
+    {name:"Torino",   views:22804, ctr:0.237},
+    {name:"Bologna",  views:15204, ctr:0.250},
+    {name:"Modena",   views:9819,  ctr:0.183},
+    {name:"Bergamo",  views:9427,  ctr:0.202},
+    {name:"Genova",   views:8596,  ctr:0.268},
+    {name:"Vicenza",  views:8383,  ctr:0.262},
+    {name:"Verona",   views:8322,  ctr:0.300},
+    {name:"Brescia",  views:7973,  ctr:0.251},
+    {name:"Padova",   views:7898,  ctr:0.253},
+    {name:"Napoli",   views:7270,  ctr:0.303},
+    {name:"Treviso",  views:7116,  ctr:0.267},
+    {name:"Varese",   views:6313,  ctr:0.285},
+    {name:"Firenze",  views:6129,  ctr:0.196},
+  ],
+  companies:[
+    {name:"Politecnico di Milano",     views:2227, clicks:4,  ctr:0.18},
+    {name:"Automobili Lamborghini",    views:2201, clicks:0,  ctr:0.0},
+    {name:"Ferrari",                   views:2101, clicks:4,  ctr:0.19},
+    {name:"Politecnico di Torino",     views:1617, clicks:0,  ctr:0.0},
+    {name:"TECNIMONT",                 views:1386, clicks:5,  ctr:0.361},
+    {name:"Autostrade per l'Italia",   views:1202, clicks:0,  ctr:0.0},
+    {name:"Italdesign",                views:1133, clicks:0,  ctr:0.0},
+    {name:"European Space Agency",     views:968,  clicks:0,  ctr:0.0},
+    {name:"Dumarey Group",             views:955,  clicks:0,  ctr:0.0},
+    {name:"Neos SpA",                  views:858,  clicks:5,  ctr:0.583},
+    {name:"ITA Airways",               views:857,  clicks:6,  ctr:0.700},
+    {name:"Wizz Air",                  views:822,  clicks:3,  ctr:0.365},
+    {name:"AVIO",                      views:762,  clicks:0,  ctr:0.0},
+    {name:"The Italian Sea Group",     views:753,  clicks:0,  ctr:0.0},
+    {name:"Maserati",                  views:667,  clicks:0,  ctr:0.0},
+  ],
+  qualifica:[
+    {name:"Acquirente",             views:11386, ctr:0.299},
+    {name:"Ricercatore",            views:11115, ctr:0.198},
+    {name:"Project Manager",        views:6374,  ctr:0.173},
+    {name:"Logistica",              views:5366,  ctr:0.317},
+    {name:"Resp. Assicurazione Q.", views:5127,  ctr:0.176},
+    {name:"Senior Buyer",           views:5040,  ctr:0.298},
+    {name:"Specialista R&D",        views:4178,  ctr:0.096},
+    {name:"Amministratore",         views:4118,  ctr:0.194},
+    {name:"Responsabile Tecnico",   views:3562,  ctr:0.000},
+    {name:"Resp. Logistica",        views:3554,  ctr:0.310},
+    {name:"Capo Team",              views:3537,  ctr:0.198},
+    {name:"Resp. Acquisti",         views:3522,  ctr:0.341},
+    {name:"Specialista IT",         views:3490,  ctr:0.229},
+    {name:"Specialista Qualità",    views:3428,  ctr:0.146},
+    {name:"Manager Operazioni",     views:2907,  ctr:0.550},
+  ],
+};
+
+// ── CHART INSTANCES ──────────────────────────────────────
+let trendChart=null, sizeDonut=null, cityChart=null;
+
+// ── DATE HELPERS ─────────────────────────────────────────
+let ALL_DATES = [];
+let LAST_DATE = '';
+const MO=['','Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+
+function addDays(d,n){const dt=new Date(d+'T00:00:00');dt.setDate(dt.getDate()+n);return dt.toISOString().slice(0,10);}
+function fmtD(d){const[y,m,dd]=d.split('-');return`${parseInt(dd)} ${MO[parseInt(m)]} ${y}`;}
+
+function getRange(val){
+  if(val.startsWith('m-')){
+    const[,y,m]=val.split('-');
+    const start=`${y}-${m}-01`;
+    const nextM=parseInt(m)===12?`${parseInt(y)+1}-01-01`:`${y}-${String(parseInt(m)+1).padStart(2,'0')}-01`;
+    const end=addDays(nextM,-1);
+    const days=Math.round((new Date(end)-new Date(start))/86400000)+1;
+    return{start,end,prevStart:addDays(start,-days),prevEnd:addDays(start,-1)};
+  }
+  const days=parseInt(val);
+  const end=LAST_DATE;
+  const start=addDays(end,-(days-1));
+  return{start,end,prevStart:addDays(start,-days),prevEnd:addDays(start,-1)};
+}
+
+// ── AGGREGATE ────────────────────────────────────────────
+function agg(s,e){
+  const f=RAW.filter(r=>r.date>=s&&r.date<=e);
+  const by={};const tot={spend:0,impr:0,clicks:0,leads:0,reach:0,vplays:0,v25:0,v50:0,v75:0,v100:0,form_opens:0,downloads:0};
+  f.forEach(r=>{
+    if(!by[r.adset])by[r.adset]={spend:0,impr:0,clicks:0,leads:0,reach:0,vplays:0,v25:0,v50:0,v75:0,v100:0,form_opens:0,downloads:0};
+    const a=by[r.adset];
+    ['spend','impr','clicks','leads','reach','vplays','v25','v50','v75','v100','form_opens','downloads'].forEach(k=>{a[k]+=r[k];tot[k]+=r[k];});
+  });
+  return{by,tot,filtered:f};
+}
+
+function kpis(t){
+  return{...t,ctr:t.impr>0?t.clicks/t.impr*100:0,cpm:t.impr>0?t.spend/t.impr*1000:0,cpc:t.clicks>0?t.spend/t.clicks:0,cpl:t.leads>0?t.spend/t.leads:0};
+}
+
+function delta(c,p,hiGood=true){
+  if(!p||p===0)return null;
+  const pct=((c-p)/p)*100;
+  return{pct,pos:hiGood?pct>0:pct<0};
+}
+
+// ── TREND BUCKETS ─────────────────────────────────────────
+function weeklyBuckets(filtered){
+  const b={};
+  filtered.forEach(r=>{
+    const d=new Date(r.date+'T00:00:00');
+    const ws=new Date(d);ws.setDate(d.getDate()-d.getDay()+1);
+    const k=ws.toISOString().slice(0,10);
+    if(!b[k])b[k]={impr:0,spend:0,leads:0};
+    b[k].impr+=r.impr;b[k].spend+=r.spend;b[k].leads+=r.leads;
+  });
+  const keys=Object.keys(b).sort();
+  return{
+    labels:keys.map(k=>{const[,m,d]=k.split('-');return`${parseInt(d)} ${MO[parseInt(m)]}`;}),
+    impr:keys.map(k=>b[k].impr),
+    spend:keys.map(k=>parseFloat(b[k].spend.toFixed(2))),
+    leads:keys.map(k=>b[k].leads)
+  };
+}
+
+// ── RENDER KPI BAR ────────────────────────────────────────
+function renderKPI(ct,pt){
+  const c=kpis(ct),p=pt?kpis(pt):null;
+  const items=[
+    {name:'Spending', val:'€ '+c.spend.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2}), d:p?delta(c.spend,p.spend,false):null},
+    {name:'Lead',     val:c.leads.toLocaleString('it-IT'), d:p?delta(c.leads,p.leads,true):null},
+    {name:'CPL',      val:c.cpl>0?'€ '+c.cpl.toFixed(2):'N/D', d:c.cpl>0&&p&&p.cpl>0?delta(c.cpl,p.cpl,false):null},
+    {name:'CPM',      val:'€ '+c.cpm.toFixed(2), d:p?delta(c.cpm,p.cpm,false):null},
+    {name:'CPC',      val:'€ '+c.cpc.toFixed(2), d:p?delta(c.cpc,p.cpc,false):null},
+    {name:'CTR',      val:c.ctr.toFixed(2)+'%', d:p?delta(c.ctr,p.ctr,true):null},
+  ];
+  document.getElementById('kpiStrip').innerHTML=items.map(k=>{
+    let dh='';
+    if(k.d){const cl=k.d.pos?'delta-up':'delta-down';const ar=k.d.pos?'▲':'▼';const sg=k.d.pct>=0?'+':'';dh=`<div class="kpi-delta ${cl}"><span>${ar}</span> ${sg}${k.d.pct.toFixed(1)}%</div>`;}
+    else if(p) dh=`<div class="kpi-delta delta-na">—</div>`;
+    return`<div class="kpi-cell"><div class="kpi-name">${k.name}</div><div class="kpi-val">${k.val}</div>${dh}</div>`;
+  }).join('');
+}
+
+// ── RENDER TABLE ──────────────────────────────────────────
+let CSORT={col:'spend',dir:'desc'};
+
+function renderTable(){
+  const{start,end}=getRange(document.getElementById('dateFilter').value);
+  const{by,tot}=agg(start,end);
+  CSORT.col=document.getElementById('sortBy').value;
+  CSORT.dir=document.getElementById('sortDir').value;
+
+  const rows=Object.entries(by).map(([adset,a])=>{
+    const m=ADSET_META[adset]||{short:adset,type:'lead'};
+    const ctr=a.impr>0?a.clicks/a.impr*100:0;
+    const cpm=a.impr>0?a.spend/a.impr*1000:0;
+    const cpc=a.clicks>0?a.spend/a.clicks:0;
+    const cpl=a.leads>0?a.spend/a.leads:0;
+    return{adset,name:m.short,type:m.type,spend:a.spend,impr:a.impr,clicks:a.clicks,leads:a.leads,ctr,cpm,cpc,cpl};
+  });
+  rows.sort((a,b)=>{
+    let va=a[CSORT.col],vb=b[CSORT.col];
+    if(typeof va==='string')return CSORT.dir==='asc'?va.localeCompare(vb):vb.localeCompare(va);
+    return CSORT.dir==='asc'?va-vb:vb-va;
+  });
+
+  const tl={lead:'Lead Gen',video:'Video View',engage:'Engagement'};
+  const tc={lead:'b-lead',video:'b-video',engage:'b-engage'};
+  const fmt=(v,d=0)=>v>0?v.toLocaleString('it-IT',{minimumFractionDigits:d,maximumFractionDigits:d}):'—';
+
+  document.getElementById('tableBody').innerHTML=rows.map(r=>`<tr>
+    <td>${r.name}</td>
+    <td><span class="badge ${tc[r.type]}">${tl[r.type]}</span></td>
+    <td>${r.spend>0?r.spend.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2})+' €':'0 €'}</td>
+    <td>${r.clicks>0?r.clicks.toLocaleString('it-IT'):'0'}</td>
+    <td>${r.ctr>0?r.ctr.toFixed(2)+'%':'0,00%'}</td>
+    <td>${r.cpc>0?r.cpc.toFixed(2)+' €':'—'}</td>
+    <td>${r.impr>0?r.impr.toLocaleString('it-IT'):'0'}</td>
+    <td>${r.cpm>0?r.cpm.toFixed(2)+' €':'—'}</td>
+    <td>${r.leads>0?r.leads.toLocaleString('it-IT'):'—'}</td>
+    <td>${r.cpl>0?r.cpl.toFixed(2)+' €':'—'}</td>
+  </tr>`).join('');
+
+  const tCtr=tot.impr>0?tot.clicks/tot.impr*100:0;
+  const tCpm=tot.impr>0?tot.spend/tot.impr*1000:0;
+  const tCpc=tot.clicks>0?tot.spend/tot.clicks:0;
+  const tCpl=tot.leads>0?tot.spend/tot.leads:0;
+  document.getElementById('tableFoot').innerHTML=`<tr>
+    <td>Totale</td><td></td>
+    <td>${tot.spend.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2})} €</td>
+    <td>${tot.clicks.toLocaleString('it-IT')}</td>
+    <td>${tCtr.toFixed(2)}%</td>
+    <td>${tCpc>0?tCpc.toFixed(2)+' €':'—'}</td>
+    <td>${tot.impr.toLocaleString('it-IT')}</td>
+    <td>${tCpm>0?tCpm.toFixed(2)+' €':'—'}</td>
+    <td>${tot.leads>0?tot.leads.toLocaleString('it-IT'):'—'}</td>
+    <td>${tCpl>0?tCpl.toFixed(2)+' €':'—'}</td>
+  </tr>`;
+
+  document.getElementById('tblFooter').textContent=`${rows.length} Ad Set · ${fmtD(start)} – ${fmtD(end)}`;
+}
+
+function sortCol(col){
+  if(CSORT.col===col)CSORT.dir=CSORT.dir==='asc'?'desc':'asc'; else{CSORT.col=col;CSORT.dir='desc';}
+  document.getElementById('sortBy').value=CSORT.col;
+  document.getElementById('sortDir').value=CSORT.dir;
+  document.querySelectorAll('.camp-table th').forEach(th=>{th.classList.remove('sa','sd');});
+  document.querySelectorAll('.camp-table th').forEach(th=>{
+    if(th.getAttribute('onclick')?.includes(`'${col}'`))th.classList.add(CSORT.dir==='asc'?'sa':'sd');
+  });
+  renderTable();
+}
+
+// ── RENDER TREND ──────────────────────────────────────────
+function renderTrend(filtered,start,end){
+  const{labels,spend,leads}=weeklyBuckets(filtered);
+  const ctx=document.getElementById('trendChart').getContext('2d');
+  if(trendChart)trendChart.destroy();
+  document.getElementById('trendSub').textContent=`${fmtD(start)} – ${fmtD(end)}`;
+  trendChart=new Chart(ctx,{type:'bar',data:{labels,datasets:[
+    {label:'Spesa (€)',data:spend,backgroundColor:'rgba(245,158,11,0.18)',borderColor:'rgba(245,158,11,0.6)',borderWidth:1,borderRadius:4,yAxisID:'y'},
+    {label:'Lead',data:leads,type:'line',borderColor:'#10B981',backgroundColor:'transparent',borderWidth:2.5,pointBackgroundColor:'#10B981',pointRadius:4,pointHoverRadius:6,tension:0.3,yAxisID:'y2'}
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{
+    legend:{labels:{color:'#3A5575',font:{family:'Inter',size:11},boxWidth:10,boxHeight:8}},
+    tooltip:{backgroundColor:'#0A1E35',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,titleColor:'#fff',bodyColor:'#94B4D0',titleFont:{family:'IBM Plex Mono',size:11},bodyFont:{family:'IBM Plex Mono',size:11},padding:10}
+  },scales:{
+    x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#7A96B2',font:{family:'Inter',size:10}},border:{color:'rgba(0,0,0,0.07)'}},
+    y:{position:'left',grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#F59E0B',font:{family:'IBM Plex Mono',size:10},callback:v=>'€'+v.toFixed(0)},border:{color:'rgba(0,0,0,0.07)'}},
+    y2:{position:'right',grid:{drawOnChartArea:false},ticks:{color:'#10B981',font:{family:'IBM Plex Mono',size:10},callback:v=>v.toFixed(0)+' L'},border:{color:'rgba(0,0,0,0.07)'}}
+  }}});
+}
+
+// ── RENDER LEAD PER CAMPAGNA ──────────────────────────────
+function renderLeadByCamp(by){
+  const entries=Object.entries(by)
+    .map(([adset,d])=>({
+      name:(ADSET_META[adset]||{short:adset}).short,
+      leads:d.leads,
+      spend:d.spend
+    }))
+    .filter(e=>e.leads>0)
+    .sort((a,b)=>b.leads-a.leads);
+  const maxL=entries.length>0?entries[0].leads:1;
+  const cols=['#0A66C2','#00A0DC','#0CC4B0','#10B981','#8B5CF6','#F59E0B'];
+  const el=document.getElementById('leadCampList');
+  if(!entries.length){
+    el.innerHTML='<div style="padding:24px 16px;text-align:center;color:var(--text3);font-size:12px">Nessun lead nel periodo selezionato</div>';
+    return;
+  }
+  el.innerHTML=entries.map((e,i)=>{
+    const w=(e.leads/maxL*100).toFixed(1);
+    const cpl=e.leads>0?e.spend/e.leads:0;
+    const col=cols[i%cols.length];
+    return`<div class="lcb-item">
+      <div class="lcb-name" title="${e.name}">${e.name}</div>
+      <div class="lcb-row">
+        <div class="lcb-track"><div class="lcb-fill" style="width:${w}%;background:${col}"></div></div>
+        <div class="lcb-val">${e.leads}</div>
+      </div>
+      <div class="lcb-cpl">${cpl>0?'CPL €'+cpl.toFixed(0):'—'}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── RENDER FUNNEL ─────────────────────────────────────────
+function renderFunnel(t){
+  const ctr=t.impr>0?t.clicks/t.impr*100:0;
+  const cvr=t.clicks>0?t.leads/t.clicks*100:0;
+  const cpc=t.clicks>0?t.spend/t.clicks:0;
+  const cpl=t.leads>0?t.spend/t.leads:0;
+  const fmt=v=>v>0?v.toLocaleString('it-IT'):'—';
+  const fmtE=(v,d=2)=>v>0?'€ '+v.toFixed(d):'—';
+  // Larghezze proporzionali per le barre di scala visiva
+  const clickBarW=t.impr>0?Math.min(ctr*15,100):5;
+  const leadBarW =t.clicks>0?Math.min(cvr*8,100):t.leads>0?3:0;
+  document.getElementById('funnelDisplay').innerHTML=`
+    <div class="funnel-wrap">
+      <div class="funnel-stage">
+        <div class="fs-num">${fmt(t.impr)}</div>
+        <div class="fs-lbl">Impressioni</div>
+        <div class="fs-track"><div class="fs-fill" style="width:100%;background:#0A66C2"></div></div>
+      </div>
+      <div class="funnel-conn">
+        <div class="fc-pct">${ctr.toFixed(2)}%</div>
+        <div class="fc-arrow">→</div>
+        <div class="fc-lbl">CTR</div>
+      </div>
+      <div class="funnel-stage">
+        <div class="fs-num">${fmt(t.clicks)}</div>
+        <div class="fs-lbl">Click</div>
+        <div class="fs-track"><div class="fs-fill" style="width:${clickBarW.toFixed(1)}%;background:#0CC4B0"></div></div>
+      </div>
+      <div class="funnel-conn">
+        <div class="fc-pct">${cvr.toFixed(2)}%</div>
+        <div class="fc-arrow">→</div>
+        <div class="fc-lbl">Conv.</div>
+      </div>
+      <div class="funnel-stage">
+        <div class="fs-num">${fmt(t.leads)}</div>
+        <div class="fs-lbl">Lead</div>
+        <div class="fs-track"><div class="fs-fill" style="width:${leadBarW.toFixed(1)}%;background:#10B981"></div></div>
+      </div>
+    </div>
+    <div class="funnel-footer">
+      <div class="ff-item"><span class="ff-lbl">CPC</span><span class="ff-val">${fmtE(cpc)}</span></div>
+      <div class="ff-item"><span class="ff-lbl">CPL</span><span class="ff-val ff-highlight">${fmtE(cpl)}</span></div>
+      <div class="ff-item"><span class="ff-lbl">Spesa totale</span><span class="ff-val">${t.spend>0?'€ '+t.spend.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2}):'—'}</span></div>
+    </div>`;
+}
+
+// ── APPLY FILTER ──────────────────────────────────────────
+function applyFilter(){
+  const val=document.getElementById('dateFilter').value;
+  const{start,end,prevStart,prevEnd}=getRange(val);
+  const curr=agg(start,end);
+  const prev=agg(prevStart,prevEnd);
+  document.getElementById('periodLabel').textContent=`${fmtD(start)} → ${fmtD(end)}`;
+  document.getElementById('footerPeriod').textContent=`PERIODO: ${fmtD(start)} → ${fmtD(end)}`;
+  renderKPI(curr.tot,prev.tot);
+  renderTable();
+  renderTrend(curr.filtered,start,end);
+  renderLeadByCamp(curr.by);
+  renderFunnel(curr.tot);
+}
+
+// ── DEMOGRAPHICS CHARTS ───────────────────────────────────
+function ctrCls(v){return v>=0.35?'ctr-hi':v>=0.2?'ctr-md':'ctr-lo';}
+function gc(i){return['#0A66C2','#00A0DC','#0CC4B0','#10B981','#8B5CF6','#F59E0B'][i%6];}
+function fmtN(n){return n.toLocaleString('it-IT');}
+
+function renderHBars(listId,data,maxV,colClass){
+  document.getElementById(listId).innerHTML=data.map((s,i)=>{
+    const w=(s.views/maxV*100).toFixed(1);
+    return`<div class="hbar-item ${colClass}">
+      <div class="hname" title="${s.name}">${s.name}</div>
+      <div class="htrack"><div class="hfill" style="width:${w}%;background:${gc(i)}AA"></div></div>
+      <div class="hpct">${fmtN(s.views)}</div>
+      <div class="hctr ${ctrCls(s.ctr)}">${s.ctr>0?s.ctr.toFixed(3)+'%':'—'}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderDemographics(){
+  // Settori
+  renderHBars('dSettori',DEMO.settori,DEMO.settori[0].views,'c4w');
+  // Seniority
+  renderHBars('dSeniority',DEMO.seniority,DEMO.seniority[0].views,'c4s');
+  // Funzione
+  renderHBars('dFunzione',DEMO.funzione,DEMO.funzione[0].views,'c4s');
+  // Qualifiche
+  const maxQ=DEMO.qualifica[0].views;
+  renderHBars('dQual1',DEMO.qualifica.slice(0,8),maxQ,'c4w');
+  renderHBars('dQual2',DEMO.qualifica.slice(8,15),maxQ,'c4w');
+
+  // Size donut
+  const szC=['#0A66C2','#00A0DC','#0CC4B0','#10B981','#8B5CF6','#F59E0B','#F97316'];
+  const szCtx=document.getElementById('sizeDonut').getContext('2d');
+  if(sizeDonut)sizeDonut.destroy();
+  sizeDonut=new Chart(szCtx,{type:'doughnut',data:{labels:DEMO.size.map(s=>s.name+' dip.'),datasets:[{data:DEMO.size.map(s=>s.views),backgroundColor:szC.map(c=>c+'CC'),borderColor:szC,borderWidth:1.5,hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:false},tooltip:{backgroundColor:'#0A1E35',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,titleColor:'#fff',bodyColor:'#94B4D0',callbacks:{label:ctx=>' '+ctx.parsed.toLocaleString('it-IT')+' impr. ('+DEMO.size[ctx.dataIndex].pct.toFixed(1)+'%)'}}}}});
+  document.getElementById('sizeLeg').innerHTML=DEMO.size.map((s,i)=>`<div class="sz-item"><div class="sz-dot" style="background:${szC[i]}"></div><div class="sz-name">${s.name} dipendenti</div><div class="sz-pct">${s.pct.toFixed(1)}%</div></div>`).join('');
+
+  // City horizontal bar chart
+  const cityCtx=document.getElementById('cityChart').getContext('2d');
+  if(cityChart)cityChart.destroy();
+  cityChart=new Chart(cityCtx,{type:'bar',data:{labels:DEMO.cities.map(c=>c.name),datasets:[
+    {label:'Impressioni',data:DEMO.cities.map(c=>c.views),backgroundColor:DEMO.cities.map((_,i)=>i===0?'rgba(10,102,194,0.7)':'rgba(10,102,194,0.22)'),borderColor:DEMO.cities.map((_,i)=>i===0?'#0A66C2':'rgba(10,102,194,0.5)'),borderWidth:1,borderRadius:3,yAxisID:'y'},
+    {label:'CTR (%)',data:DEMO.cities.map(c=>c.ctr),type:'line',borderColor:'#10B981',backgroundColor:'transparent',borderWidth:1.5,pointBackgroundColor:'#10B981',pointRadius:3,tension:0.3,yAxisID:'y2'}
+  ]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#3A5575',font:{family:'Inter',size:10},boxWidth:10,boxHeight:8}},tooltip:{backgroundColor:'#0A1E35',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,titleColor:'#fff',bodyColor:'#94B4D0'}},scales:{x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#7A96B2',font:{family:'IBM Plex Mono',size:10},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},border:{color:'rgba(0,0,0,0.07)'}},y:{grid:{color:'rgba(0,0,0,0.03)'},ticks:{color:'#3A5575',font:{family:'Inter',size:10}},border:{color:'rgba(0,0,0,0.07)'}},y2:{display:false,position:'right'}}}});
+
+  // Companies
+  document.getElementById('coList').innerHTML=DEMO.companies.map((c,i)=>{
+    const cc=c.ctr>0.3?'ctr-hi':c.ctr>0.1?'ctr-md':'ctr-lo';
+    return`<div class="co-item">
+      <div class="co-rank">${i+1}</div>
+      <div class="co-name" title="${c.name}">${c.name}</div>
+      <div class="co-v">${fmtN(c.views)}</div>
+      <div class="co-c">${c.clicks>0?c.clicks:'—'}</div>
+      <div class="co-ctr ${cc}">${c.ctr>0?c.ctr.toFixed(3)+'%':'—'}</div>
+    </div>`;
+  }).join('');
+}
+
+
+// ── PDF EXPORT ────────────────────────────────────────────
+function exportPDF() {
+  // Mostra entrambe le sezioni per la stampa
+  document.querySelectorAll('.section').forEach(s => s.style.display = 'block');
+  window.print();
+  // Ripristina dopo la stampa
+  setTimeout(() => {
+    document.querySelectorAll('.section').forEach(s => s.style.display = '');
+    document.querySelector('.section.active').style.display = 'block';
+  }, 1000);
+}
+
+// ── INIT ─────────────────────────────────────────────────
+// Avvio asincrono tramite loadData()
+loadData();
+</script>
+</body>
+</html>
