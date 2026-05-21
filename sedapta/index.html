@@ -485,7 +485,7 @@ select.sort-select option { background: #0A3060; }
   <!-- NOTICE PERIODO FISSO -->
   <div class="demo-notice">
     <span class="demo-notice-icon">ℹ</span>
-    I dati demografici sono aggregati sull'intero periodo coperto dall'ultimo sync e non variano con il filtro temporale del report. LinkedIn non fornisce breakdown demografici per singolo giorno.
+    I dati demografici sono una stima per il periodo selezionato: la composizione audience (industria/seniority/azienda/etc.) è quella aggregata sull'intero periodo della campagna, scalata proporzionalmente alle impressioni del periodo filtrato. LinkedIn non fornisce breakdown demografici per singolo giorno.
   </div>
 
   <!-- SETTORI + DIMENSIONE -->
@@ -634,7 +634,7 @@ async function loadData() {
     RAW = (data.campaigns || []).map(convertRecord);
 
     // Costruisci DEMO dal blocco demographics del JSON
-    DEMO = buildDEMO(data.demographics || {});
+    DEMO_FULL = buildDEMO(data.demographics || {});
 
     // Inizializza le variabili date globali
     ALL_DATES = [...new Set(RAW.map(r=>r.date))].sort();
@@ -658,9 +658,8 @@ async function loadData() {
     // Aggiorna il select dei mesi disponibili
     updateMonthOptions();
 
-    // Avvia il report
+    // Avvia il report (applyFilter chiama già renderDemographics)
     applyFilter();
-    renderDemographics();
 
   } catch (err) {
     console.error('Errore caricamento dati:', err);
@@ -746,7 +745,20 @@ function buildDEMO(rawDemo) {
   };
 }
 
-let DEMO = {settori:[],size:[],seniority:[],funzione:[],cities:[],companies:[],qualifica:[]};
+let DEMO_FULL = {settori:[],size:[],seniority:[],funzione:[],cities:[],companies:[],qualifica:[]};
+
+function scaleDEMO(factor){
+  const out = {};
+  for (const k in DEMO_FULL){
+    out[k] = DEMO_FULL[k].map(r => ({
+      ...r,
+      views: Math.round(r.views * factor),
+      clicks: Math.round(r.clicks * factor)
+      // pct e ctr invariati: stesse proporzioni
+    }));
+  }
+  return out;
+}
 
 // ── CHART INSTANCES ──────────────────────────────────────
 let trendChart=null, sizeDonut=null, cityChart=null;
@@ -1014,6 +1026,7 @@ function applyFilter(){
   renderTrend(curr.filtered,start,end);
   renderLeadByCamp(curr.by);
   renderFunnel(curr.tot);
+  renderDemographics();
 }
 
 // ── DEMOGRAPHICS CHARTS ───────────────────────────────────
@@ -1034,6 +1047,17 @@ function renderHBars(listId,data,maxV,colClass){
 }
 
 function renderDemographics(){
+  // Scala DEMO sul rapporto impressioni periodo / impressioni totali
+  let factor = 1;
+  const filterEl = document.getElementById('dateFilter');
+  if (filterEl && filterEl.value && RAW.length){
+    const {start, end} = getRange(filterEl.value);
+    const filteredImpr = RAW.filter(r=>r.date>=start && r.date<=end).reduce((s,r)=>s+(r.impr||0),0);
+    const totalImpr = RAW.reduce((s,r)=>s+(r.impr||0),0);
+    if (totalImpr > 0) factor = filteredImpr / totalImpr;
+  }
+  const DEMO = scaleDEMO(factor);
+
   // Settori
   if(DEMO.settori.length) renderHBars('dSettori',DEMO.settori,DEMO.settori[0].views,'c4w');
   // Seniority
