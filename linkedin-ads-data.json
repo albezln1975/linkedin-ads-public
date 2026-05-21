@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-21T15:31:19.328Z",
+  "lastUpdated": "2026-05-21T15:34:45.216Z",
   "campaigns": [
     {
       "pivotValue": "urn:li:sponsoredCampaign:483009223",
@@ -4286,6 +4286,27 @@
       "follows": 0
     },
     {
+      "pivotValue": "urn:li:sponsoredCampaign:594907753",
+      "campaignName": "Document Ads - 04/2026 - LM1 - SA1",
+      "date": "2026-05-21",
+      "impressions": 1538,
+      "clicks": 8,
+      "conversions": 0,
+      "spend": 32.38738397719961,
+      "leads": 0,
+      "downloads": 0,
+      "videoViews": 0,
+      "v25": 0,
+      "v50": 0,
+      "v75": 0,
+      "v100": 0,
+      "engagements": 35,
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "follows": 0
+    },
+    {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
       "campaignName": "Document Ads - 04/2026 - LM2 - SA1",
       "date": "2026-04-25",
@@ -4301,27 +4322,6 @@
       "v75": 0,
       "v100": 0,
       "engagements": 207,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "follows": 0
-    },
-    {
-      "pivotValue": "urn:li:sponsoredCampaign:594907753",
-      "campaignName": "Document Ads - 04/2026 - LM1 - SA1",
-      "date": "2026-05-21",
-      "impressions": 1530,
-      "clicks": 8,
-      "conversions": 0,
-      "spend": 32.38738397719961,
-      "leads": 0,
-      "downloads": 0,
-      "videoViews": 0,
-      "v25": 0,
-      "v50": 0,
-      "v75": 0,
-      "v100": 0,
-      "engagements": 35,
       "likes": 0,
       "comments": 0,
       "shares": 0,
@@ -23009,13 +23009,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:71697918",
-        "impressions": 110,
+        "pivotValue": "urn:li:organization:55459031",
+        "impressions": 111,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:55459031",
-        "impressions": 111,
+        "pivotValue": "urn:li:organization:71697918",
+        "impressions": 110,
         "clicks": 0
       },
       {
@@ -24954,13 +24954,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:42386620",
-        "impressions": 49,
+        "pivotValue": "urn:li:organization:28977459",
+        "impressions": 48,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:28977459",
-        "impressions": 48,
+        "pivotValue": "urn:li:organization:42386620",
+        "impressions": 49,
         "clicks": 0
       },
       {
@@ -27419,12 +27419,12 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:109069357",
+        "pivotValue": "urn:li:organization:282131",
         "impressions": 26,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:282131",
+        "pivotValue": "urn:li:organization:109069357",
         "impressions": 26,
         "clicks": 0
       },
@@ -27874,12 +27874,12 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:42432146",
+        "pivotValue": "urn:li:organization:37830306",
         "impressions": 24,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:37830306",
+        "pivotValue": "urn:li:organization:42432146",
         "impressions": 24,
         "clicks": 0
       },
@@ -28879,13 +28879,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:2135371",
-        "impressions": 20,
+        "pivotValue": "urn:li:organization:18572119",
+        "impressions": 21,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:18572119",
-        "impressions": 21,
+        "pivotValue": "urn:li:organization:2135371",
+        "impressions": 20,
         "clicks": 0
       },
       {
@@ -29944,13 +29944,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:25024635",
-        "impressions": 17,
+        "pivotValue": "urn:li:organization:4021710",
+        "impressions": 18,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:4021710",
-        "impressions": 18,
+        "pivotValue": "urn:li:organization:25024635",
+        "impressions": 17,
         "clicks": 0
       },
       {
@@ -30774,13 +30774,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:9450",
-        "impressions": 14,
+        "pivotValue": "urn:li:organization:9380637",
+        "impressions": 17,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:9380637",
-        "impressions": 17,
+        "pivotValue": "urn:li:organization:9450",
+        "impressions": 14,
         "clicks": 0
       },
       {
@@ -30879,13 +30879,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:71268116",
-        "impressions": 15,
+        "pivotValue": "urn:li:organization:71503616",
+        "impressions": 14,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:71503616",
-        "impressions": 14,
+        "pivotValue": "urn:li:organization:71268116",
+        "impressions": 15,
         "clicks": 0
       },
       {
@@ -31669,6 +31669,11 @@
         "clicks": 0
       },
       {
+        "pivotValue": "urn:li:organization:86417455",
+        "impressions": 14,
+        "clicks": 0
+      },
+      {
         "pivotValue": "urn:li:organization:3088970",
         "impressions": 13,
         "clicks": 0
@@ -31676,11 +31681,6 @@
       {
         "pivotValue": "urn:li:organization:5057511",
         "impressions": 13,
-        "clicks": 0
-      },
-      {
-        "pivotValue": "urn:li:organization:86417455",
-        "impressions": 14,
         "clicks": 0
       },
       {
@@ -32519,8 +32519,8 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:87431816",
-        "impressions": 10,
+        "pivotValue": "urn:li:organization:853109",
+        "impressions": 12,
         "clicks": 0
       },
       {
@@ -32529,23 +32529,8 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:853109",
+        "pivotValue": "urn:li:organization:7304962",
         "impressions": 12,
-        "clicks": 0
-      },
-      {
-        "pivotValue": "urn:li:organization:74533096",
-        "impressions": 12,
-        "clicks": 0
-      },
-      {
-        "pivotValue": "urn:li:organization:5320717",
-        "impressions": 11,
-        "clicks": 0
-      },
-      {
-        "pivotValue": "urn:li:organization:5270920",
-        "impressions": 13,
         "clicks": 0
       },
       {
@@ -32554,13 +32539,28 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:7304962",
+        "pivotValue": "urn:li:organization:5441671",
+        "impressions": 13,
+        "clicks": 0
+      },
+      {
+        "pivotValue": "urn:li:organization:5270920",
+        "impressions": 13,
+        "clicks": 0
+      },
+      {
+        "pivotValue": "urn:li:organization:5320717",
+        "impressions": 11,
+        "clicks": 0
+      },
+      {
+        "pivotValue": "urn:li:organization:74533096",
         "impressions": 12,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:5441671",
-        "impressions": 13,
+        "pivotValue": "urn:li:organization:87431816",
+        "impressions": 10,
         "clicks": 0
       },
       {
@@ -33029,13 +33029,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:11301449",
-        "impressions": 11,
+        "pivotValue": "urn:li:organization:42138656",
+        "impressions": 13,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:42138656",
-        "impressions": 13,
+        "pivotValue": "urn:li:organization:11301449",
+        "impressions": 11,
         "clicks": 0
       },
       {
@@ -33074,13 +33074,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:938191",
-        "impressions": 11,
+        "pivotValue": "urn:li:organization:12996660",
+        "impressions": 7,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:12996660",
-        "impressions": 7,
+        "pivotValue": "urn:li:organization:938191",
+        "impressions": 11,
         "clicks": 0
       },
       {
@@ -33699,13 +33699,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:86847556",
-        "impressions": 11,
+        "pivotValue": "urn:li:organization:75064045",
+        "impressions": 10,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:75064045",
-        "impressions": 10,
+        "pivotValue": "urn:li:organization:86847556",
+        "impressions": 11,
         "clicks": 0
       },
       {
@@ -34644,6 +34644,11 @@
         "clicks": 0
       },
       {
+        "pivotValue": "urn:li:organization:106362182",
+        "impressions": 8,
+        "clicks": 0
+      },
+      {
         "pivotValue": "urn:li:organization:105443333",
         "impressions": 10,
         "clicks": 0
@@ -34651,11 +34656,6 @@
       {
         "pivotValue": "urn:li:organization:105730628",
         "impressions": 9,
-        "clicks": 0
-      },
-      {
-        "pivotValue": "urn:li:organization:106362182",
-        "impressions": 8,
         "clicks": 0
       },
       {
@@ -35599,13 +35599,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:9193179",
-        "impressions": 9,
+        "pivotValue": "urn:li:organization:99023482",
+        "impressions": 10,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:99023482",
-        "impressions": 10,
+        "pivotValue": "urn:li:organization:9193179",
+        "impressions": 9,
         "clicks": 0
       },
       {
@@ -37344,13 +37344,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:31428920",
-        "impressions": 9,
+        "pivotValue": "urn:li:organization:34220480",
+        "impressions": 7,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:34220480",
-        "impressions": 7,
+        "pivotValue": "urn:li:organization:31428920",
+        "impressions": 9,
         "clicks": 0
       },
       {
@@ -38709,13 +38709,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:86817105",
-        "impressions": 8,
+        "pivotValue": "urn:li:organization:2030422",
+        "impressions": 7,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:2030422",
-        "impressions": 7,
+        "pivotValue": "urn:li:organization:86817105",
+        "impressions": 8,
         "clicks": 0
       },
       {
@@ -39374,13 +39374,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:10790563",
-        "impressions": 7,
+        "pivotValue": "urn:li:organization:1561984",
+        "impressions": 6,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:1561984",
-        "impressions": 6,
+        "pivotValue": "urn:li:organization:10790563",
+        "impressions": 7,
         "clicks": 0
       },
       {
@@ -40134,13 +40134,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:79659042",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:79049899",
+        "impressions": 7,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:79049899",
-        "impressions": 7,
+        "pivotValue": "urn:li:organization:79659042",
+        "impressions": 3,
         "clicks": 0
       },
       {
@@ -40324,13 +40324,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:92842829",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:106613819",
+        "impressions": 7,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:106613819",
-        "impressions": 7,
+        "pivotValue": "urn:li:organization:92842829",
+        "impressions": 4,
         "clicks": 0
       },
       {
@@ -40629,13 +40629,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:81564581",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:86781706",
+        "impressions": 8,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:86781706",
-        "impressions": 8,
+        "pivotValue": "urn:li:organization:81564581",
+        "impressions": 4,
         "clicks": 0
       },
       {
@@ -41319,13 +41319,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:3016257",
-        "impressions": 7,
+        "pivotValue": "urn:li:organization:28949777",
+        "impressions": 6,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:28949777",
-        "impressions": 6,
+        "pivotValue": "urn:li:organization:3016257",
+        "impressions": 7,
         "clicks": 0
       },
       {
@@ -41349,12 +41349,12 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:15195872",
+        "pivotValue": "urn:li:organization:7945003",
         "impressions": 6,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:7945003",
+        "pivotValue": "urn:li:organization:15195872",
         "impressions": 6,
         "clicks": 0
       },
@@ -41539,8 +41539,8 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:91956419",
-        "impressions": 5,
+        "pivotValue": "urn:li:organization:825628",
+        "impressions": 4,
         "clicks": 0
       },
       {
@@ -41549,8 +41549,8 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:825628",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:91956419",
+        "impressions": 5,
         "clicks": 0
       },
       {
@@ -41709,13 +41709,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:58268377",
-        "impressions": 6,
+        "pivotValue": "urn:li:organization:22742197",
+        "impressions": 5,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:22742197",
-        "impressions": 5,
+        "pivotValue": "urn:li:organization:58268377",
+        "impressions": 6,
         "clicks": 0
       },
       {
@@ -41769,12 +41769,12 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:11321924",
+        "pivotValue": "urn:li:organization:10312360",
         "impressions": 4,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:10312360",
+        "pivotValue": "urn:li:organization:11321924",
         "impressions": 4,
         "clicks": 0
       },
@@ -42034,13 +42034,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:92710091",
-        "impressions": 6,
+        "pivotValue": "urn:li:organization:92089190",
+        "impressions": 3,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:92089190",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:92710091",
+        "impressions": 6,
         "clicks": 0
       },
       {
@@ -44094,13 +44094,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:69239218",
-        "impressions": 5,
+        "pivotValue": "urn:li:organization:775714",
+        "impressions": 8,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:775714",
-        "impressions": 8,
+        "pivotValue": "urn:li:organization:69239218",
+        "impressions": 5,
         "clicks": 0
       },
       {
@@ -44139,12 +44139,12 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:24671853",
+        "pivotValue": "urn:li:organization:24027972",
         "impressions": 5,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:24027972",
+        "pivotValue": "urn:li:organization:24671853",
         "impressions": 5,
         "clicks": 0
       },
@@ -44739,23 +44739,33 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:24604401",
-        "impressions": 5,
-        "clicks": 0
-      },
-      {
         "pivotValue": "urn:li:organization:24735272",
         "impressions": 5,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:24669067",
+        "pivotValue": "urn:li:organization:24604401",
+        "impressions": 5,
+        "clicks": 0
+      },
+      {
+        "pivotValue": "urn:li:organization:11329532",
+        "impressions": 5,
+        "clicks": 0
+      },
+      {
+        "pivotValue": "urn:li:organization:24633470",
         "impressions": 5,
         "clicks": 0
       },
       {
         "pivotValue": "urn:li:organization:24673759",
         "impressions": 3,
+        "clicks": 0
+      },
+      {
+        "pivotValue": "urn:li:organization:24669067",
+        "impressions": 5,
         "clicks": 0
       },
       {
@@ -44766,16 +44776,6 @@
       {
         "pivotValue": "urn:li:organization:11706394",
         "impressions": 3,
-        "clicks": 0
-      },
-      {
-        "pivotValue": "urn:li:organization:24633470",
-        "impressions": 5,
-        "clicks": 0
-      },
-      {
-        "pivotValue": "urn:li:organization:11329532",
-        "impressions": 5,
         "clicks": 0
       },
       {
@@ -45054,13 +45054,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:16740",
-        "impressions": 5,
+        "pivotValue": "urn:li:organization:5045450",
+        "impressions": 4,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:5045450",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:16740",
+        "impressions": 5,
         "clicks": 0
       },
       {
@@ -45694,13 +45694,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:84861804",
-        "impressions": 5,
+        "pivotValue": "urn:li:organization:51643658",
+        "impressions": 4,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:51643658",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:84861804",
+        "impressions": 5,
         "clicks": 0
       },
       {
@@ -46129,17 +46129,17 @@
         "clicks": 0
       },
       {
+        "pivotValue": "urn:li:organization:10157931",
+        "impressions": 3,
+        "clicks": 0
+      },
+      {
         "pivotValue": "urn:li:organization:24650732",
         "impressions": 5,
         "clicks": 0
       },
       {
         "pivotValue": "urn:li:organization:10004312",
-        "impressions": 3,
-        "clicks": 0
-      },
-      {
-        "pivotValue": "urn:li:organization:10157931",
         "impressions": 3,
         "clicks": 0
       },
@@ -47564,12 +47564,12 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:148254",
+        "pivotValue": "urn:li:organization:3119927",
         "impressions": 4,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:3119927",
+        "pivotValue": "urn:li:organization:148254",
         "impressions": 4,
         "clicks": 0
       },
@@ -47729,13 +47729,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:24670637",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:10990969",
+        "impressions": 4,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:10990969",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:24670637",
+        "impressions": 3,
         "clicks": 0
       },
       {
@@ -48459,13 +48459,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:82323651",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:96695048",
+        "impressions": 3,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:96695048",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:82323651",
+        "impressions": 4,
         "clicks": 0
       },
       {
@@ -48509,12 +48509,12 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:34805",
+        "pivotValue": "urn:li:organization:153884",
         "impressions": 4,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:153884",
+        "pivotValue": "urn:li:organization:34805",
         "impressions": 4,
         "clicks": 0
       },
@@ -48774,13 +48774,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:35296",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:138483",
+        "impressions": 5,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:138483",
-        "impressions": 5,
+        "pivotValue": "urn:li:organization:35296",
+        "impressions": 3,
         "clicks": 0
       },
       {
@@ -49189,13 +49189,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:1109553",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:11249263",
+        "impressions": 5,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:11249263",
-        "impressions": 5,
+        "pivotValue": "urn:li:organization:1109553",
+        "impressions": 4,
         "clicks": 0
       },
       {
@@ -49219,12 +49219,12 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:17993134",
+        "pivotValue": "urn:li:organization:11432673",
         "impressions": 4,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:11432673",
+        "pivotValue": "urn:li:organization:17993134",
         "impressions": 4,
         "clicks": 0
       },
@@ -52694,12 +52694,12 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:1426547",
+        "pivotValue": "urn:li:organization:2519127",
         "impressions": 4,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:2519127",
+        "pivotValue": "urn:li:organization:1426547",
         "impressions": 4,
         "clicks": 0
       },
@@ -52729,13 +52729,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:3967041",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:2816303",
+        "impressions": 5,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:2816303",
-        "impressions": 5,
+        "pivotValue": "urn:li:organization:3967041",
+        "impressions": 3,
         "clicks": 0
       },
       {
@@ -53539,13 +53539,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:2677439",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:11783663",
+        "impressions": 3,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:11783663",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:2677439",
+        "impressions": 4,
         "clicks": 0
       },
       {
@@ -53554,13 +53554,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:5074590",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:2312083",
+        "impressions": 3,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:2312083",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:5074590",
+        "impressions": 4,
         "clicks": 0
       },
       {
@@ -53814,23 +53814,23 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:19017081",
-        "impressions": 3,
-        "clicks": 0
-      },
-      {
         "pivotValue": "urn:li:organization:24698996",
         "impressions": 3,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:24634333",
+        "pivotValue": "urn:li:organization:19017081",
         "impressions": 3,
         "clicks": 0
       },
       {
         "pivotValue": "urn:li:organization:18775965",
         "impressions": 4,
+        "clicks": 0
+      },
+      {
+        "pivotValue": "urn:li:organization:24634333",
+        "impressions": 3,
         "clicks": 0
       },
       {
@@ -53924,13 +53924,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:10315904",
-        "impressions": 5,
+        "pivotValue": "urn:li:organization:4998623",
+        "impressions": 3,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:4998623",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:10315904",
+        "impressions": 5,
         "clicks": 0
       },
       {
@@ -54014,12 +54014,12 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:9227450",
+        "pivotValue": "urn:li:organization:70454096",
         "impressions": 3,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:70454096",
+        "pivotValue": "urn:li:organization:9227450",
         "impressions": 3,
         "clicks": 0
       },
@@ -54029,12 +54029,12 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:29283341",
+        "pivotValue": "urn:li:organization:92764204",
         "impressions": 3,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:92764204",
+        "pivotValue": "urn:li:organization:29283341",
         "impressions": 3,
         "clicks": 0
       },
@@ -54104,13 +54104,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:24758400",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:18477213",
+        "impressions": 6,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:18477213",
-        "impressions": 6,
+        "pivotValue": "urn:li:organization:24758400",
+        "impressions": 3,
         "clicks": 0
       },
       {
@@ -54169,13 +54169,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:10916413",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:102528572",
+        "impressions": 4,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:102528572",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:10916413",
+        "impressions": 3,
         "clicks": 0
       },
       {
@@ -54644,17 +54644,17 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:106445188",
-        "impressions": 3,
-        "clicks": 0
-      },
-      {
         "pivotValue": "urn:li:organization:11872864",
         "impressions": 3,
         "clicks": 0
       },
       {
         "pivotValue": "urn:li:organization:203652",
+        "impressions": 3,
+        "clicks": 0
+      },
+      {
+        "pivotValue": "urn:li:organization:106445188",
         "impressions": 3,
         "clicks": 0
       },
@@ -54739,13 +54739,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:11144931",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:92846385",
+        "impressions": 4,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:92846385",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:11144931",
+        "impressions": 3,
         "clicks": 0
       },
       {
@@ -54759,13 +54759,13 @@
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:24617702",
-        "impressions": 3,
+        "pivotValue": "urn:li:organization:5770",
+        "impressions": 4,
         "clicks": 0
       },
       {
-        "pivotValue": "urn:li:organization:5770",
-        "impressions": 4,
+        "pivotValue": "urn:li:organization:24617702",
+        "impressions": 3,
         "clicks": 0
       },
       {
@@ -54811,10 +54811,158 @@
     ]
   },
   "pivotNames": {
+    "urn:li:industry:1810": "Servizi professionali",
+    "urn:li:industry:56": "Attività minerarie",
+    "urn:li:industry:14": "Ospedali e strutture sanitarie",
+    "urn:li:industry:31": "Settore alberghiero",
+    "urn:li:industry:145": "Fabbricazione di vetro, ceramica e calcestruzzo",
+    "urn:li:industry:95": "Trasporto marittimo",
+    "urn:li:industry:1029": "Fabbricazione di mezzi di trasporto",
+    "urn:li:industry:1673": "Intermediazione creditizia",
+    "urn:li:industry:59": "Servizi pubblici",
+    "urn:li:industry:17": "Fabbricazione di apparecchiature medicali",
+    "urn:li:industry:26": "Fabbricazione di mobili e arredi per la casa",
+    "urn:li:industry:25": "Industria manifatturiera",
+    "urn:li:industry:840": "Manufatti in metallo",
+    "urn:li:industry:1231": "Vendita all’ingrosso di prodotti alimentari e bevande",
+    "urn:li:industry:34": "Servizi per la ristorazione",
+    "urn:li:industry:27": "Vendita al dettaglio",
+    "urn:li:industry:1594": "Tecnologia, informazione e mezzi di comunicazione",
+    "urn:li:industry:383": "Produzione di energia elettrica",
+    "urn:li:industry:49": "Vendita all’ingrosso di materiali da costruzione",
+    "urn:li:industry:6": "Tecnologia, informazioni e internet",
+    "urn:li:industry:51": "Ingegneria civile",
+    "urn:li:industry:60": "Produzione tessile",
+    "urn:li:industry:68": "Istruzione superiore",
+    "urn:li:industry:1481": "Trasporto ferroviario",
+    "urn:li:industry:116": "Trasporti, logistica, supply chain e stoccaggio",
+    "urn:li:industry:133": "Vendita all'ingrosso",
+    "urn:li:industry:1128": "Vendita all’ingrosso di autoveicoli e relative parti",
+    "urn:li:industry:134": "Importazione ed esportazione all’ingrosso",
+    "urn:li:industry:13": "Studi medici",
+    "urn:li:industry:112": "Fabbricazione di apparecchi elettrici, materiali elettrici e componenti elettronici",
+    "urn:li:industry:19": "Vendita al dettaglio di abbigliamento e moda",
+    "urn:li:industry:93": "Immagazzinaggio e stoccaggio",
+    "urn:li:industry:96": "Servizi IT e consulenza IT",
+    "urn:li:industry:3242": "Servizi ingegneristici",
+    "urn:li:industry:57": "Petrolio e gas",
+    "urn:li:industry:70": "Servizi di ricerca",
+    "urn:li:industry:99": "Servizi di progettazione",
+    "urn:li:industry:598": "Produzione di capi di abbigliamento",
+    "urn:li:industry:48": "Edilizia",
+    "urn:li:industry:143": "Vendita al dettaglio di beni di lusso e gioielli",
+    "urn:li:industry:92": "Trasporto su strada",
+    "urn:li:industry:94": "Linee aeree e aviazione",
+    "urn:li:industry:87": "Trasporto di merci e pacchi",
+    "urn:li:industry:11": "Consulenza e servizi aziendali",
+    "urn:li:industry:55": "Produzione di macchinari",
+    "urn:li:industry:23": "Fabbricazione di prodotti alimentari e bevande",
+    "urn:li:industry:24": "Fabbricazione di computer e apparecchiature elettroniche",
+    "urn:li:industry:3133": "Mezzi di comunicazione e telecomunicazioni",
+    "urn:li:industry:54": "Fabbricazione di prodotti chimici",
+    "urn:li:industry:743": "Fabbricazione di prodotti in gomma e materie plastiche",
+    "urn:li:industry:1208": "Vendita all’ingrosso di beni di lusso e gioielli",
+    "urn:li:industry:30": "Organizzazione di viaggi",
+    "urn:li:industry:20": "Fabbricazione di articoli sportivi",
+    "urn:li:industry:108": "Traduzione e localizzazione",
+    "urn:li:industry:1187": "Vendita all’ingrosso di macchinari",
+    "urn:li:industry:100": "Organizzazioni senza scopo di lucro",
+    "urn:li:industry:382": "Trasmissione, controllo e distribuzione di energia elettrica",
+    "urn:li:industry:1339": "Vendita al dettaglio di prodotti alimentari e bevande",
+    "urn:li:industry:104": "Selezione e ricerca di personale",
+    "urn:li:industry:1905": "Società holding",
+    "urn:li:industry:1212": "Vendita all’ingrosso di prodotti cartacei",
+    "urn:li:industry:1495": "Trasporto terrestre di passeggeri",
+    "urn:li:industry:61": "Fabbricazione di carta e prodotti cartacei",
+    "urn:li:industry:75": "Pubblica amministrazione",
+    "urn:li:industry:121": "Sicurezza e investigazioni",
+    "urn:li:industry:1359": "Vendita al dettaglio di prodotti per la salute e la cura personale",
+    "urn:li:industry:47": "Contabilità",
+    "urn:li:industry:91": "Servizi ai consumatori",
+    "urn:li:industry:807": "Fabbricazione di metalli primari",
+    "urn:li:industry:435": "Imprese specializzate",
+    "urn:li:industry:63": "Agricoltura",
+    "urn:li:industry:73": "Amministrazione della giustizia",
+    "urn:li:industry:2391": "Affari militari e internazionali",
+    "urn:li:industry:3243": "Servizi per energie rinnovabili",
+    "urn:li:industry:80": "Servizi pubblicitari",
+    "urn:li:industry:2353": "Sanità e servizi sociali",
+    "urn:li:industry:1319": "Vendita al dettaglio di apparecchi lettrici, materiali elettrici e apparecchiature elettroniche",
+    "urn:li:industry:10": "Servizi legali",
+    "urn:li:industry:122": "Servizi infrastrutturali",
+    "urn:li:industry:110": "Servizi per eventi",
+    "urn:li:industry:43": "Servizi finanziari",
+    "urn:li:industry:50": "Architettura e pianificazione",
+    "urn:li:industry:1999": "Formazione",
+    "urn:li:industry:90": "Organizzazioni civiche e sociali",
+    "urn:li:industry:44": "Immobiliare",
+    "urn:li:industry:2018": "Formazione tecnica e professionale",
+    "urn:li:industry:83": "Servizi di stampa",
+    "urn:li:industry:1912": "Servizi amministrativi e di supporto",
+    "urn:li:industry:2225": "Riparazione e manutenzione",
+    "urn:li:industry:79": "Uffici di politica pubblica",
+    "urn:li:industry:105": "Coaching e formazione professionale",
+    "urn:li:industry:616": "Produzione di articoli in pelle",
+    "urn:li:industry:3089": "Ricerca spaziale e tecnologia",
+    "urn:li:industry:138": "Vendita al dettaglio di attrezzature per ufficio",
+    "urn:li:industry:129": "Mercati dei capitali",
+    "urn:li:industry:40": "Strutture ricreative",
+    "urn:li:industry:42": "Assicurazioni",
+    "urn:li:industry:1157": "Vendita all’ingrosso di apparecchiature informatiche",
+    "urn:li:industry:1137": "Vendita all’ingrosso di mobili e arredi per la casa",
+    "urn:li:industry:33": "Sport professionistici",
+    "urn:li:industry:1153": "Vendita all’ingrosso di apparecchiature e materiali fotografici",
+    "urn:li:industry:1445": "Vendita al dettaglio online o per corrispondenza",
+    "urn:li:industry:2258": "Servizi per la persona e di lavanderia",
+    "urn:li:industry:88": "Servizi per singoli individui e famiglie",
+    "urn:li:industry:3251": "Produzione di tecnologie per il clima",
+    "urn:li:industry:1178": "Vendita all’ingrosso di ferramenta e apparecchi per impianti idraulici e di riscaldamento",
+    "urn:li:industry:1916": "Amministrazione d’ufficio",
+    "urn:li:industry:28": "Fornitori di attività di intrattenimento",
+    "urn:li:industry:1230": "Vendita all’ingrosso di calzature",
+    "urn:li:industry:388": "Programmi di qualità ambientale",
+    "urn:li:industry:1324": "Vendita al dettaglio di materiali da costruzione e attrezzature da giardino",
+    "urn:li:industry:1573": "Servizi postali",
+    "urn:li:industry:16": "Servizi veterinari",
+    "urn:li:industry:1779": "Servizi di noleggio di apparecchiature",
+    "urn:li:industry:103": "Redazione ed editing",
+    "urn:li:industry:784": "Fabbricazione di prodotti in legno",
+    "urn:li:industry:38": "Artisti e scrittori",
+    "urn:li:industry:115": "Musicisti",
+    "urn:li:industry:2375": "Programmi economici",
+    "urn:li:industry:398": "Impianti di trattamento e distribuzione idrica, trattamento delle acque reflue, servizi di distribuzione vapore e aria condizionata",
+    "urn:li:industry:132": "Fornitori di e-learning",
+    "urn:li:industry:1222": "Vendita all’ingrosso di abbigliamento e articoli di merceria",
+    "urn:li:industry:2130": "Arti dello spettacolo e sport professionistico",
+    "urn:li:industry:1171": "Vendita all’ingrosso di apparecchi elettrici, materiali elettrici e componenti elettronici",
+    "urn:li:industry:397": "Distribuzione di gas naturale",
+    "urn:li:industry:1292": "Vendita al dettaglio di motoveicoli",
+    "urn:li:industry:256": "Allevamento e acquacoltura",
+    "urn:li:industry:332": "Petrolio, gas e risorse minerarie",
+    "urn:li:industry:89": "Istituzioni religiose",
+    "urn:li:industry:111": "Vendita al dettaglio di materiali artistici",
+    "urn:li:industry:406": "Costruzione di edifici",
+    "urn:li:industry:1267": "Vendita all’ingrosso di bevande alcoliche",
+    "urn:li:industry:67": "Istruzione primaria e secondaria",
+    "urn:li:industry:21": "Produzione di tabacco",
+    "urn:li:industry:1742": "Fondi e trust",
+    "urn:li:industry:2081": "Ospedali",
+    "urn:li:industry:1309": "Vendita al dettaglio di mobili e arredi per la casa",
+    "urn:li:industry:2369": "Sviluppo dell'edilizia abitativa e della comunità",
+    "urn:li:industry:1250": "Vendita all’ingrosso di prodotti agricoli non lavorati",
+    "urn:li:industry:1206": "Vendita all’ingrosso di materiali riciclabili",
+    "urn:li:industry:1370": "Vendita al dettaglio di benzina",
+    "urn:li:industry:1221": "Vendita all’ingrosso di farmaci e articoli vari",
+    "urn:li:industry:37": "Musei, siti storici e giardini zoologici",
+    "urn:li:industry:131": "Servizi di raccolta fondi filantropici",
+    "urn:li:industry:1166": "Vendita all’ingrosso di metalli e minerali",
+    "urn:li:industry:679": "Fabbricazione di prodotti petroliferi e carbonieri",
+    "urn:li:industry:201": "Agricoltura, allevamento, silvicoltura",
+    "urn:li:industry:2115": "Servizi alla collettività",
+    "urn:li:industry:1262": "Vendita all’ingrosso di petrolio e prodotti petroliferi",
+    "urn:li:industry:1257": "Vendita all’ingrosso di prodotti chimici e affini",
     "urn:li:geo:90009949": "Pordenone",
     "urn:li:geo:90009948": "Pisa",
-    "urn:li:geo:90009951": "Prato",
-    "urn:li:geo:90009945": "Pesaro",
     "urn:li:geo:90009944": "Perugia",
     "urn:li:geo:90009947": "Piacenza",
     "urn:li:geo:90009946": "Pescara",
@@ -54826,7 +54974,6 @@
     "urn:li:geo:90009936": "Milano",
     "urn:li:geo:90009939": "Novara",
     "urn:li:geo:90009938": "Napoli",
-    "urn:li:geo:90009933": "Massa",
     "urn:li:geo:90009932": "Livorno",
     "urn:li:geo:90009928": "La Spezia",
     "urn:li:geo:90009931": "Lecco",
@@ -54836,35 +54983,41 @@
     "urn:li:geo:90009920": "Como",
     "urn:li:geo:90009923": "Ferrara",
     "urn:li:geo:90009922": "Cremona",
+    "urn:li:geo:90009918": "Catania",
+    "urn:li:geo:90009912": "Brescia",
     "urn:li:geo:90009973": "Vicenza",
+    "urn:li:geo:90009908": "Bergamo",
+    "urn:li:geo:90009911": "Bolzano",
+    "urn:li:geo:90009910": "Bologna",
     "urn:li:geo:90009969": "Varese",
     "urn:li:geo:90009968": "Udine",
     "urn:li:geo:90009971": "Verona",
+    "urn:li:geo:90009906": "Bari",
     "urn:li:geo:90009970": "Venezia",
     "urn:li:geo:90009965": "Treviso",
     "urn:li:geo:90009964": "Trento",
     "urn:li:geo:90009967": "Torino",
-    "urn:li:geo:90009966": "Trieste",
-    "urn:li:geo:90009960": "Savona",
-    "urn:li:geo:90009957": "Salerno",
+    "urn:li:geo:90009903": "Ancona",
     "urn:li:geo:90009956": "Roma",
     "urn:li:geo:90009952": "Ravenna",
     "urn:li:geo:90009955": "Rimini",
     "urn:li:geo:90009954": "Reggio Emilia",
-    "urn:li:geo:90009917": "Caserta",
-    "urn:li:geo:90009918": "Catania",
-    "urn:li:geo:90009912": "Brescia",
-    "urn:li:geo:90009914": "Cagliari",
-    "urn:li:geo:90009908": "Bergamo",
-    "urn:li:geo:90009911": "Bolzano",
-    "urn:li:geo:90009910": "Bologna",
-    "urn:li:geo:90009904": "Asti",
-    "urn:li:geo:90009906": "Bari",
-    "urn:li:geo:90009903": "Ancona",
+    "urn:li:industry:1409": "Vendita al dettaglio di libri e giornali",
+    "urn:li:industry:2091": "Case di riposo e strutture di assistenza residenziale",
+    "urn:li:industry:3186": "Commercianti d’arte al dettaglio",
+    "urn:li:industry:1520": "Trasporto in condotte",
+    "urn:li:industry:101": "Raccolta fondi",
+    "urn:li:industry:2318": "Servizi domestici",
+    "urn:li:industry:1424": "Vendita al dettaglio di forniture per ufficio e articoli da regalo",
+    "urn:li:industry:3259": "Tecnologia energetica",
+    "urn:li:industry:1931": "Call center telefonici",
+    "urn:li:geo:90009951": "Prato",
     "urn:li:geo:90009950": "Potenza",
+    "urn:li:geo:90009945": "Pesaro",
     "urn:li:geo:90009496": "Londra, Regno Unito",
     "urn:li:geo:90010386": "Rotterdam and The Hague",
     "urn:li:geo:90010253": "Atene",
+    "urn:li:geo:90009933": "Massa",
     "urn:li:geo:90010383": "Amsterdam Area",
     "urn:li:geo:90009935": "Messina",
     "urn:li:geo:90009934": "Matera",
@@ -54873,6 +55026,7 @@
     "urn:li:geo:90009925": "Foggia",
     "urn:li:geo:90009604": "Bruxelles",
     "urn:li:geo:90009921": "Cosenza",
+    "urn:li:geo:90009917": "Caserta",
     "urn:li:geo:90009724": "Freiburg",
     "urn:li:geo:90009916": "Carrara",
     "urn:li:geo:90009919": "Catanzaro",
@@ -54880,16 +55034,21 @@
     "urn:li:geo:90009659": "Parigi",
     "urn:li:geo:90009915": "Campobasso",
     "urn:li:geo:90009595": "Charleroi",
+    "urn:li:geo:90009914": "Cagliari",
     "urn:li:geo:90009909": "Biella",
     "urn:li:geo:90009972": "Viareggio",
     "urn:li:geo:90009974": "Vigevano",
     "urn:li:geo:90009905": "Avellino",
+    "urn:li:geo:90009904": "Asti",
     "urn:li:geo:90009907": "Benevento",
+    "urn:li:geo:90009966": "Trieste",
     "urn:li:geo:90009961": "Siracusa",
+    "urn:li:geo:90009960": "Savona",
     "urn:li:geo:90009963": "Terni",
     "urn:li:geo:90009962": "Taranto",
     "urn:li:geo:90009706": "Randstad",
     "urn:li:geo:90010282": "Zagabria",
+    "urn:li:geo:90009957": "Salerno",
     "urn:li:geo:90009959": "Sassari",
     "urn:li:geo:90009958": "Sanremo",
     "urn:li:geo:90009889": "Losanna",
