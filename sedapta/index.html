@@ -485,7 +485,7 @@ select.sort-select option { background: #0A3060; }
   <!-- NOTICE PERIODO FISSO -->
   <div class="demo-notice">
     <span class="demo-notice-icon">ℹ</span>
-    I dati demografici sono aggregati sull'intero periodo della campagna e non variano con il filtro temporale. LinkedIn non fornisce breakdown demografici per singolo giorno.
+    I dati demografici sono aggregati sull'intero periodo coperto dall'ultimo sync e non variano con il filtro temporale del report. LinkedIn non fornisce breakdown demografici per singolo giorno.
   </div>
 
   <!-- SETTORI + DIMENSIONE -->
@@ -633,6 +633,9 @@ async function loadData() {
     // Converti campaigns → RAW
     RAW = (data.campaigns || []).map(convertRecord);
 
+    // Costruisci DEMO dal blocco demographics del JSON
+    DEMO = buildDEMO(data.demographics || {});
+
     // Inizializza le variabili date globali
     ALL_DATES = [...new Set(RAW.map(r=>r.date))].sort();
     LAST_DATE = ALL_DATES[ALL_DATES.length-1];
@@ -688,105 +691,62 @@ function updateMonthOptions() {
 }
 
 
-// ── DEMOGRAPHICS DATA (statico, periodo completo) ────────
-const DEMO = {
-  settori:[
-    {name:"Produzione macchinari",    views:84496, pct:24.36, ctr:0.224},
-    {name:"Trasporti & Logistica",    views:62378, pct:17.99, ctr:0.415},
-    {name:"Fabb. mezzi di trasporto", views:57805, pct:16.67, ctr:0.187},
-    {name:"Prodotti chimici",         views:38908, pct:11.22, ctr:0.172},
-    {name:"Tecnologia & Internet",    views:37173, pct:10.72, ctr:0.213},
-    {name:"Consulenza aziendale",     views:26937, pct:7.77,  ctr:0.256},
-    {name:"Servizi ingegneristici",   views:24446, pct:7.05,  ctr:0.164},
-    {name:"IT & Consulenza IT",       views:23533, pct:6.79,  ctr:0.229},
-    {name:"Servizi di ricerca",       views:22593, pct:6.51,  ctr:0.173},
-    {name:"Industria manifatturiera", views:20588, pct:5.94,  ctr:0.253},
-    {name:"Linee aeree & Aviazione",  views:20520, pct:5.92,  ctr:0.302},
-    {name:"Import/Export ingrosso",   views:17098, pct:4.93,  ctr:0.421},
-  ],
-  size:[
-    {name:"1001–5000",  views:130845, pct:37.7},
-    {name:"201–500",    views:93007,  pct:26.8},
-    {name:"501–1000",   views:65348,  pct:18.8},
-    {name:"51–200",     views:34570,  pct:10.0},
-    {name:"11–50",      views:33505,  pct:9.7},
-    {name:"2–10",       views:12415,  pct:3.6},
-    {name:"10001+",     views:10721,  pct:3.1},
-  ],
-  seniority:[
-    {name:"Senior",        views:217156, pct:62.6, ctr:0.246},
-    {name:"Amministratore",views:73030,  pct:21.1, ctr:0.199},
-    {name:"Direttore",     views:29929,  pct:8.6,  ctr:0.207},
-    {name:"Livello base",  views:10028,  pct:2.9,  ctr:0.389},
-    {name:"CXO",           views:6191,   pct:1.8,  ctr:0.194},
-    {name:"VP",            views:5903,   pct:1.7,  ctr:0.220},
-    {name:"Proprietario",  views:5689,   pct:1.6,  ctr:0.316},
-    {name:"Partner",       views:3262,   pct:0.9,  ctr:0.215},
-  ],
-  funzione:[
-    {name:"Operazioni",          views:120033, pct:34.6, ctr:0.330},
-    {name:"Ingegneria",          views:63118,  pct:18.2, ctr:0.163},
-    {name:"Informatica",         views:62325,  pct:18.0, ctr:0.218},
-    {name:"Ricerca",             views:51751,  pct:14.9, ctr:0.141},
-    {name:"Project Management",  views:42985,  pct:12.4, ctr:0.219},
-    {name:"Acquisti",            views:40307,  pct:11.6, ctr:0.293},
-    {name:"Vendite",             views:23803,  pct:6.9,  ctr:0.214},
-    {name:"Controllo qualità",   views:23232,  pct:6.7,  ctr:0.142},
-    {name:"Business Dev.",       views:18942,  pct:5.5,  ctr:0.153},
-    {name:"Product Management",  views:15256,  pct:4.4,  ctr:0.203},
-  ],
-  cities:[
-    {name:"Milano",   views:77650, ctr:0.274},
-    {name:"Roma",     views:23136, ctr:0.195},
-    {name:"Torino",   views:22804, ctr:0.237},
-    {name:"Bologna",  views:15204, ctr:0.250},
-    {name:"Modena",   views:9819,  ctr:0.183},
-    {name:"Bergamo",  views:9427,  ctr:0.202},
-    {name:"Genova",   views:8596,  ctr:0.268},
-    {name:"Vicenza",  views:8383,  ctr:0.262},
-    {name:"Verona",   views:8322,  ctr:0.300},
-    {name:"Brescia",  views:7973,  ctr:0.251},
-    {name:"Padova",   views:7898,  ctr:0.253},
-    {name:"Napoli",   views:7270,  ctr:0.303},
-    {name:"Treviso",  views:7116,  ctr:0.267},
-    {name:"Varese",   views:6313,  ctr:0.285},
-    {name:"Firenze",  views:6129,  ctr:0.196},
-  ],
-  companies:[
-    {name:"Politecnico di Milano",     views:2227, clicks:4,  ctr:0.18},
-    {name:"Automobili Lamborghini",    views:2201, clicks:0,  ctr:0.0},
-    {name:"Ferrari",                   views:2101, clicks:4,  ctr:0.19},
-    {name:"Politecnico di Torino",     views:1617, clicks:0,  ctr:0.0},
-    {name:"TECNIMONT",                 views:1386, clicks:5,  ctr:0.361},
-    {name:"Autostrade per l'Italia",   views:1202, clicks:0,  ctr:0.0},
-    {name:"Italdesign",                views:1133, clicks:0,  ctr:0.0},
-    {name:"European Space Agency",     views:968,  clicks:0,  ctr:0.0},
-    {name:"Dumarey Group",             views:955,  clicks:0,  ctr:0.0},
-    {name:"Neos SpA",                  views:858,  clicks:5,  ctr:0.583},
-    {name:"ITA Airways",               views:857,  clicks:6,  ctr:0.700},
-    {name:"Wizz Air",                  views:822,  clicks:3,  ctr:0.365},
-    {name:"AVIO",                      views:762,  clicks:0,  ctr:0.0},
-    {name:"The Italian Sea Group",     views:753,  clicks:0,  ctr:0.0},
-    {name:"Maserati",                  views:667,  clicks:0,  ctr:0.0},
-  ],
-  qualifica:[
-    {name:"Acquirente",             views:11386, ctr:0.299},
-    {name:"Ricercatore",            views:11115, ctr:0.198},
-    {name:"Project Manager",        views:6374,  ctr:0.173},
-    {name:"Logistica",              views:5366,  ctr:0.317},
-    {name:"Resp. Assicurazione Q.", views:5127,  ctr:0.176},
-    {name:"Senior Buyer",           views:5040,  ctr:0.298},
-    {name:"Specialista R&D",        views:4178,  ctr:0.096},
-    {name:"Amministratore",         views:4118,  ctr:0.194},
-    {name:"Responsabile Tecnico",   views:3562,  ctr:0.000},
-    {name:"Resp. Logistica",        views:3554,  ctr:0.310},
-    {name:"Capo Team",              views:3537,  ctr:0.198},
-    {name:"Resp. Acquisti",         views:3522,  ctr:0.341},
-    {name:"Specialista IT",         views:3490,  ctr:0.229},
-    {name:"Specialista Qualità",    views:3428,  ctr:0.146},
-    {name:"Manager Operazioni",     views:2907,  ctr:0.550},
-  ],
+// ── DEMOGRAPHICS DATA (caricato da JSON) ─────────────────
+// LinkedIn API restituisce URN. Mapping noto per enum stabili; URN tail come fallback.
+const PIVOT_NAMES = {
+  seniority: {
+    '1':'Senza retribuzione','2':'Tirocinio','3':'Livello base','4':'Senior',
+    '5':'Manager','6':'Direttore','7':'VP','8':'CXO','9':'Partner','10':'Proprietario'
+  },
+  companySize: {
+    'SIZE_1':'1','SIZE_2_TO_10':'2–10','SIZE_11_TO_50':'11–50','SIZE_51_TO_200':'51–200',
+    'SIZE_201_TO_500':'201–500','SIZE_501_TO_1000':'501–1000','SIZE_1001_TO_5000':'1001–5000',
+    'SIZE_5001_TO_10000':'5001–10000','SIZE_10001_OR_MORE':'10001+'
+  },
+  jobFunction: {
+    '1':'Contabilità','2':'Amministrazione','3':'Servizi artistici','4':'Servizi affari',
+    '5':'Servizi comunità','6':'Consulenza','7':'Istruzione','8':'Ingegneria',
+    '9':'Imprenditorialità','10':'Finanza','11':'Sanità','12':'Risorse umane',
+    '13':'Informatica','14':'Legale','15':'Marketing','16':'Media',
+    '17':'Esercito','18':'Operazioni','19':'Project Management','20':'Acquisti',
+    '21':'Garanzia qualità','22':'Immobiliare','23':'Ricerca','24':'Vendite',
+    '25':'Assistenza','26':'Catena di fornitura','27':'Supporto','28':'Trasporti'
+  }
 };
+
+function urnTail(urn){ return urn ? urn.split(':').pop() : ''; }
+function resolveName(pivotType, urn){
+  const tail = urnTail(urn);
+  return (PIVOT_NAMES[pivotType] && PIVOT_NAMES[pivotType][tail]) || urn || '—';
+}
+
+function buildDEMO(rawDemo) {
+  function shape(arr, pivotType, topN) {
+    if (!arr || !arr.length) return [];
+    const total = arr.reduce((s,r)=>s+(r.impressions||0),0) || 1;
+    return arr.slice()
+      .sort((a,b)=>(b.impressions||0)-(a.impressions||0))
+      .slice(0, topN)
+      .map(r => ({
+        name: resolveName(pivotType, r.pivotValue),
+        views: r.impressions || 0,
+        pct: ((r.impressions||0)/total)*100,
+        ctr: r.impressions>0 ? (r.clicks||0)/r.impressions*100 : 0,
+        clicks: r.clicks || 0
+      }));
+  }
+  return {
+    settori:   shape(rawDemo.industry,    'industry',    12),
+    size:      shape(rawDemo.companySize, 'companySize', 9),
+    seniority: shape(rawDemo.seniority,   'seniority',   10),
+    funzione:  shape(rawDemo.jobFunction, 'jobFunction', 10),
+    cities:    shape(rawDemo.region,      'region',      15),
+    companies: shape(rawDemo.company,     'company',     15),
+    qualifica: shape(rawDemo.jobTitle,    'jobTitle',    15)
+  };
+}
+
+let DEMO = {settori:[],size:[],seniority:[],funzione:[],cities:[],companies:[],qualifica:[]};
 
 // ── CHART INSTANCES ──────────────────────────────────────
 let trendChart=null, sizeDonut=null, cityChart=null;
@@ -1075,42 +1035,50 @@ function renderHBars(listId,data,maxV,colClass){
 
 function renderDemographics(){
   // Settori
-  renderHBars('dSettori',DEMO.settori,DEMO.settori[0].views,'c4w');
+  if(DEMO.settori.length) renderHBars('dSettori',DEMO.settori,DEMO.settori[0].views,'c4w');
   // Seniority
-  renderHBars('dSeniority',DEMO.seniority,DEMO.seniority[0].views,'c4s');
+  if(DEMO.seniority.length) renderHBars('dSeniority',DEMO.seniority,DEMO.seniority[0].views,'c4s');
   // Funzione
-  renderHBars('dFunzione',DEMO.funzione,DEMO.funzione[0].views,'c4s');
+  if(DEMO.funzione.length) renderHBars('dFunzione',DEMO.funzione,DEMO.funzione[0].views,'c4s');
   // Qualifiche
-  const maxQ=DEMO.qualifica[0].views;
-  renderHBars('dQual1',DEMO.qualifica.slice(0,8),maxQ,'c4w');
-  renderHBars('dQual2',DEMO.qualifica.slice(8,15),maxQ,'c4w');
+  if(DEMO.qualifica.length){
+    const maxQ=DEMO.qualifica[0].views;
+    renderHBars('dQual1',DEMO.qualifica.slice(0,8),maxQ,'c4w');
+    renderHBars('dQual2',DEMO.qualifica.slice(8,15),maxQ,'c4w');
+  }
 
   // Size donut
-  const szC=['#0A66C2','#00A0DC','#0CC4B0','#10B981','#8B5CF6','#F59E0B','#F97316'];
-  const szCtx=document.getElementById('sizeDonut').getContext('2d');
-  if(sizeDonut)sizeDonut.destroy();
-  sizeDonut=new Chart(szCtx,{type:'doughnut',data:{labels:DEMO.size.map(s=>s.name+' dip.'),datasets:[{data:DEMO.size.map(s=>s.views),backgroundColor:szC.map(c=>c+'CC'),borderColor:szC,borderWidth:1.5,hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:false},tooltip:{backgroundColor:'#0A1E35',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,titleColor:'#fff',bodyColor:'#94B4D0',callbacks:{label:ctx=>' '+ctx.parsed.toLocaleString('it-IT')+' impr. ('+DEMO.size[ctx.dataIndex].pct.toFixed(1)+'%)'}}}}});
-  document.getElementById('sizeLeg').innerHTML=DEMO.size.map((s,i)=>`<div class="sz-item"><div class="sz-dot" style="background:${szC[i]}"></div><div class="sz-name">${s.name} dipendenti</div><div class="sz-pct">${s.pct.toFixed(1)}%</div></div>`).join('');
+  if(DEMO.size.length){
+    const szC=['#0A66C2','#00A0DC','#0CC4B0','#10B981','#8B5CF6','#F59E0B','#F97316'];
+    const szCtx=document.getElementById('sizeDonut').getContext('2d');
+    if(sizeDonut)sizeDonut.destroy();
+    sizeDonut=new Chart(szCtx,{type:'doughnut',data:{labels:DEMO.size.map(s=>s.name+' dip.'),datasets:[{data:DEMO.size.map(s=>s.views),backgroundColor:szC.map(c=>c+'CC'),borderColor:szC,borderWidth:1.5,hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{display:false},tooltip:{backgroundColor:'#0A1E35',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,titleColor:'#fff',bodyColor:'#94B4D0',callbacks:{label:ctx=>' '+ctx.parsed.toLocaleString('it-IT')+' impr. ('+DEMO.size[ctx.dataIndex].pct.toFixed(1)+'%)'}}}}});
+    document.getElementById('sizeLeg').innerHTML=DEMO.size.map((s,i)=>`<div class="sz-item"><div class="sz-dot" style="background:${szC[i]}"></div><div class="sz-name">${s.name} dipendenti</div><div class="sz-pct">${s.pct.toFixed(1)}%</div></div>`).join('');
+  }
 
   // City horizontal bar chart
-  const cityCtx=document.getElementById('cityChart').getContext('2d');
-  if(cityChart)cityChart.destroy();
-  cityChart=new Chart(cityCtx,{type:'bar',data:{labels:DEMO.cities.map(c=>c.name),datasets:[
-    {label:'Impressioni',data:DEMO.cities.map(c=>c.views),backgroundColor:DEMO.cities.map((_,i)=>i===0?'rgba(10,102,194,0.7)':'rgba(10,102,194,0.22)'),borderColor:DEMO.cities.map((_,i)=>i===0?'#0A66C2':'rgba(10,102,194,0.5)'),borderWidth:1,borderRadius:3,yAxisID:'y'},
-    {label:'CTR (%)',data:DEMO.cities.map(c=>c.ctr),type:'line',borderColor:'#10B981',backgroundColor:'transparent',borderWidth:1.5,pointBackgroundColor:'#10B981',pointRadius:3,tension:0.3,yAxisID:'y2'}
-  ]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#3A5575',font:{family:'Inter',size:10},boxWidth:10,boxHeight:8}},tooltip:{backgroundColor:'#0A1E35',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,titleColor:'#fff',bodyColor:'#94B4D0'}},scales:{x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#7A96B2',font:{family:'IBM Plex Mono',size:10},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},border:{color:'rgba(0,0,0,0.07)'}},y:{grid:{color:'rgba(0,0,0,0.03)'},ticks:{color:'#3A5575',font:{family:'Inter',size:10}},border:{color:'rgba(0,0,0,0.07)'}},y2:{display:false,position:'right'}}}});
+  if(DEMO.cities.length){
+    const cityCtx=document.getElementById('cityChart').getContext('2d');
+    if(cityChart)cityChart.destroy();
+    cityChart=new Chart(cityCtx,{type:'bar',data:{labels:DEMO.cities.map(c=>c.name),datasets:[
+      {label:'Impressioni',data:DEMO.cities.map(c=>c.views),backgroundColor:DEMO.cities.map((_,i)=>i===0?'rgba(10,102,194,0.7)':'rgba(10,102,194,0.22)'),borderColor:DEMO.cities.map((_,i)=>i===0?'#0A66C2':'rgba(10,102,194,0.5)'),borderWidth:1,borderRadius:3,yAxisID:'y'},
+      {label:'CTR (%)',data:DEMO.cities.map(c=>c.ctr),type:'line',borderColor:'#10B981',backgroundColor:'transparent',borderWidth:1.5,pointBackgroundColor:'#10B981',pointRadius:3,tension:0.3,yAxisID:'y2'}
+    ]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#3A5575',font:{family:'Inter',size:10},boxWidth:10,boxHeight:8}},tooltip:{backgroundColor:'#0A1E35',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,titleColor:'#fff',bodyColor:'#94B4D0'}},scales:{x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#7A96B2',font:{family:'IBM Plex Mono',size:10},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},border:{color:'rgba(0,0,0,0.07)'}},y:{grid:{color:'rgba(0,0,0,0.03)'},ticks:{color:'#3A5575',font:{family:'Inter',size:10}},border:{color:'rgba(0,0,0,0.07)'}},y2:{display:false,position:'right'}}}});
+  }
 
   // Companies
-  document.getElementById('coList').innerHTML=DEMO.companies.map((c,i)=>{
-    const cc=c.ctr>0.3?'ctr-hi':c.ctr>0.1?'ctr-md':'ctr-lo';
-    return`<div class="co-item">
-      <div class="co-rank">${i+1}</div>
-      <div class="co-name" title="${c.name}">${c.name}</div>
-      <div class="co-v">${fmtN(c.views)}</div>
-      <div class="co-c">${c.clicks>0?c.clicks:'—'}</div>
-      <div class="co-ctr ${cc}">${c.ctr>0?c.ctr.toFixed(3)+'%':'—'}</div>
-    </div>`;
-  }).join('');
+  if(DEMO.companies.length){
+    document.getElementById('coList').innerHTML=DEMO.companies.map((c,i)=>{
+      const cc=c.ctr>0.3?'ctr-hi':c.ctr>0.1?'ctr-md':'ctr-lo';
+      return`<div class="co-item">
+        <div class="co-rank">${i+1}</div>
+        <div class="co-name" title="${c.name}">${c.name}</div>
+        <div class="co-v">${fmtN(c.views)}</div>
+        <div class="co-c">${c.clicks>0?c.clicks:'—'}</div>
+        <div class="co-ctr ${cc}">${c.ctr>0?c.ctr.toFixed(3)+'%':'—'}</div>
+      </div>`;
+    }).join('');
+  }
 }
 
 
