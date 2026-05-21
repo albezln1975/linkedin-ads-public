@@ -383,6 +383,7 @@ select.sort-select option { background: #0A3060; }
         <option value="30">Ultimi 30 giorni</option>
         <option value="60">Ultimi 60 giorni</option>
         <option value="90" selected>Ultimi 90 giorni</option>
+        <option value="all">Dall'inizio</option>
       </optgroup>
       <optgroup label="Per mese">
         <option value="m-2026-01">Gennaio 2026</option>
@@ -525,44 +526,10 @@ select.sort-select option { background: #0A3060; }
     </div>
   </div>
 
-  <!-- CITTÀ + AZIENDE -->
-  <div class="grid-2">
-    <div class="dem-block">
-      <div class="dem-title">Top 15 Città per Impressioni</div>
-      <div class="city-wrap"><canvas id="cityChart"></canvas></div>
-    </div>
-    <div class="dem-block">
-      <div class="dem-title">Top 15 Aziende Raggiunte</div>
-      <div style="display:grid;grid-template-columns:22px 1fr 65px 42px 50px;gap:10px;margin-bottom:8px">
-        <div class="hcol"></div>
-        <div class="hcol">Azienda</div>
-        <div class="hcol r">Impr.</div>
-        <div class="hcol r">Clic</div>
-        <div class="hcol r">CTR</div>
-      </div>
-      <div class="co-list" id="coList"></div>
-    </div>
-  </div>
-
-  <!-- QUALIFICA (due colonne) -->
-  <div class="dem-block" style="margin-bottom:22px">
-    <div class="dem-title">Qualifiche Professionali — Top 15</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-      <div>
-        <div class="hbar-header c4w" style="margin-bottom:8px">
-          <div class="hcol">Qualifica</div><div class="hcol">Reach</div>
-          <div class="hcol r">Impr.</div><div class="hcol r">CTR</div>
-        </div>
-        <div class="hbar-list" id="dQual1"></div>
-      </div>
-      <div>
-        <div class="hbar-header c4w" style="margin-bottom:8px">
-          <div class="hcol">Qualifica</div><div class="hcol">Reach</div>
-          <div class="hcol r">Impr.</div><div class="hcol r">CTR</div>
-        </div>
-        <div class="hbar-list" id="dQual2"></div>
-      </div>
-    </div>
+  <!-- CITTÀ -->
+  <div class="dem-block">
+    <div class="dem-title">Top 15 Città per Impressioni</div>
+    <div class="city-wrap"><canvas id="cityChart"></canvas></div>
   </div>
 
   <div class="report-footer">
@@ -747,13 +714,11 @@ function buildDEMO(rawDemo) {
     size:      shape(rawDemo.companySize, 'companySize', 9),
     seniority: shape(rawDemo.seniority,   'seniority',   10),
     funzione:  shape(rawDemo.jobFunction, 'jobFunction', 10),
-    cities:    shape(rawDemo.region,      'region',      15),
-    companies: shape(rawDemo.company,     'company',     15),
-    qualifica: shape(rawDemo.jobTitle,    'jobTitle',    15)
+    cities:    shape(rawDemo.region,      'region',      15)
   };
 }
 
-let DEMO_FULL = {settori:[],size:[],seniority:[],funzione:[],cities:[],companies:[],qualifica:[]};
+let DEMO_FULL = {settori:[],size:[],seniority:[],funzione:[],cities:[]};
 
 function scaleDEMO(factor){
   const out = {};
@@ -780,6 +745,12 @@ function addDays(d,n){const dt=new Date(d+'T00:00:00');dt.setDate(dt.getDate()+n
 function fmtD(d){const[y,m,dd]=d.split('-');return`${parseInt(dd)} ${MO[parseInt(m)]} ${y}`;}
 
 function getRange(val){
+  if(val==='all'){
+    const start=ALL_DATES[0];
+    const end=LAST_DATE;
+    const days=Math.round((new Date(end)-new Date(start))/86400000)+1;
+    return{start,end,prevStart:addDays(start,-days),prevEnd:addDays(start,-1)};
+  }
   if(val.startsWith('m-')){
     const[,y,m]=val.split('-');
     const start=`${y}-${m}-01`;
@@ -1072,13 +1043,6 @@ function renderDemographics(){
   if(DEMO.seniority.length) renderHBars('dSeniority',DEMO.seniority,DEMO.seniority[0].views,'c4s');
   // Funzione
   if(DEMO.funzione.length) renderHBars('dFunzione',DEMO.funzione,DEMO.funzione[0].views,'c4s');
-  // Qualifiche
-  if(DEMO.qualifica.length){
-    const maxQ=DEMO.qualifica[0].views;
-    renderHBars('dQual1',DEMO.qualifica.slice(0,8),maxQ,'c4w');
-    renderHBars('dQual2',DEMO.qualifica.slice(8,15),maxQ,'c4w');
-  }
-
   // Size donut
   if(DEMO.size.length){
     const szC=['#0A66C2','#00A0DC','#0CC4B0','#10B981','#8B5CF6','#F59E0B','#F97316'];
@@ -1098,19 +1062,6 @@ function renderDemographics(){
     ]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#3A5575',font:{family:'Inter',size:10},boxWidth:10,boxHeight:8}},tooltip:{backgroundColor:'#0A1E35',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,titleColor:'#fff',bodyColor:'#94B4D0'}},scales:{x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#7A96B2',font:{family:'IBM Plex Mono',size:10},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},border:{color:'rgba(0,0,0,0.07)'}},y:{grid:{color:'rgba(0,0,0,0.03)'},ticks:{color:'#3A5575',font:{family:'Inter',size:10}},border:{color:'rgba(0,0,0,0.07)'}},y2:{display:false,position:'right'}}}});
   }
 
-  // Companies
-  if(DEMO.companies.length){
-    document.getElementById('coList').innerHTML=DEMO.companies.map((c,i)=>{
-      const cc=c.ctr>0.3?'ctr-hi':c.ctr>0.1?'ctr-md':'ctr-lo';
-      return`<div class="co-item">
-        <div class="co-rank">${i+1}</div>
-        <div class="co-name" title="${c.name}">${c.name}</div>
-        <div class="co-v">${fmtN(c.views)}</div>
-        <div class="co-c">${c.clicks>0?c.clicks:'—'}</div>
-        <div class="co-ctr ${cc}">${c.ctr>0?c.ctr.toFixed(3)+'%':'—'}</div>
-      </div>`;
-    }).join('');
-  }
 }
 
 
