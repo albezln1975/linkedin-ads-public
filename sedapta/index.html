@@ -597,8 +597,9 @@ async function loadData() {
       document.getElementById('lastUpdated').textContent = 'Aggiornato: ' + label;
     }
 
-    // Converti campaigns → RAW
-    RAW = (data.campaigns || []).map(convertRecord);
+    // Converti campaigns → RAW. Esclude record pre-2026-01-01 (inizio operativo campagne).
+    const EPOCH = '2026-01-01';
+    RAW = (data.campaigns || []).map(convertRecord).filter(r => r.date >= EPOCH);
 
     // Carica risoluzione URN → nome (popolata dal sync)
     URN_NAMES = data.pivotNames || {};
