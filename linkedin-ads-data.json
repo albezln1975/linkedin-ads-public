@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-27T13:04:30.901Z",
+  "lastUpdated": "2026-07-27T16:47:26.112Z",
   "campaigns": [
     {
       "pivotValue": "urn:li:sponsoredCampaign:483009223",
@@ -20,7 +20,8 @@
       "likes": 7,
       "comments": 0,
       "shares": 1,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -41,7 +42,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -62,7 +64,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -83,7 +86,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -104,7 +108,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -125,7 +130,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -146,7 +152,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:831168164",
@@ -167,7 +174,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "ACTIVE"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -188,7 +196,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -209,7 +218,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -230,7 +240,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:831168164",
@@ -251,7 +262,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "ACTIVE"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -272,7 +284,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -293,7 +306,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -314,7 +328,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -335,7 +350,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -356,7 +372,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -377,7 +394,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -398,7 +416,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:831168164",
@@ -419,7 +438,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "ACTIVE"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -440,7 +460,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -461,7 +482,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -482,7 +504,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -503,7 +526,8 @@
       "likes": 3,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -524,7 +548,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -545,7 +570,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -566,7 +592,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -587,7 +614,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -608,7 +636,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -629,7 +658,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 1,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:831168164",
@@ -650,7 +680,8 @@
       "likes": 2,
       "comments": 1,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "ACTIVE"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -671,7 +702,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -692,7 +724,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -713,7 +746,8 @@
       "likes": 6,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -734,7 +768,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -755,7 +790,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -776,7 +812,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -797,7 +834,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483009223",
@@ -818,7 +856,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -839,7 +878,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -860,7 +900,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483009223",
@@ -881,7 +922,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -902,7 +944,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -923,7 +966,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -944,7 +988,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -965,7 +1010,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -986,7 +1032,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1007,7 +1054,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -1028,7 +1076,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1049,7 +1098,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -1070,7 +1120,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1091,7 +1142,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1112,7 +1164,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1133,7 +1186,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1154,7 +1208,8 @@
       "likes": 3,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1175,7 +1230,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -1196,7 +1252,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1217,7 +1274,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1238,7 +1296,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -1259,7 +1318,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1280,7 +1340,8 @@
       "likes": 4,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1301,7 +1362,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1322,7 +1384,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1343,7 +1406,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1364,7 +1428,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -1385,7 +1450,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1406,7 +1472,8 @@
       "likes": 4,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1427,7 +1494,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -1448,7 +1516,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1469,7 +1538,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1490,7 +1560,8 @@
       "likes": 3,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1511,7 +1582,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1532,7 +1604,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -1553,7 +1626,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -1574,7 +1648,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1595,7 +1670,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1616,7 +1692,8 @@
       "likes": 1,
       "comments": 1,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -1637,7 +1714,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1658,7 +1736,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1679,7 +1758,8 @@
       "likes": 3,
       "comments": 0,
       "shares": 1,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -1700,7 +1780,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1721,7 +1802,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1742,7 +1824,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1763,7 +1846,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1784,7 +1868,8 @@
       "likes": 4,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1805,7 +1890,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1826,7 +1912,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1847,7 +1934,8 @@
       "likes": 6,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -1868,7 +1956,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1889,7 +1978,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -1910,7 +2000,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1931,7 +2022,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -1952,7 +2044,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1973,7 +2066,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -1994,7 +2088,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2015,7 +2110,8 @@
       "likes": 5,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2036,7 +2132,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2057,7 +2154,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2078,7 +2176,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2099,7 +2198,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 1,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2120,7 +2220,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2141,7 +2242,8 @@
       "likes": 4,
       "comments": 0,
       "shares": 1,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2162,7 +2264,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -2183,7 +2286,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2204,7 +2308,8 @@
       "likes": 3,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2225,7 +2330,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2246,7 +2352,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2267,7 +2374,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2288,7 +2396,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -2309,7 +2418,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2330,7 +2440,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2351,7 +2462,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2372,7 +2484,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2393,7 +2506,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2414,7 +2528,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2435,7 +2550,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2456,7 +2572,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2477,7 +2594,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2498,7 +2616,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2519,7 +2638,8 @@
       "likes": 3,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2540,7 +2660,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2561,7 +2682,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2582,7 +2704,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2603,7 +2726,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2624,7 +2748,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2645,7 +2770,30 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
+    },
+    {
+      "pivotValue": "urn:li:sponsoredCampaign:831168164",
+      "campaignName": "urn:li:sponsoredCampaign:831168164",
+      "date": "2026-07-27",
+      "impressions": 2677,
+      "clicks": 12,
+      "conversions": 0,
+      "spend": 41.127558942118384,
+      "leads": 3,
+      "downloads": 0,
+      "videoViews": 0,
+      "v25": 0,
+      "v50": 0,
+      "v75": 0,
+      "v100": 0,
+      "engagements": 145,
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "follows": 0,
+      "status": "ACTIVE"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2666,7 +2814,8 @@
       "likes": 3,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2687,7 +2836,8 @@
       "likes": 4,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2708,7 +2858,8 @@
       "likes": 4,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2729,7 +2880,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -2750,7 +2902,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -2771,7 +2924,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2792,7 +2946,8 @@
       "likes": 3,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2813,7 +2968,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2834,7 +2990,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2855,7 +3012,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2876,7 +3034,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -2897,7 +3056,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -2918,7 +3078,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 1,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2939,7 +3100,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -2960,7 +3122,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -2981,7 +3144,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3002,7 +3166,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3023,7 +3188,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3044,7 +3210,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -3065,7 +3232,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3086,7 +3254,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3107,7 +3276,8 @@
       "likes": 3,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3128,7 +3298,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3149,7 +3320,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3170,7 +3342,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3191,7 +3364,8 @@
       "likes": 5,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -3212,7 +3386,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3233,7 +3408,8 @@
       "likes": 0,
       "comments": 2,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3254,7 +3430,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3275,7 +3452,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3296,7 +3474,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3317,7 +3496,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3338,7 +3518,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3359,7 +3540,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -3380,7 +3562,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3401,7 +3584,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 1,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3422,7 +3606,8 @@
       "likes": 3,
       "comments": 1,
       "shares": 1,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3443,7 +3628,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3464,7 +3650,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3485,7 +3672,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3506,7 +3694,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -3527,7 +3716,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 1,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3548,7 +3738,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3569,7 +3760,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3590,7 +3782,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3611,7 +3804,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -3632,7 +3826,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3653,7 +3848,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3674,7 +3870,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3695,7 +3892,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -3716,7 +3914,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3737,7 +3936,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3758,7 +3958,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3779,7 +3980,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3800,7 +4002,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -3821,7 +4024,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3842,7 +4046,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3863,7 +4068,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3884,7 +4090,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3905,7 +4112,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -3926,7 +4134,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 1,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:810253463",
@@ -3947,7 +4156,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3968,7 +4178,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -3989,7 +4200,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594319063",
@@ -4010,7 +4222,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4031,7 +4244,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4052,7 +4266,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4073,7 +4288,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:810253463",
@@ -4094,7 +4310,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4115,7 +4332,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4136,7 +4354,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4157,7 +4376,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4178,7 +4398,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4199,7 +4420,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4220,7 +4442,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483009223",
@@ -4241,7 +4464,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4262,7 +4486,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:810253463",
@@ -4283,7 +4508,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4304,7 +4530,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4325,7 +4552,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4346,7 +4574,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4367,7 +4596,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4388,7 +4618,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4409,7 +4640,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4430,7 +4662,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4451,7 +4684,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4472,7 +4706,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4493,7 +4728,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:810253463",
@@ -4514,7 +4750,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 1,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4535,7 +4772,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -4556,7 +4794,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4577,7 +4816,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4598,7 +4838,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4619,7 +4860,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4640,7 +4882,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4661,7 +4904,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4682,28 +4926,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
-    },
-    {
-      "pivotValue": "urn:li:sponsoredCampaign:831168164",
-      "campaignName": "urn:li:sponsoredCampaign:831168164",
-      "date": "2026-07-27",
-      "impressions": 1782,
-      "clicks": 9,
-      "conversions": 0,
-      "spend": 29.704481765104504,
-      "leads": 2,
-      "downloads": 0,
-      "videoViews": 0,
-      "v25": 0,
-      "v50": 0,
-      "v75": 0,
-      "v100": 0,
-      "engagements": 104,
-      "likes": 0,
-      "comments": 0,
-      "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4724,7 +4948,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4745,7 +4970,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4766,7 +4992,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4787,7 +5014,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4808,7 +5036,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4829,7 +5058,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4850,7 +5080,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4871,7 +5102,8 @@
       "likes": 4,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -4892,7 +5124,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4913,7 +5146,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -4934,7 +5168,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4955,7 +5190,8 @@
       "likes": 3,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4976,7 +5212,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -4997,7 +5234,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5018,7 +5256,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5039,7 +5278,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5060,7 +5300,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5081,7 +5322,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5102,7 +5344,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5123,7 +5366,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5144,7 +5388,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5165,7 +5410,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5186,7 +5432,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5207,7 +5454,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5228,7 +5476,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5249,7 +5498,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5270,7 +5520,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5291,7 +5542,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5312,7 +5564,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5333,7 +5586,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5354,7 +5608,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5375,7 +5630,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5396,7 +5652,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5417,7 +5674,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5438,7 +5696,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5459,7 +5718,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594319063",
@@ -5480,7 +5740,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5501,7 +5762,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -5522,7 +5784,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5543,7 +5806,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5564,7 +5828,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5585,7 +5850,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5606,7 +5872,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5627,7 +5894,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5648,7 +5916,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5669,7 +5938,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5690,7 +5960,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5711,7 +5982,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5732,7 +6004,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5753,7 +6026,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5774,7 +6048,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5795,7 +6070,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5816,7 +6092,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5837,7 +6114,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5858,7 +6136,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5879,7 +6158,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5900,7 +6180,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -5921,7 +6202,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -5942,7 +6224,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -5963,7 +6246,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -5984,7 +6268,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6005,7 +6290,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6026,7 +6312,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6047,7 +6334,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6068,7 +6356,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -6089,7 +6378,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -6110,7 +6400,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6131,7 +6422,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -6152,7 +6444,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -6173,7 +6466,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -6194,7 +6488,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -6215,7 +6510,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594319063",
@@ -6236,7 +6532,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -6257,7 +6554,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -6278,7 +6576,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6299,7 +6598,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -6320,7 +6620,8 @@
       "likes": 1,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594319063",
@@ -6341,7 +6642,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -6362,7 +6664,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6383,7 +6686,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6404,7 +6708,8 @@
       "likes": 2,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:463403683",
@@ -6425,7 +6730,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6446,7 +6752,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594319063",
@@ -6467,7 +6774,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6488,7 +6796,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483009223",
@@ -6509,7 +6818,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -6530,7 +6840,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:810253463",
@@ -6551,7 +6862,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6572,7 +6884,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6593,7 +6906,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -6614,7 +6928,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483009223",
@@ -6635,7 +6950,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6656,7 +6972,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:592620903",
@@ -6677,7 +6994,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:594907753",
@@ -6698,7 +7016,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:483552153",
@@ -6719,7 +7038,8 @@
       "likes": 0,
       "comments": 0,
       "shares": 0,
-      "follows": 0
+      "follows": 0,
+      "status": "PAUSED"
     }
   ],
   "demographics": {
