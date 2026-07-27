@@ -38,10 +38,12 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
 /* ── HEADER ── */
 .header {
   background: var(--navy);
-  padding: 0 40px;
+  padding: 8px 32px;
   display: flex; align-items: center; justify-content: space-between;
-  height: 56px; position: sticky; top: 0; z-index: 300;
+  flex-wrap: wrap; gap: 10px 16px; min-height: 56px;
+  position: sticky; top: 0; z-index: 300;
 }
+.header-right { flex-wrap: wrap; }
 .header-left { display: flex; align-items: center; gap: 14px; }
 .li-icon {
   width: 28px; height: 28px; background: #0A66C2; border-radius: 5px;
@@ -91,6 +93,10 @@ select.date-filter option, select.date-filter optgroup { background: #0A3060; co
 .btn-legend{display:inline-flex;align-items:center;gap:7px;background:var(--li-blue);color:#fff;border:none;border-radius:7px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .15s}
 .btn-legend::before{content:"📖";font-size:13px}
 .btn-legend:hover{background:#0950a0}
+
+/* meta periodo/aggiornato — ultima in barra, come Intec */
+.win-meta{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.55);line-height:1.5;white-space:nowrap}
+.win-meta b{color:rgba(255,255,255,.9);font-weight:600}
 
 /* ── KPI BAR ── */
 .kpi-bar { background: var(--navy2); padding: 0 40px; }
@@ -367,7 +373,7 @@ select.sort-select option { background: #0A3060; }
 
   /* Evita tagli di pagina */
   .kpi-bar, .card, .chart-card { break-inside: avoid; }
-  .toolbar-controls .statusseg, .toolbar-controls .btn-legend { display: none !important; }
+  .header-right .statusseg, .header-right .btn-legend, select.date-filter { display: none !important; }
 }
 
 /* ── LEGENDA "Come leggere il report" — portata da Intec ── */
@@ -394,7 +400,7 @@ select.sort-select option { background: #0A3060; }
 <header class="header">
   <div class="header-left">
     <div class="li-icon">in</div>
-    <div class="header-title">LinkedIn Ads Report <span>· MALLEI Campaign · sedApta</span></div>
+    <div class="header-title">LinkedIn Ads Report <span>· sedApta</span></div>
   </div>
 
   <nav class="nav-tabs">
@@ -403,19 +409,14 @@ select.sort-select option { background: #0A3060; }
   </nav>
 
   <div class="header-right">
-    <span class="period-label" id="periodLabel"></span>
-    <span class="period-label" id="lastUpdated" style="opacity:0.5"></span>
-    <div id="loadError" style="display:none;background:#EF4444;color:#fff;padding:6px 14px;border-radius:6px;font-size:11px;max-width:400px"></div>
-    <span class="toolbar-controls" style="display:inline-flex;align-items:center;gap:10px">
-      <div class="statusseg" id="statusSeg">
-        <span class="lbl">Stato</span>
-        <button data-s="all" class="on" onclick="setStatus('all')">Tutte</button>
-        <button data-s="active" onclick="setStatus('active')">Attive</button>
-        <button data-s="paused" onclick="setStatus('paused')">In pausa</button>
-      </div>
-      <a class="btn-legend" href="#legenda">Come leggere il report</a>
-    </span>
-    <button onclick="exportPDF()" class="pdf-btn">↓ PDF</button>
+    <!-- ordine uniforme a Intec: Stato · Come leggere · tendina · periodo/aggiornato -->
+    <div class="statusseg" id="statusSeg">
+      <span class="lbl">Stato</span>
+      <button data-s="all" class="on" onclick="setStatus('all')">Tutte</button>
+      <button data-s="active" onclick="setStatus('active')">Attive</button>
+      <button data-s="paused" onclick="setStatus('paused')">In pausa</button>
+    </div>
+    <a class="btn-legend" href="#legenda">Come leggere il report</a>
     <select class="date-filter" id="dateFilter" onchange="applyFilter()">
       <optgroup label="Ultimi giorni">
         <option value="7">Ultimi 7 giorni</option>
@@ -434,6 +435,8 @@ select.sort-select option { background: #0A3060; }
         <option value="m-2026-06">Giugno 2026</option>
       </optgroup>
     </select>
+    <div class="win-meta">Periodo: <b id="periodLabel">—</b> · Aggiornato: <b id="lastUpdated">—</b></div>
+    <div id="loadError" style="display:none;background:#EF4444;color:#fff;padding:6px 14px;border-radius:6px;font-size:11px;max-width:400px"></div>
   </div>
 </header>
 
@@ -662,7 +665,7 @@ async function loadData() {
     if (data.lastUpdated) {
       const d = new Date(data.lastUpdated);
       const label = d.toLocaleDateString('it-IT', {day:'2-digit', month:'short', year:'numeric'});
-      document.getElementById('lastUpdated').textContent = 'Aggiornato: ' + label;
+      document.getElementById('lastUpdated').textContent = label;
     }
 
     // Converti campaigns → RAW. Esclude record pre-2026-01-01 (inizio operativo campagne).
