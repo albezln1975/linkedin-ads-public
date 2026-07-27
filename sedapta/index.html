@@ -68,16 +68,29 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); font
 .header-right { display: flex; align-items: center; gap: 10px; }
 .period-label { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.4); }
 
+/* tendina periodo — look uniformato a Intec (.win-select) */
 select.date-filter {
-  appearance: none; background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2); border-radius: 6px;
-  color: #fff; font-family: var(--sans); font-size: 12px; font-weight: 500;
-  padding: 5px 28px 5px 10px; cursor: pointer; outline: none;
+  appearance: none; -webkit-appearance: none; background: var(--navy2);
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 7px;
+  color: #fff; font-family: var(--sans); font-size: 12.5px; font-weight: 500;
+  padding: 8px 30px 8px 12px; cursor: pointer; outline: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 9px center;
+  background-repeat: no-repeat; background-position: right 11px center;
 }
-select.date-filter:hover { background-color: rgba(255,255,255,0.15); }
-select.date-filter option { background: #0A3060; color: #fff; }
+select.date-filter:hover { background-color: #0d3a72; }
+select.date-filter option, select.date-filter optgroup { background: #0A3060; color: #fff; }
+
+/* segmented control filtro stato campagna — portato da Intec */
+.statusseg{display:inline-flex;align-items:center;background:var(--navy2);border:1px solid rgba(255,255,255,.18);border-radius:7px;overflow:hidden}
+.statusseg .lbl{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0 10px 0 12px}
+.statusseg button{background:transparent;border:none;color:rgba(255,255,255,.7);font-family:var(--sans);font-size:12px;font-weight:500;padding:7px 13px;cursor:pointer;transition:background .12s,color .12s;border-left:1px solid rgba(255,255,255,.12)}
+.statusseg button:hover{color:#fff}
+.statusseg button.on{background:var(--li-blue);color:#fff;font-weight:600}
+
+/* bottone "Come leggere il report" */
+.btn-legend{display:inline-flex;align-items:center;gap:7px;background:var(--li-blue);color:#fff;border:none;border-radius:7px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .15s}
+.btn-legend::before{content:"📖";font-size:13px}
+.btn-legend:hover{background:#0950a0}
 
 /* ── KPI BAR ── */
 .kpi-bar { background: var(--navy2); padding: 0 40px; }
@@ -354,7 +367,25 @@ select.sort-select option { background: #0A3060; }
 
   /* Evita tagli di pagina */
   .kpi-bar, .card, .chart-card { break-inside: avoid; }
+  .toolbar-controls .statusseg, .toolbar-controls .btn-legend { display: none !important; }
 }
+
+/* ── LEGENDA "Come leggere il report" — portata da Intec ── */
+.leg{margin-top:34px;scroll-margin-top:14px}
+.leg-head{border-top:2px solid var(--border2);padding-top:26px}
+.leg-title{font-size:20px;font-weight:700;color:var(--navy);letter-spacing:-.3px}
+.leg-sub{font-size:13px;color:var(--text2);margin-top:7px;max-width:760px;line-height:1.55}
+.leg-block{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin:28px 0 13px}
+.leg-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 16px}
+.leg-m{background:var(--white);border:1px solid var(--border);border-radius:9px;box-shadow:var(--shadow);padding:13px 15px;display:flex;gap:13px;align-items:center}
+.leg-m .mi{flex:1}
+.leg-m .mn{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.leg-m .md{font-size:12px;color:var(--text2);line-height:1.45}
+.leg-dir{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.2px;padding:4px 9px;border-radius:20px;white-space:nowrap}
+.leg-dir.up{background:#E7F7F0;color:#0A7A57}
+.leg-dir.down{background:#FEF3E0;color:#9A6206}
+.leg-dir.neu{background:#EEF2F7;color:var(--text2)}
+@media(max-width:760px){.leg-metrics{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -375,6 +406,15 @@ select.sort-select option { background: #0A3060; }
     <span class="period-label" id="periodLabel"></span>
     <span class="period-label" id="lastUpdated" style="opacity:0.5"></span>
     <div id="loadError" style="display:none;background:#EF4444;color:#fff;padding:6px 14px;border-radius:6px;font-size:11px;max-width:400px"></div>
+    <span class="toolbar-controls" style="display:inline-flex;align-items:center;gap:10px">
+      <div class="statusseg" id="statusSeg">
+        <span class="lbl">Stato</span>
+        <button data-s="all" class="on" onclick="setStatus('all')">Tutte</button>
+        <button data-s="active" onclick="setStatus('active')">Attive</button>
+        <button data-s="paused" onclick="setStatus('paused')">In pausa</button>
+      </div>
+      <a class="btn-legend" href="#legenda">Come leggere il report</a>
+    </span>
     <button onclick="exportPDF()" class="pdf-btn">↓ PDF</button>
     <select class="date-filter" id="dateFilter" onchange="applyFilter()">
       <optgroup label="Ultimi giorni">
@@ -390,6 +430,8 @@ select.sort-select option { background: #0A3060; }
         <option value="m-2026-02">Febbraio 2026</option>
         <option value="m-2026-03">Marzo 2026</option>
         <option value="m-2026-04">Aprile 2026</option>
+        <option value="m-2026-05">Maggio 2026</option>
+        <option value="m-2026-06">Giugno 2026</option>
       </optgroup>
     </select>
   </div>
@@ -470,6 +512,31 @@ select.sort-select option { background: #0A3060; }
     <div class="card-header"><span class="card-title">Funnel di Conversione</span></div>
     <div id="funnelDisplay"></div>
   </div>
+
+  <!-- ── Legenda / glossario ───────────────────────────────────── -->
+  <section class="leg" id="legenda">
+    <div class="leg-head">
+      <div class="leg-title">Come leggere il report</div>
+      <p class="leg-sub">Guida rapida a ogni numero. La <b>tendina in alto a destra</b> cambia il periodo: tutti i valori si ricalcolano sulla finestra scelta (ultimi 7/14/30/60/90 giorni, un mese, o dall'inizio). Il filtro <b>Stato</b> mostra solo le campagne attive, solo quelle in pausa o tutte. <b>Clicca l'intestazione di una colonna</b> nella tabella per ordinare (▼ decrescente · ▲ crescente).</p>
+    </div>
+
+    <div class="leg-block">Le metriche principali</div>
+    <div class="leg-metrics">
+      <div class="leg-m"><div class="mi"><div class="mn">Impressioni</div><div class="md">Quante volte l'annuncio è comparso sullo schermo delle persone. Se la stessa persona lo vede 3 volte, contano 3 (non sono persone diverse). Misura la <b>visibilità</b> raggiunta.</div></div><span class="leg-dir up">↑ alto = bene</span></div>
+      <div class="leg-m"><div class="mi"><div class="mn">Click</div><div class="md">Quante volte qualcuno ha cliccato l'annuncio per approfondire (aprire il documento o il sito). È l'<b>azione concreta</b> che segnala interesse reale, non il semplice aver visto.</div></div><span class="leg-dir up">↑ alto = bene</span></div>
+      <div class="leg-m"><div class="mi"><div class="mn">CTR <span style="font-weight:400;color:var(--text3)">· tasso di click</span></div><div class="md">Su 100 persone che vedono l'annuncio, quante ci cliccano (click ÷ impressioni). Termometro di quanto il contenuto <b>attira</b>: alto = messaggio giusto sul pubblico giusto.</div></div><span class="leg-dir up">↑ alto = bene</span></div>
+      <div class="leg-m"><div class="mi"><div class="mn">Spesa</div><div class="md">Il budget investito nel periodo. Da sola non è né buona né cattiva: va letta insieme ai risultati che ha prodotto (click, lead).</div></div><span class="leg-dir neu">contesto</span></div>
+      <div class="leg-m"><div class="mi"><div class="mn">CPC <span style="font-weight:400;color:var(--text3)">· costo per click</span></div><div class="md">Quanto costa in media ogni singolo click (spesa ÷ click). Dice quanto paghi per portare <b>una persona</b> a interagire: più basso, più il budget rende.</div></div><span class="leg-dir down">↓ basso = bene</span></div>
+      <div class="leg-m"><div class="mi"><div class="mn">CPM <span style="font-weight:400;color:var(--text3)">· costo per 1.000</span></div><div class="md">Quanto costa mostrare l'annuncio 1.000 volte (spesa ÷ impressioni × 1.000). È il <b>prezzo della visibilità</b>, a prescindere dai click.</div></div><span class="leg-dir down">↓ basso = bene</span></div>
+    </div>
+
+    <div class="leg-block">Il risultato: i lead</div>
+    <div class="leg-metrics">
+      <div class="leg-m"><div class="mi"><div class="mn">Lead</div><div class="md">I contatti raccolti: persone che hanno lasciato i propri dati compilando il modulo dell'annuncio. È l'<b>obiettivo</b> di queste campagne.</div></div><span class="leg-dir up">↑ alto = bene</span></div>
+      <div class="leg-m"><div class="mi"><div class="mn">CPL <span style="font-weight:400;color:var(--text3)">· costo per lead</span></div><div class="md">Quanto costa in media ottenere un contatto (spesa ÷ lead). È la <b>misura di efficienza</b> più importante: più è basso, più contatti porti a parità di budget.</div></div><span class="leg-dir down">↓ basso = bene</span></div>
+    </div>
+
+  </section>
 
   <div class="report-footer">
     <span class="ft">FONTE: LINKEDIN CAMPAIGN MANAGER</span>
@@ -579,7 +646,8 @@ function convertRecord(rec) {
     form_opens: 0,           // non disponibile nel nuovo formato
     downloads:  rec.downloads || 0,
     date:       rec.date,
-    adset:      rec.campaignName
+    adset:      rec.campaignName,
+    status:     (rec.status || '').toUpperCase()   // ACTIVE | PAUSED | '' (se dati senza stato)
   };
 }
 
@@ -600,6 +668,12 @@ async function loadData() {
     // Converti campaigns → RAW. Esclude record pre-2026-01-01 (inizio operativo campagne).
     const EPOCH = '2026-01-01';
     RAW = (data.campaigns || []).map(convertRecord).filter(r => r.date >= EPOCH);
+
+    // Stato campagna: attivo solo se i dati lo portano. Finché il sync non
+    // aggiunge `status`, nascondo il segmented control (eviterebbe un filtro morto).
+    HAS_STATUS = RAW.some(r => r.status);
+    const seg = document.getElementById('statusSeg');
+    if (seg && !HAS_STATUS) seg.style.display = 'none';
 
     // Carica risoluzione URN → nome (popolata dal sync)
     URN_NAMES = data.pivotNames || {};
@@ -766,9 +840,24 @@ function getRange(val){
   return{start,end,prevStart:addDays(start,-days),prevEnd:addDays(start,-1)};
 }
 
+// ── FILTRO STATO CAMPAGNA ─────────────────────────────────
+let STATUS='all';          // 'all' | 'active' | 'paused'
+let HAS_STATUS=false;      // true se i dati portano lo stato campagna
+function matchStatus(su){
+  if(!HAS_STATUS||STATUS==='all')return true;   // dati senza stato → filtro inerte
+  if(STATUS==='active')return su==='ACTIVE';
+  if(STATUS==='paused')return su==='PAUSED';
+  return true;
+}
+function setStatus(s){
+  STATUS=s;
+  document.querySelectorAll('#statusSeg button').forEach(b=>b.classList.toggle('on', b.dataset.s===s));
+  applyFilter();
+}
+
 // ── AGGREGATE ────────────────────────────────────────────
 function agg(s,e){
-  const f=RAW.filter(r=>r.date>=s&&r.date<=e);
+  const f=RAW.filter(r=>r.date>=s&&r.date<=e&&matchStatus(r.status));
   const by={};const tot={spend:0,impr:0,clicks:0,leads:0,reach:0,vplays:0,v25:0,v50:0,v75:0,v100:0,form_opens:0,downloads:0};
   f.forEach(r=>{
     if(!by[r.adset])by[r.adset]={spend:0,impr:0,clicks:0,leads:0,reach:0,vplays:0,v25:0,v50:0,v75:0,v100:0,form_opens:0,downloads:0};
