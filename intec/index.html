@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Ads Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#062040; --navy2:#0A3060; --li-blue:#0A66C2;
+  --green:#10B981; --amber:#F59E0B; --red:#E1483C; --purple:#8B5CF6; --teal:#0CC4B0;
+  --bg:#EFF3F8; --white:#FFFFFF; --border:#DDE4EE; --border2:#C8D4E2;
+  --text:#0A1E35; --text2:#3A5575; --text3:#7A96B2;
+  --shadow:0 1px 3px rgba(6,32,64,.08),0 1px 2px rgba(6,32,64,.05);
+  --mono:'Inter',sans-serif; --sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;padding-bottom:48px}
+
+/* ── Header / toolbar ─────────────────────────────────────────── */
+.header{background:var(--navy);padding:0 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;min-height:60px}
+.h-left{display:flex;align-items:center;gap:13px;margin-right:8px}
+.li-icon{width:30px;height:30px;background:var(--li-blue);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:13px;color:#fff}
+.h-title{font-size:15px;font-weight:600;color:#fff;white-space:nowrap}
+.h-title span{color:rgba(255,255,255,.5);font-weight:400}
+.toolbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-left:auto}
+.btn-pdf{display:inline-flex;align-items:center;gap:7px;background:var(--li-blue);color:#fff;border:none;border-radius:7px;padding:8px 14px;font-family:var(--sans);font-size:12.5px;font-weight:600;cursor:pointer;transition:background .15s}
+.btn-pdf:hover{background:#0950a0}
+.win-select{background:var(--navy2);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:7px;padding:8px 30px 8px 12px;font-family:var(--sans);font-size:12.5px;font-weight:500;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center}
+.win-meta{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.55);line-height:1.5;white-space:nowrap}
+.win-meta b{color:rgba(255,255,255,.9);font-weight:600}
+
+.note{background:#FEF9EC;border-bottom:1px solid #F3E2B8;padding:9px 32px;font-size:12px;color:#8A6A1E}
+.note.hide{display:none}
+
+/* ── KPI bar (attaccata sotto header) ─────────────────────────── */
+.kpibar{display:grid;grid-template-columns:repeat(6,1fr);background:var(--white);border-bottom:1px solid var(--border2);box-shadow:var(--shadow)}
+.kpibar .cell{padding:15px 22px;border-right:1px solid var(--border)}
+.kpibar .cell:last-child{border-right:none}
+.kpibar .k-name{font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);margin-bottom:7px}
+.kpibar .k-val{font-family:var(--mono);font-size:23px;font-weight:600;line-height:1;letter-spacing:-.5px;color:var(--navy)}
+.kpibar .k-val .u{font-size:13px;font-weight:400;color:var(--text3);margin-left:2px}
+.kpibar .k-delta{margin-top:8px;font-family:var(--mono);font-size:11px;font-weight:600;white-space:nowrap}
+.k-delta.pos{color:var(--green)} .k-delta.neg{color:var(--red)} .k-delta.neu{color:var(--text3)}
+.k-delta .cap{color:var(--text3);font-weight:400;margin-left:3px}
+
+.wrap{max-width:1240px;margin:0 auto;padding:26px 32px}
+.sec-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin:28px 0 13px}
+.sec-label:first-child{margin-top:6px}
+
+/* ── Card / tabelle ───────────────────────────────────────────── */
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);overflow:hidden}
+.card-head{background:var(--navy);padding:11px 18px;display:flex;justify-content:space-between;align-items:center}
+.card-head h3{font-size:12px;font-weight:600;color:#fff;letter-spacing:.3px}
+.card-head .cnt{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.5)}
+
+/* campagne */
+.camp{display:grid;grid-template-columns:1fr 100px repeat(6,74px);gap:0;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border)}
+.camp:last-child{border-bottom:none}
+.camp.head{padding:9px 18px;background:var(--bg);border-bottom:1px solid var(--border2)}
+.camp.head span{font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);text-align:right}
+.camp.head span:first-child,.camp.head span:nth-child(2){text-align:left}
+.c-name{font-size:13px;font-weight:600;color:var(--navy)}
+.c-obj{display:inline-block;margin-top:4px;font-size:10px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:#E8F0FB;color:var(--li-blue)}
+.c-status{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.dot.on{background:var(--green)}.dot.off{background:var(--text3)}
+
+/* post */
+.post{display:grid;grid-template-columns:1fr repeat(7,80px);gap:0;align-items:center;padding:16px 18px;border-bottom:1px solid var(--border)}
+.post:last-child{border-bottom:none}
+.post.head{padding:9px 18px;background:var(--bg);border-bottom:1px solid var(--border2)}
+.post.head span{font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);text-align:right}
+.post.head span:first-child{text-align:left}
+.author{display:flex;gap:12px;align-items:flex-start;padding-right:18px}
+.avatar{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:13px;color:#fff;overflow:hidden}
+.avatar-flag{box-shadow:0 0 0 1px rgba(6,32,64,.12) inset}
+.avatar-flag svg{width:100%;height:100%;display:block}
+.a-name{font-size:13px;font-weight:600;margin-bottom:2px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.c-tag{font-size:9.5px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;padding:2px 6px;border-radius:4px;background:#E8F0FB;color:var(--li-blue)}
+.c-flag{display:inline-flex;line-height:0}
+.c-flag svg{border-radius:2px;box-shadow:0 0 0 1px rgba(6,32,64,.12);vertical-align:middle}
+.a-role{font-size:11px;color:var(--text3);margin-bottom:5px}
+.a-text{font-size:12px;color:var(--text2);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.a-link{display:inline-block;margin-top:5px;font-size:11px;font-weight:600;color:var(--li-blue);text-decoration:none}
+.a-link:hover{text-decoration:underline}
+.m{font-family:var(--mono);font-size:14px;font-weight:600;text-align:right;color:var(--navy)}
+.m small{display:block;font-size:10px;font-weight:400;color:var(--text3);margin-top:3px;font-family:var(--sans)}
+.m.good{color:var(--green)}.m.warn{color:var(--amber)}
+
+/* engagement focus */
+.eng-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.eng{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);text-align:center}
+.eng-val{font-family:var(--mono);font-size:24px;font-weight:600;line-height:1;color:var(--navy)}
+.eng-name{font-size:11px;color:var(--text2);margin-top:8px;font-weight:500}
+
+.empty{padding:26px 18px;text-align:center;color:var(--text3);font-size:12.5px}
+.legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:11px;font-size:11.5px;color:var(--text2)}
+.legend .lg{display:inline-flex;align-items:center;gap:7px}
+.legend .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+.legend .sw-g{background:var(--green)} .legend .sw-a{background:var(--amber)}
+.legend .lg-note{color:var(--text3);font-style:italic}
+
+/* ── Footer fisso ─────────────────────────────────────────────── */
+.footer{position:fixed;left:0;right:0;bottom:0;background:var(--navy);color:rgba(255,255,255,.7);height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;font-size:11.5px;z-index:20}
+.footer .f-c{font-family:var(--mono);color:rgba(255,255,255,.85)}
+.footer b{color:#fff;font-weight:600}
+
+@media print{
+  .toolbar,.btn-pdf,.win-select,.note{display:none!important}
+  .footer{position:static}
+  body{padding-bottom:0;background:#fff}
+  .card,.kpibar,.eng{box-shadow:none}
+}
+@media(max-width:760px){
+  .kpibar{grid-template-columns:repeat(2,1fr)}
+  .eng-grid{grid-template-columns:repeat(2,1fr)}
+  .camp,.post{grid-template-columns:1fr;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="h-left">
+    <div class="li-icon">in</div>
+    <div class="h-title">LinkedIn Ads Report <span id="clientName">· —</span></div>
+  </div>
+  <div class="toolbar">
+    <button class="btn-pdf" onclick="window.print()">Scarica PDF</button>
+    <select class="win-select" id="winSelect" onchange="render()">
+      <option value="7">Ultimi 7 giorni</option>
+      <option value="14">Ultimi 14 giorni</option>
+      <option value="30">Ultimi 30 giorni</option>
+      <option value="60" selected>Ultimi 60 giorni</option>
+      <option value="mese-2026-06">Giugno 2026</option>
+    </select>
+    <div class="win-meta">Periodo: <b id="periodRef">—</b><br>Aggiornato: <b id="updRef">—</b></div>
+  </div>
+</div>
+<div class="note" id="mockNote">Anteprima con dati di esempio — sostituire con i dati reali della campagna.</div>
+
+<div class="kpibar" id="kpibar"></div>
+
+<div class="wrap">
+  <div class="sec-label">Campagne / gruppi di annunci</div>
+  <div class="card">
+    <div class="card-head"><h3>CAMPAGNE</h3><span class="cnt" id="campCount"></span></div>
+    <div class="camp head">
+      <span>Campagna</span><span>Obiettivo / stato</span><span>Impr.</span><span>Click</span><span>CTR</span><span>CPM</span><span>Spesa</span><span>CPC</span>
+    </div>
+    <div id="campList"></div>
+  </div>
+
+  <div class="sec-label">Dettaglio post sponsorizzati</div>
+  <div class="card">
+    <div class="card-head"><h3>POST IN CAMPAGNA</h3><span class="cnt" id="postCount"></span></div>
+    <div class="post head">
+      <span>Autore / post · campagna</span><span>Impressioni</span><span>Click</span><span>CTR</span><span>CPM</span><span>Reazioni</span><span>Spesa</span><span>CPC</span>
+    </div>
+    <div id="postList"></div>
+  </div>
+  <div class="legend">
+    <span class="lg"><span class="sw sw-g"></span> Verde = sopra la media (CTR più alto / CPC più basso)</span>
+    <span class="lg"><span class="sw sw-a"></span> Ambra = sotto la media (CTR più basso / CPC più alto)</span>
+    <span class="lg-note">Confronto tra i post di questa tabella, sul periodo selezionato.</span>
+  </div>
+
+  <div class="sec-label">Focus engagement (obiettivo campagna)</div>
+  <div class="eng-grid" id="engGrid"></div>
+</div>
+
+<div class="footer">
+  <div class="f-l">Fonte: <b>LinkedIn Campaign Manager</b></div>
+  <div class="f-c" id="footPeriod">—</div>
+  <div class="f-r">Cliente: <b id="footClient">—</b></div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════════════════
+//  DATI MOCK — fallback se i JSON reali non sono raggiungibili.
+//  Struttura reale: ogni post/campagna ha un array `daily` [{d, metriche}].
+// ════════════════════════════════════════════════════════════════════
+const MOCK_META = { client:"Intec Rotors", period:"", windowDays:60, lastDate:"2026-06-23", updated:"2026-06-23" };
+const md = (d,impr,clk,sp,li,co,sh,fo)=>({d,impressions:impr,clicks:clk,spend:sp,likes:li,comments:co,shares:sh,follows:fo,engagements:li+co+sh,leads:0});
+const MOCK_CAMPAIGNS = [
+  { campaign:"urn:li:sponsoredCampaign:9001", name:"Engagement · Company list · USA", objective:"ENGAGEMENT", status:"ACTIVE",
+    daily:[ md("2026-06-20",1300,80,100,1,0,0,0), md("2026-06-21",1234,72,92,1,0,0,0) ] },
+  { campaign:"urn:li:sponsoredCampaign:9002", name:"Engagement · Company list · EU",  objective:"ENGAGEMENT", status:"ACTIVE",
+    daily:[ md("2026-06-20",1200,64,72,2,1,0,0), md("2026-06-21",1151,62,69,2,1,0,0) ] }
+];
+const MOCK_POSTS = [
+  { post:"urn:li:share:1001", postUrl:"", campaign:"urn:li:sponsoredCampaign:9001", campaignName:"Engagement · Company list · USA", creatives:[], daily:[ md("2026-06-20",1207,90,87,2,0,0,0), md("2026-06-21",1207,91,87,2,1,0,0) ] },
+  { post:"urn:li:share:1001", postUrl:"", campaign:"urn:li:sponsoredCampaign:9002", campaignName:"Engagement · Company list · EU", creatives:[], daily:[ md("2026-06-20",641,26,39,1,1,0,0), md("2026-06-21",641,26,39,0,0,0,0) ] },
+  { post:"urn:li:share:1002", postUrl:"", campaign:"urn:li:sponsoredCampaign:9001", campaignName:"Engagement · Company list · USA", creatives:[], daily:[ md("2026-06-20",540,20,37,0,0,0,0), md("2026-06-21",541,20,36,0,0,0,0) ] }
+];
+const MOCK_LABELS = {};
+
+// ──────────────────────────────────────────────────────────────────────
+//  Helper formato + aggregazione finestra
+// ──────────────────────────────────────────────────────────────────────
+const METRICS = ['impressions','clicks','spend','likes','comments','shares','follows','engagements','leads'];
+const fmt   = n => Math.round(n).toLocaleString('it-IT');
+const eur   = n => n.toLocaleString('it-IT',{minimumFractionDigits:0,maximumFractionDigits:0});
+const eur2  = n => n.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pct   = n => n.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pct0  = n => Math.abs(n).toLocaleString('it-IT',{maximumFractionDigits:0});
+const initials = name => name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+const MESI = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+const dLabel = d => d.getDate()+' '+MESI[d.getMonth()]+' '+d.getFullYear();
+const pad = n => String(n).padStart(2,'0');
+const iso = dt => dt.getFullYear()+'-'+pad(dt.getMonth()+1)+'-'+pad(dt.getDate());
+const addDays = (dt,n) => new Date(dt.getTime()+n*864e5);
+
+let DATA = { campaigns:[], posts:[], labels:{}, meta:{} };
+
+// Bandiere SVG (no emoji → rese identiche su ogni device). Riempiono l'avatar del post.
+// viewBox quadrato + preserveAspectRatio slice → coprono il cerchio senza deformarsi.
+const FLAG_US = `<svg viewBox="0 0 14 14" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="14" height="14" fill="#B22234"/><rect y="2" width="14" height="2" fill="#fff"/><rect y="6" width="14" height="2" fill="#fff"/><rect y="10" width="14" height="2" fill="#fff"/><rect width="7" height="8" fill="#3C3B6E"/></svg>`;
+const FLAG_EU = `<svg viewBox="0 0 14 14" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="14" height="14" fill="#003399"/><g fill="#FFCC00"><circle cx="11" cy="7" r=".7"/><circle cx="10.46" cy="9" r=".7"/><circle cx="9" cy="10.46" r=".7"/><circle cx="7" cy="11" r=".7"/><circle cx="5" cy="10.46" r=".7"/><circle cx="3.54" cy="9" r=".7"/><circle cx="3" cy="7" r=".7"/><circle cx="3.54" cy="5" r=".7"/><circle cx="5" cy="3.54" r=".7"/><circle cx="7" cy="3" r=".7"/><circle cx="9" cy="3.54" r=".7"/><circle cx="10.46" cy="5" r=".7"/></g></svg>`;
+function avatarFlag(tag){
+  const t=(tag||'').toUpperCase();
+  if(t.includes('USA')||t==='US') return FLAG_US;
+  if(t.includes('EU'))            return FLAG_EU;
+  return '';
+}
+// Avatar del post: bandiera della campagna se mappata, altrimenti iniziali autore.
+function avatarHtml(r){
+  const f=avatarFlag(r.campTag);
+  if(f) return `<div class="avatar avatar-flag" title="${r.campTag||''}">${f}</div>`;
+  return `<div class="avatar" style="background:${r.lb.colore||'#3A5575'}">${r.lb.iniziali||initials(r.lb.autore)}</div>`;
+}
+
+function emptyM(){ const o={}; for(const k of METRICS) o[k]=0; return o; }
+function sumRange(daily,start,end){
+  const t=emptyM();
+  for(const r of (daily||[])){ if(r.d>=start && r.d<=end){ for(const k of METRICS) t[k]+=r[k]||0; } }
+  return t;
+}
+function addM(a,b){ for(const k of METRICS) a[k]+=b[k]||0; return a; }
+
+// Calcola finestra corrente + precedente (stessa ampiezza) dalla selezione tendina.
+function winRange(winVal, lastDateStr){
+  if(String(winVal).startsWith('mese-')){
+    const [y,m] = winVal.slice(5).split('-').map(Number);
+    const curS=new Date(y,m-1,1), curE=new Date(y,m,0);
+    const prvS=new Date(y,m-2,1), prvE=new Date(y,m-1,0);
+    return { curStart:iso(curS), curEnd:iso(curE), prevStart:iso(prvS), prevEnd:iso(prvE),
+             label: curS.getDate()+'–'+curE.getDate()+' '+MESI[m-1]+' '+y };
+  }
+  const days = parseInt(winVal,10) || 60;
+  const last = new Date(lastDateStr);
+  const curE=last, curS=addDays(last,-(days-1));
+  const prvE=addDays(curS,-1), prvS=addDays(prvE,-(days-1));
+  return { curStart:iso(curS), curEnd:iso(curE), prevStart:iso(prvS), prevEnd:iso(prvE),
+           label: dLabel(curS)+' – '+dLabel(curE) };
+}
+
+// Badge delta % vs periodo precedente. kind: 'good' (su=verde), 'cost' (su=rosso), 'neu'.
+function deltaHtml(cur, prev, kind){
+  if(!prev){ return `<div class="k-delta neu">${cur>0?'nuovo':'—'}<span class="cap">vs prec.</span></div>`; }
+  const ch = (cur-prev)/prev*100;
+  const up = ch>=0;
+  let cls='neu';
+  if(kind==='good') cls = up?'pos':'neg';
+  else if(kind==='cost') cls = up?'neg':'pos';
+  return `<div class="k-delta ${cls}">${up?'+':'−'}${pct0(ch)}%<span class="cap">vs prec.</span></div>`;
+}
+
+// ──────────────────────────────────────────────────────────────────────
+//  Render — riaggrega tutto sulla finestra selezionata
+// ──────────────────────────────────────────────────────────────────────
+function render(){
+  const meta = DATA.meta || {};
+  const winVal = document.getElementById('winSelect').value;
+  const R = winRange(winVal, meta.lastDate || meta.updated || iso(new Date()));
+
+  // header / footer testuali
+  document.getElementById('clientName').textContent = '· ' + (meta.client||'—');
+  document.getElementById('footClient').textContent = meta.client||'—';
+  document.getElementById('updRef').textContent = meta.updated ? dLabel(new Date(meta.updated)) : '—';
+  document.getElementById('periodRef').textContent = R.label;
+  document.getElementById('footPeriod').textContent = R.label;
+
+  // entità con metriche aggregate su finestra corrente + precedente
+  const camps = (DATA.campaigns||[]).map(c=>({ ...c, cur:sumRange(c.daily,R.curStart,R.curEnd), prev:sumRange(c.daily,R.prevStart,R.prevEnd) }))
+                    .filter(c=>c.cur.impressions>0 || c.cur.clicks>0);
+  const posts = (DATA.posts||[]).map(p=>({ ...p, cur:sumRange(p.daily,R.curStart,R.curEnd), prev:sumRange(p.daily,R.prevStart,R.prevEnd) }))
+                    .filter(p=>p.cur.impressions>0 || p.cur.clicks>0);
+
+  // ── KPI bar (totali account = somma campagne) ──
+  const Tc = camps.reduce((a,c)=>addM(a,c.cur),emptyM());
+  const Tp = camps.reduce((a,c)=>addM(a,c.prev),emptyM());
+  const derive = t => ({
+    spend:t.spend, impr:t.impressions, clicks:t.clicks,
+    cpm: t.impressions? t.spend/t.impressions*1000 : 0,
+    cpc: t.clicks? t.spend/t.clicks : 0,
+    ctr: t.impressions? t.clicks/t.impressions*100 : 0
+  });
+  const C=derive(Tc);
+  const kpis = [
+    { n:'Spesa totale', v:eur(C.spend),  u:'€' },
+    { n:'Impressioni',  v:fmt(C.impr),   u:''  },
+    { n:'CPM',          v:eur2(C.cpm),   u:'€' },
+    { n:'Click totali', v:fmt(C.clicks), u:''  },
+    { n:'CPC medio',    v:eur2(C.cpc),   u:'€' },
+    { n:'CTR',          v:pct(C.ctr),    u:'%' }
+  ];
+  document.getElementById('kpibar').innerHTML = kpis.map(k=>`
+    <div class="cell">
+      <div class="k-name">${k.n}</div>
+      <div class="k-val">${k.v}${k.u?`<span class="u">${k.u}</span>`:''}</div>
+    </div>`).join('');
+
+  // ── Tabella campagne ──
+  const crows = camps.slice().sort((a,b)=>b.cur.spend-a.cur.spend);
+  document.getElementById('campCount').textContent = crows.length+' campagne · per spesa';
+  document.getElementById('campList').innerHTML = crows.length ? crows.map(c=>{
+    const t=c.cur, cctr=t.impressions?t.clicks/t.impressions*100:0, ccpc=t.clicks?t.spend/t.clicks:0, ccpm=t.impressions?t.spend/t.impressions*1000:0;
+    const on=(c.status||'').toUpperCase()==='ACTIVE';
+    const obj=(c.objective||'').replace(/_/g,' ').toLowerCase().replace(/^\w/,m=>m.toUpperCase());
+    return `
+    <div class="camp">
+      <div><div class="c-name">${c.name||'—'}</div>${obj?`<span class="c-obj">${obj}</span>`:''}</div>
+      <div class="c-status"><span class="dot ${on?'on':'off'}"></span>${on?'Attiva':(c.status||'—')}</div>
+      <div class="m">${fmt(t.impressions)}</div>
+      <div class="m">${fmt(t.clicks)}</div>
+      <div class="m">${pct(cctr)} %</div>
+      <div class="m">${eur2(ccpm)} €</div>
+      <div class="m">${eur(t.spend)} €</div>
+      <div class="m">${eur2(ccpc)} €</div>
+    </div>`;
+  }).join('') : `<div class="empty">Nessuna campagna con dati nel periodo selezionato.</div>`;
+
+  // ── Tabella post ──
+  const rows = posts.map(p=>{
+    const key=p.post||p.creative, t=p.cur;
+    const lb=(DATA.labels||{})[key] || { autore:'(post '+String(key).split(':').pop()+')', ruolo:'—', colore:'#3A5575', testo:'— label mancante: aggiungi in creative-labels.json —' };
+    const campTag=(p.campaignName||'').trim().split(/[\s\-–]+/).filter(Boolean).pop()||'';
+    return { ...p, lb, campTag, rc:(t.likes+t.comments+t.shares),
+             ctr:t.impressions?t.clicks/t.impressions*100:0,
+             cpc:t.clicks?t.spend/t.clicks:0,
+             cpm:t.impressions?t.spend/t.impressions*1000:0, t };
+  }).sort((a,b)=> (a.lb.autore+a.campTag).localeCompare(b.lb.autore+b.campTag) || b.t.clicks-a.t.clicks);
+  const avgCtr = rows.length?rows.reduce((s,r)=>s+r.ctr,0)/rows.length:0;
+  const avgCpc = rows.length?rows.reduce((s,r)=>s+r.cpc,0)/rows.length:0;
+  document.getElementById('postCount').textContent = rows.length+' post · ordinati per click';
+  document.getElementById('postList').innerHTML = rows.length ? rows.map((r,i)=>{
+    const ctrCls=r.ctr>=avgCtr*1.15?'good':(r.ctr<avgCtr*0.85?'warn':'');
+    const cpcCls=r.cpc<=avgCpc*0.85?'good':(r.cpc>avgCpc*1.15?'warn':'');
+    return `
+    <div class="post">
+      <div class="author">
+        ${avatarHtml(r)}
+        <div>
+          <div class="a-name">${r.lb.autore}</div>
+          <div class="a-role">${r.lb.ruolo}</div>
+          <div class="a-text">${r.lb.testo}</div>
+          ${r.postUrl?`<a class="a-link" href="${r.postUrl}" target="_blank" rel="noopener">apri post</a>`:''}
+        </div>
+      </div>
+      <div class="m">${fmt(r.t.impressions)}</div>
+      <div class="m">${fmt(r.t.clicks)}</div>
+      <div class="m ${ctrCls}">${pct(r.ctr)} %</div>
+      <div class="m">${eur2(r.cpm)} €</div>
+      <div class="m">${fmt(r.rc)}</div>
+      <div class="m">${eur(r.t.spend)} €</div>
+      <div class="m ${cpcCls}">${eur2(r.cpc)} €</div>
+    </div>`;
+  }).join('') : `<div class="empty">Nessun post con dati nel periodo selezionato.</div>`;
+
+  // ── Focus engagement (totali campagne, finestra corrente) ──
+  const E = Tc;
+  const engs = [
+    { n:'Reazioni social', v:fmt(E.likes) },
+    { n:'Nuovi follower',  v:'+'+fmt(E.follows) },
+    { n:'Post attivi',     v:fmt(posts.length) },
+    { n:'Condivisioni',    v:fmt(E.shares) },
+    { n:'Commenti',        v:fmt(E.comments) }
+  ];
+  document.getElementById('engGrid').innerHTML = engs.map(e=>`
+    <div class="eng">
+      <div class="eng-val">${e.v}</div>
+      <div class="eng-name">${e.n}</div>
+    </div>`).join('');
+}
+
+// Entry point: imposta i dati e renderizza sulla finestra di default.
+function init(campaigns, posts, labels, meta){
+  DATA = { campaigns:campaigns||[], posts:posts||[], labels:labels||{}, meta:meta||{} };
+  render();
+}
+
+// ──────────────────────────────────────────────────────────────────────
+//  Caricamento dati — JSON reali (via http), fallback mock
+// ──────────────────────────────────────────────────────────────────────
+async function loadData(){
+  try{
+    const [numsR, labsR] = await Promise.all([
+      fetch('./sync/social-data.json?t='+Date.now(),     {cache:'no-store'}),
+      fetch('./sync/creative-labels.json?t='+Date.now(), {cache:'no-store'})
+    ]);
+    if(!numsR.ok) throw new Error('social-data.json non trovato');
+    const nums = await numsR.json();
+    const labs = labsR.ok ? await labsR.json() : {};
+    delete labs._istruzioni;
+    document.getElementById('mockNote').classList.add('hide');
+    init(nums.campaigns||[], nums.posts||[], labs, nums.meta||{});
+    return;
+  }catch(e){ console.warn('Dati reali non caricati, uso mock:', e.message); }
+  init(MOCK_CAMPAIGNS, MOCK_POSTS, MOCK_LABELS, MOCK_META);
+}
+
+
+// ▼ DATI REALI INIETTATI da build-standalone.js — non modificare a mano ▼
+const REAL_CAMPAIGNS = [{"campaign":"urn:li:sponsoredCampaign:778203023","name":"Engagement - company list - 06/2026 - EU","objective":"ENGAGEMENT","status":"PAUSED","daily":[{"d":"2026-06-19","impressions":985,"clicks":45,"spend":37.900000000000006,"likes":3,"comments":1,"shares":0,"follows":0,"engagements":57,"leads":0},{"d":"2026-06-20","impressions":338,"clicks":12,"spend":27.590000000000003,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":13,"leads":0},{"d":"2026-06-21","impressions":91,"clicks":2,"spend":24.51,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-06-22","impressions":683,"clicks":46,"spend":32.00999999999999,"likes":1,"comments":1,"shares":0,"follows":0,"engagements":50,"leads":0},{"d":"2026-06-23","impressions":605,"clicks":38,"spend":32.12,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":39,"leads":0},{"d":"2026-06-24","impressions":879,"clicks":48,"spend":32.89,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":53,"leads":0},{"d":"2026-06-25","impressions":782,"clicks":42,"spend":33.43,"likes":2,"comments":0,"shares":0,"follows":0,"engagements":48,"leads":0},{"d":"2026-06-26","impressions":855,"clicks":49,"spend":32.3,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":51,"leads":0},{"d":"2026-06-27","impressions":741,"clicks":32,"spend":29.400000000000002,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":33,"leads":0},{"d":"2026-06-28","impressions":494,"clicks":24,"spend":17.32,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":27,"leads":0},{"d":"2026-06-29","impressions":823,"clicks":26,"spend":31.67,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":28,"leads":0},{"d":"2026-06-30","impressions":952,"clicks":48,"spend":32.58,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":52,"leads":0},{"d":"2026-07-01","impressions":1125,"clicks":46,"spend":32.699999999999996,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":50,"leads":0},{"d":"2026-07-02","impressions":1078,"clicks":40,"spend":33.64000000000001,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":43,"leads":0},{"d":"2026-07-03","impressions":1059,"clicks":32,"spend":31.950000000000003,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":35,"leads":0},{"d":"2026-07-04","impressions":847,"clicks":27,"spend":24.380000000000003,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":27,"leads":0},{"d":"2026-07-05","impressions":758,"clicks":24,"spend":23.08,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":31,"leads":0},{"d":"2026-07-06","impressions":1071,"clicks":40,"spend":30.78,"likes":3,"comments":0,"shares":0,"follows":0,"engagements":42,"leads":0},{"d":"2026-07-07","impressions":1115,"clicks":46,"spend":32.09,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":48,"leads":0},{"d":"2026-07-08","impressions":485,"clicks":17,"spend":13.39,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":20,"leads":0}]},{"campaign":"urn:li:sponsoredCampaign:811534713","name":"Engagement - company list - 07/2026 - EU - no entry level","objective":"ENGAGEMENT","status":"PAUSED","daily":[{"d":"2026-07-08","impressions":615,"clicks":13,"spend":26.969999999999995,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":14,"leads":0},{"d":"2026-07-09","impressions":590,"clicks":28,"spend":23.57,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":32,"leads":0},{"d":"2026-07-10","impressions":443,"clicks":12,"spend":18.670000000000005,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":13,"leads":0},{"d":"2026-07-11","impressions":593,"clicks":27,"spend":25.21,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":27,"leads":0},{"d":"2026-07-12","impressions":616,"clicks":26,"spend":25.63,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":29,"leads":0},{"d":"2026-07-13","impressions":788,"clicks":26,"spend":30.050000000000008,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":30,"leads":0},{"d":"2026-07-14","impressions":849,"clicks":23,"spend":31.590000000000003,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":26,"leads":0},{"d":"2026-07-15","impressions":858,"clicks":20,"spend":32.4,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":23,"leads":0},{"d":"2026-07-16","impressions":880,"clicks":31,"spend":32.64,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":34,"leads":0},{"d":"2026-07-17","impressions":824,"clicks":31,"spend":29.509999999999998,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":35,"leads":0},{"d":"2026-07-18","impressions":778,"clicks":26,"spend":27.879999999999995,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":29,"leads":0},{"d":"2026-07-19","impressions":826,"clicks":21,"spend":25.5,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":23,"leads":0},{"d":"2026-07-20","impressions":933,"clicks":26,"spend":31.24,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":26,"leads":0},{"d":"2026-07-21","impressions":977,"clicks":26,"spend":30.78,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":27,"leads":0},{"d":"2026-07-22","impressions":134,"clicks":4,"spend":4.839999999999999,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0}]},{"campaign":"urn:li:sponsoredCampaign:862720286","name":"Engagement - company list - 07/2026 - EU - no entry level - 2","objective":"ENGAGEMENT","status":"ACTIVE","daily":[{"d":"2026-07-22","impressions":954,"clicks":46,"spend":34.36999999999999,"likes":3,"comments":0,"shares":0,"follows":0,"engagements":47,"leads":0},{"d":"2026-07-23","impressions":885,"clicks":38,"spend":35.40999999999999,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":42,"leads":0},{"d":"2026-07-24","impressions":609,"clicks":19,"spend":32.93999999999999,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":24,"leads":0},{"d":"2026-07-25","impressions":354,"clicks":11,"spend":25.11,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":11,"leads":0},{"d":"2026-07-26","impressions":343,"clicks":5,"spend":22.17,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-27","impressions":486,"clicks":17,"spend":21.18408738546698,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":19,"leads":0}]},{"campaign":"urn:li:sponsoredCampaign:857400246","name":"Engagement - company list - 06/2026 - USA","objective":"ENGAGEMENT","status":"PAUSED","daily":[{"d":"2026-06-19","impressions":753,"clicks":41,"spend":49.22,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":44,"leads":0},{"d":"2026-06-20","impressions":474,"clicks":28,"spend":37.95,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":28,"leads":0},{"d":"2026-06-21","impressions":432,"clicks":26,"spend":32.830000000000005,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":27,"leads":0},{"d":"2026-06-22","impressions":523,"clicks":29,"spend":42.05,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":29,"leads":0},{"d":"2026-06-23","impressions":517,"clicks":47,"spend":44.26,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":49,"leads":0},{"d":"2026-06-24","impressions":680,"clicks":59,"spend":45.98999999999999,"likes":2,"comments":0,"shares":0,"follows":0,"engagements":64,"leads":0},{"d":"2026-06-25","impressions":661,"clicks":49,"spend":45.160000000000004,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":52,"leads":0},{"d":"2026-06-26","impressions":661,"clicks":59,"spend":43.019999999999996,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":59,"leads":0},{"d":"2026-06-27","impressions":630,"clicks":30,"spend":32.61,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":34,"leads":0},{"d":"2026-06-28","impressions":519,"clicks":35,"spend":26.90999999999997,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":35,"leads":0},{"d":"2026-06-29","impressions":706,"clicks":47,"spend":42.62,"likes":2,"comments":0,"shares":0,"follows":0,"engagements":52,"leads":0},{"d":"2026-06-30","impressions":809,"clicks":52,"spend":45.23,"likes":0,"comments":1,"shares":0,"follows":0,"engagements":57,"leads":0},{"d":"2026-07-01","impressions":832,"clicks":48,"spend":45.13999999999999,"likes":2,"comments":0,"shares":0,"follows":0,"engagements":55,"leads":0},{"d":"2026-07-02","impressions":904,"clicks":61,"spend":48.43,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":66,"leads":0},{"d":"2026-07-03","impressions":727,"clicks":39,"spend":42.16,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":39,"leads":0},{"d":"2026-07-04","impressions":504,"clicks":33,"spend":29.840000000000003,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":35,"leads":0},{"d":"2026-07-05","impressions":505,"clicks":28,"spend":26.579999999999984,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":28,"leads":0},{"d":"2026-07-06","impressions":795,"clicks":26,"spend":42.93000000000001,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":28,"leads":0},{"d":"2026-07-07","impressions":818,"clicks":54,"spend":45.410000000000004,"likes":2,"comments":0,"shares":0,"follows":0,"engagements":54,"leads":0},{"d":"2026-07-08","impressions":431,"clicks":25,"spend":20.810000000000002,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":26,"leads":0}]},{"campaign":"urn:li:sponsoredCampaign:811033873","name":"Engagement - company list - 07/2026 - USA - no entry level","objective":"ENGAGEMENT","status":"PAUSED","daily":[{"d":"2026-07-08","impressions":890,"clicks":38,"spend":48.6,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":43,"leads":0},{"d":"2026-07-09","impressions":799,"clicks":40,"spend":46.78000000000001,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":46,"leads":0},{"d":"2026-07-10","impressions":673,"clicks":30,"spend":42.78000000000001,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":31,"leads":0},{"d":"2026-07-11","impressions":584,"clicks":32,"spend":32.50999999999999,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":32,"leads":0},{"d":"2026-07-12","impressions":540,"clicks":25,"spend":29.24,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":26,"leads":0},{"d":"2026-07-13","impressions":741,"clicks":37,"spend":42.660000000000004,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":39,"leads":0},{"d":"2026-07-14","impressions":793,"clicks":35,"spend":44.61000000000001,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":35,"leads":0},{"d":"2026-07-15","impressions":764,"clicks":39,"spend":44.649999999999984,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":40,"leads":0},{"d":"2026-07-16","impressions":899,"clicks":40,"spend":45.64,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":44,"leads":0},{"d":"2026-07-17","impressions":795,"clicks":41,"spend":41.49,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":45,"leads":0},{"d":"2026-07-18","impressions":589,"clicks":33,"spend":32.47,"likes":0,"comments":1,"shares":0,"follows":0,"engagements":41,"leads":0},{"d":"2026-07-19","impressions":512,"clicks":21,"spend":28.479999999999997,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":24,"leads":0},{"d":"2026-07-20","impressions":792,"clicks":47,"spend":43.71,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":49,"leads":0},{"d":"2026-07-21","impressions":803,"clicks":37,"spend":44.99,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":41,"leads":0},{"d":"2026-07-22","impressions":786,"clicks":39,"spend":43.29,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":40,"leads":0},{"d":"2026-07-23","impressions":605,"clicks":27,"spend":43.9,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":28,"leads":0},{"d":"2026-07-24","impressions":164,"clicks":9,"spend":12.170000000000002,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0}]},{"campaign":"urn:li:sponsoredCampaign:811678383","name":"Engagement - company list - 07/2026 - USA - no entry level - 2","objective":"ENGAGEMENT","status":"ACTIVE","daily":[{"d":"2026-07-24","impressions":507,"clicks":31,"spend":51.59,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":32,"leads":0},{"d":"2026-07-25","impressions":352,"clicks":30,"spend":36.40999999999999,"likes":0,"comments":1,"shares":0,"follows":0,"engagements":38,"leads":0},{"d":"2026-07-26","impressions":148,"clicks":12,"spend":32,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":13,"leads":0},{"d":"2026-07-27","impressions":157,"clicks":7,"spend":30.331729948310798,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0}]}];
+const REAL_POSTS  = [{"post":"urn:li:share:7334231257268076545","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7334231257268076545","campaign":"urn:li:sponsoredCampaign:778203023","creatives":["urn:li:sponsoredCreative:1436748123"],"daily":[{"d":"2026-06-19","impressions":361,"clicks":23,"spend":12.703062258948378,"likes":2,"comments":0,"shares":0,"follows":0,"engagements":26,"leads":0},{"d":"2026-06-20","impressions":56,"clicks":4,"spend":5.7290717777271185,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-06-21","impressions":31,"clicks":1,"spend":10.288940292072732,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":1,"leads":0},{"d":"2026-06-22","impressions":449,"clicks":38,"spend":20.263961019471786,"likes":1,"comments":1,"shares":0,"follows":0,"engagements":42,"leads":0},{"d":"2026-06-23","impressions":215,"clicks":17,"spend":14.855995091188568,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":17,"leads":0},{"d":"2026-06-24","impressions":445,"clicks":27,"spend":17.578388240907223,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":28,"leads":0},{"d":"2026-06-25","impressions":504,"clicks":35,"spend":23.031384537912828,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":41,"leads":0},{"d":"2026-06-26","impressions":615,"clicks":40,"spend":24.91933729183431,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":40,"leads":0},{"d":"2026-06-27","impressions":402,"clicks":21,"spend":17.778492729383224,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":21,"leads":0},{"d":"2026-06-28","impressions":232,"clicks":17,"spend":9.48839439506124,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":18,"leads":0},{"d":"2026-06-29","impressions":457,"clicks":18,"spend":20.371513212349708,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":18,"leads":0},{"d":"2026-06-30","impressions":594,"clicks":37,"spend":21.75997341142055,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":41,"leads":0},{"d":"2026-07-01","impressions":586,"clicks":34,"spend":19.82127516542731,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":34,"leads":0},{"d":"2026-07-02","impressions":547,"clicks":23,"spend":19.07448256469745,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":25,"leads":0},{"d":"2026-07-03","impressions":548,"clicks":25,"spend":18.673825115880337,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":28,"leads":0},{"d":"2026-07-04","impressions":425,"clicks":19,"spend":13.254022441990998,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":19,"leads":0},{"d":"2026-07-05","impressions":435,"clicks":15,"spend":14.40333753500144,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":22,"leads":0},{"d":"2026-07-06","impressions":592,"clicks":22,"spend":18.24692843178082,"likes":2,"comments":0,"shares":0,"follows":0,"engagements":22,"leads":0},{"d":"2026-07-07","impressions":555,"clicks":32,"spend":17.934580576776384,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":32,"leads":0},{"d":"2026-07-08","impressions":261,"clicks":14,"spend":7.5633622646889584,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":16,"leads":0}],"campaignName":"Engagement - company list - 06/2026 - EU"},{"post":"urn:li:share:7334231257268076545","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7334231257268076545","campaign":"urn:li:sponsoredCampaign:857400246","creatives":["urn:li:sponsoredCreative:1436748143"],"daily":[{"d":"2026-06-19","impressions":361,"clicks":26,"spend":24.50657653006001,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":26,"leads":0},{"d":"2026-06-20","impressions":242,"clicks":19,"spend":21.557107852469674,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":19,"leads":0},{"d":"2026-06-21","impressions":264,"clicks":18,"spend":20.91079684112893,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":18,"leads":0},{"d":"2026-06-22","impressions":336,"clicks":22,"spend":27.931565353203286,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":22,"leads":0},{"d":"2026-06-23","impressions":394,"clicks":37,"spend":35.5291415354617,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":37,"leads":0},{"d":"2026-06-24","impressions":486,"clicks":47,"spend":35.14058361656016,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":52,"leads":0},{"d":"2026-06-25","impressions":454,"clicks":38,"spend":33.18203421258945,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":41,"leads":0},{"d":"2026-06-26","impressions":455,"clicks":50,"spend":32.89732245152836,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":50,"leads":0},{"d":"2026-06-27","impressions":412,"clicks":27,"spend":23.607423125304987,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":30,"leads":0},{"d":"2026-06-28","impressions":329,"clicks":25,"spend":19.34641307533182,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":25,"leads":0},{"d":"2026-06-29","impressions":478,"clicks":33,"spend":31.864585964012733,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":38,"leads":0},{"d":"2026-06-30","impressions":495,"clicks":36,"spend":30.42819055154185,"likes":0,"comments":1,"shares":0,"follows":0,"engagements":41,"leads":0},{"d":"2026-07-01","impressions":541,"clicks":34,"spend":31.915033378842313,"likes":2,"comments":0,"shares":0,"follows":0,"engagements":35,"leads":0},{"d":"2026-07-02","impressions":557,"clicks":42,"spend":33.838714399392515,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":47,"leads":0},{"d":"2026-07-03","impressions":374,"clicks":25,"spend":25.968931392723537,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":25,"leads":0},{"d":"2026-07-04","impressions":244,"clicks":15,"spend":17.20517398352238,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":17,"leads":0},{"d":"2026-07-05","impressions":247,"clicks":16,"spend":13.35999312880154,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":16,"leads":0},{"d":"2026-07-06","impressions":484,"clicks":19,"spend":29.617601245701255,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":21,"leads":0},{"d":"2026-07-07","impressions":544,"clicks":40,"spend":31.908740412589484,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":40,"leads":0},{"d":"2026-07-08","impressions":267,"clicks":16,"spend":13.707411886183415,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":16,"leads":0}],"campaignName":"Engagement - company list - 06/2026 - USA"},{"post":"urn:li:share:7334231257268076545","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7334231257268076545","campaign":"urn:li:sponsoredCampaign:811534713","creatives":["urn:li:sponsoredCreative:1443008833"],"daily":[{"d":"2026-07-08","impressions":158,"clicks":7,"spend":7.123135363989223,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-09","impressions":147,"clicks":11,"spend":6.300879342606372,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":11,"leads":0},{"d":"2026-07-10","impressions":233,"clicks":10,"spend":10.258084653686582,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0},{"d":"2026-07-11","impressions":308,"clicks":19,"spend":13.456308861383638,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":19,"leads":0},{"d":"2026-07-12","impressions":287,"clicks":13,"spend":13.472981458189393,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":13,"leads":0},{"d":"2026-07-13","impressions":448,"clicks":15,"spend":19.121640328734944,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":17,"leads":0},{"d":"2026-07-14","impressions":394,"clicks":20,"spend":17.76634611667418,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":20,"leads":0},{"d":"2026-07-15","impressions":371,"clicks":14,"spend":17.092714901782504,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":15,"leads":0},{"d":"2026-07-16","impressions":325,"clicks":16,"spend":16.144950042776916,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":18,"leads":0},{"d":"2026-07-17","impressions":448,"clicks":21,"spend":18.475843207622876,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":21,"leads":0},{"d":"2026-07-18","impressions":391,"clicks":17,"spend":16.118662310418188,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":17,"leads":0},{"d":"2026-07-19","impressions":349,"clicks":8,"spend":12.934097218888006,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-20","impressions":490,"clicks":22,"spend":19.554295688393076,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":22,"leads":0},{"d":"2026-07-21","impressions":507,"clicks":19,"spend":18.88658793291136,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":20,"leads":0},{"d":"2026-07-22","impressions":70,"clicks":2,"spend":2.69435958031465,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - EU - no entry level"},{"post":"urn:li:share:7334231257268076545","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7334231257268076545","campaign":"urn:li:sponsoredCampaign:811033873","creatives":["urn:li:sponsoredCreative:1442979813"],"daily":[{"d":"2026-07-08","impressions":181,"clicks":15,"spend":11.455068028871514,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":17,"leads":0},{"d":"2026-07-09","impressions":321,"clicks":19,"spend":20.08421477838091,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":21,"leads":0},{"d":"2026-07-10","impressions":323,"clicks":22,"spend":20.44790211719087,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":22,"leads":0},{"d":"2026-07-11","impressions":330,"clicks":21,"spend":19.481275265466376,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":21,"leads":0},{"d":"2026-07-12","impressions":256,"clicks":14,"spend":16.089725306271585,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":15,"leads":0},{"d":"2026-07-13","impressions":424,"clicks":19,"spend":26.691836488794046,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":21,"leads":0},{"d":"2026-07-14","impressions":429,"clicks":22,"spend":27.706333650308416,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":22,"leads":0},{"d":"2026-07-15","impressions":415,"clicks":29,"spend":26.020237237839954,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":29,"leads":0},{"d":"2026-07-16","impressions":505,"clicks":23,"spend":26.52850843915775,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":27,"leads":0},{"d":"2026-07-17","impressions":364,"clicks":17,"spend":20.589646070338258,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":19,"leads":0},{"d":"2026-07-18","impressions":282,"clicks":14,"spend":16.231106075518117,"likes":0,"comments":1,"shares":0,"follows":0,"engagements":19,"leads":0},{"d":"2026-07-19","impressions":229,"clicks":11,"spend":13.088955807068478,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":11,"leads":0},{"d":"2026-07-20","impressions":474,"clicks":33,"spend":28.79612708801818,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":35,"leads":0},{"d":"2026-07-21","impressions":458,"clicks":27,"spend":28.340248528552465,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":30,"leads":0},{"d":"2026-07-22","impressions":368,"clicks":28,"spend":21.056083984528616,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":29,"leads":0},{"d":"2026-07-23","impressions":388,"clicks":24,"spend":30.423893818885265,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":24,"leads":0},{"d":"2026-07-24","impressions":109,"clicks":4,"spend":9.782395036762733,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - USA - no entry level"},{"post":"urn:li:share:7334230588360437760","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7334230588360437760","campaign":"urn:li:sponsoredCampaign:862720286","creatives":["urn:li:sponsoredCreative:1512838336"],"daily":[{"d":"2026-07-22","impressions":466,"clicks":27,"spend":16.473544460443232,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":28,"leads":0},{"d":"2026-07-23","impressions":490,"clicks":27,"spend":22.107099985390395,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":28,"leads":0},{"d":"2026-07-24","impressions":268,"clicks":7,"spend":15.447699950124157,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-25","impressions":132,"clicks":6,"spend":11.782313639594456,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-07-26","impressions":173,"clicks":2,"spend":13.14396673933233,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-07-27","impressions":205,"clicks":9,"spend":10.184654232200035,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - EU - no entry level - 2"},{"post":"urn:li:share:7455203771044835328","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7455203771044835328","campaign":"urn:li:sponsoredCampaign:811033873","creatives":["urn:li:sponsoredCreative:1443019773"],"daily":[{"d":"2026-07-08","impressions":405,"clicks":13,"spend":19.703806140235933,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":13,"leads":0},{"d":"2026-07-09","impressions":268,"clicks":14,"spend":14.240838590913055,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":15,"leads":0},{"d":"2026-07-10","impressions":139,"clicks":3,"spend":9.430645104501998,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-07-11","impressions":122,"clicks":5,"spend":5.983560833012151,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-12","impressions":128,"clicks":5,"spend":6.6474271694802685,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-13","impressions":137,"clicks":3,"spend":7.322775474999482,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-07-14","impressions":165,"clicks":5,"spend":8.39075804601808,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-15","impressions":212,"clicks":6,"spend":11.9095584166683,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-07-16","impressions":213,"clicks":9,"spend":10.553892821991571,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0},{"d":"2026-07-17","impressions":244,"clicks":15,"spend":11.962498004988854,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":15,"leads":0},{"d":"2026-07-18","impressions":125,"clicks":9,"spend":6.743489165294243,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":12,"leads":0},{"d":"2026-07-19","impressions":113,"clicks":3,"spend":5.8705498962397815,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-20","impressions":136,"clicks":7,"spend":6.333963481947223,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-07-21","impressions":173,"clicks":2,"spend":8.025048466409926,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-07-22","impressions":122,"clicks":3,"spend":6.004165823825258,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-07-23","impressions":95,"clicks":1,"spend":4.530439592039828,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-07-24","impressions":17,"clicks":1,"spend":0.6135221315021055,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":1,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - USA - no entry level"},{"post":"urn:li:share:7334230830669524992","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7334230830669524992","campaign":"urn:li:sponsoredCampaign:811534713","creatives":["urn:li:sponsoredCreative:1443038573"],"daily":[{"d":"2026-07-08","impressions":255,"clicks":4,"spend":11.019935118807203,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-07-09","impressions":259,"clicks":9,"spend":10.963287599435173,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":11,"leads":0},{"d":"2026-07-10","impressions":95,"clicks":1,"spend":3.6819704320293107,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-07-11","impressions":181,"clicks":5,"spend":8.188520544668098,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-12","impressions":182,"clicks":8,"spend":6.7118910736942885,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":11,"leads":0},{"d":"2026-07-13","impressions":163,"clicks":8,"spend":5.156560439166028,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0},{"d":"2026-07-14","impressions":284,"clicks":2,"spend":7.983004738211764,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-07-15","impressions":301,"clicks":3,"spend":9.20150094520272,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-16","impressions":342,"clicks":7,"spend":10.543201563281734,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-17","impressions":224,"clicks":4,"spend":6.394099200394967,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-18","impressions":214,"clicks":5,"spend":6.20024033241185,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-07-19","impressions":303,"clicks":8,"spend":7.773687546337027,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0},{"d":"2026-07-20","impressions":274,"clicks":0,"spend":6.771653715153419,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":0,"leads":0},{"d":"2026-07-21","impressions":259,"clicks":2,"spend":6.726643293022594,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-07-22","impressions":34,"clicks":0,"spend":1.2194158666207426,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":0,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - EU - no entry level"},{"post":"urn:li:share:7424056511368298497","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7424056511368298497","campaign":"urn:li:sponsoredCampaign:862720286","creatives":["urn:li:sponsoredCreative:1512971946"],"daily":[{"d":"2026-07-22","impressions":322,"clicks":14,"spend":12.306895209443875,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":14,"leads":0},{"d":"2026-07-23","impressions":218,"clicks":8,"spend":8.036433521871665,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0},{"d":"2026-07-24","impressions":196,"clicks":8,"spend":11.09987227302691,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0},{"d":"2026-07-25","impressions":53,"clicks":0,"spend":3.155395648772238,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":0,"leads":0},{"d":"2026-07-26","impressions":151,"clicks":3,"spend":8.28444810224848,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-07-27","impressions":229,"clicks":8,"spend":8.793804099373174,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - EU - no entry level - 2"},{"post":"urn:li:share:7334230830669524992","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7334230830669524992","campaign":"urn:li:sponsoredCampaign:811033873","creatives":["urn:li:sponsoredCreative:1443059433"],"daily":[{"d":"2026-07-08","impressions":304,"clicks":10,"spend":17.441125830892553,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":13,"leads":0},{"d":"2026-07-09","impressions":210,"clicks":7,"spend":12.454946630706042,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0},{"d":"2026-07-10","impressions":211,"clicks":5,"spend":12.901452778307132,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-07-11","impressions":132,"clicks":6,"spend":7.045163901521467,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-07-12","impressions":156,"clicks":6,"spend":6.502847524248146,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-07-13","impressions":180,"clicks":15,"spend":8.645388036206473,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":15,"leads":0},{"d":"2026-07-14","impressions":199,"clicks":8,"spend":8.5129083036735,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-15","impressions":137,"clicks":4,"spend":6.72020434549174,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-07-16","impressions":181,"clicks":8,"spend":8.557598738850672,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-17","impressions":187,"clicks":9,"spend":8.937855924672887,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":11,"leads":0},{"d":"2026-07-18","impressions":182,"clicks":10,"spend":9.495404759187645,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0},{"d":"2026-07-19","impressions":170,"clicks":7,"spend":9.52049429669174,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-20","impressions":182,"clicks":7,"spend":8.579909430034597,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-07-21","impressions":172,"clicks":8,"spend":8.624703005037611,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0},{"d":"2026-07-22","impressions":296,"clicks":8,"spend":16.229750191646122,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-23","impressions":122,"clicks":2,"spend":8.945666589074904,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-07-24","impressions":38,"clicks":4,"spend":1.7740828317351611,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - USA - no entry level"},{"post":"urn:li:share:7334230830669524992","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7334230830669524992","campaign":"urn:li:sponsoredCampaign:778203023","creatives":["urn:li:sponsoredCreative:1436708563"],"daily":[{"d":"2026-06-19","impressions":364,"clicks":10,"spend":14.915210962846395,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":12,"leads":0},{"d":"2026-06-20","impressions":45,"clicks":0,"spend":3.4207819156021246,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":0,"leads":0},{"d":"2026-06-21","impressions":17,"clicks":0,"spend":9.80834184087425,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":0,"leads":0},{"d":"2026-06-22","impressions":64,"clicks":0,"spend":3.2438118223188765,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":0,"leads":0},{"d":"2026-06-23","impressions":32,"clicks":4,"spend":1.199897430787972,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-06-24","impressions":116,"clicks":8,"spend":3.694512113313413,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0},{"d":"2026-06-25","impressions":71,"clicks":3,"spend":2.4239366685246506,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-06-26","impressions":78,"clicks":2,"spend":2.2081138491328205,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-06-27","impressions":173,"clicks":6,"spend":6.525371874716132,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-06-28","impressions":119,"clicks":4,"spend":3.6300350067437943,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-06-29","impressions":103,"clicks":5,"spend":3.3309296773557957,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-06-30","impressions":206,"clicks":7,"spend":6.02582060977312,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-07-01","impressions":289,"clicks":5,"spend":6.509407195812029,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-02","impressions":243,"clicks":10,"spend":7.296508421361986,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":11,"leads":0},{"d":"2026-07-03","impressions":286,"clicks":4,"spend":8.18252312770613,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-07-04","impressions":295,"clicks":5,"spend":8.015514769316555,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-05","impressions":165,"clicks":4,"spend":4.818258125331308,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-07-06","impressions":264,"clicks":10,"spend":7.58300985619184,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0},{"d":"2026-07-07","impressions":283,"clicks":4,"spend":7.149418929652816,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-07-08","impressions":120,"clicks":2,"spend":3.258779562735475,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0}],"campaignName":"Engagement - company list - 06/2026 - EU"},{"post":"urn:li:share:7455203771044835328","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7455203771044835328","campaign":"urn:li:sponsoredCampaign:778203023","creatives":["urn:li:sponsoredCreative:1436864693"],"daily":[{"d":"2026-06-19","impressions":260,"clicks":12,"spend":10.281726778205233,"likes":1,"comments":1,"shares":0,"follows":0,"engagements":19,"leads":0},{"d":"2026-06-20","impressions":237,"clicks":8,"spend":18.440146306670755,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0},{"d":"2026-06-21","impressions":43,"clicks":1,"spend":4.4127178670530185,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":1,"leads":0},{"d":"2026-06-22","impressions":170,"clicks":8,"spend":8.502227158209331,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-06-23","impressions":358,"clicks":17,"spend":16.064107478023455,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":18,"leads":0},{"d":"2026-06-24","impressions":318,"clicks":13,"spend":11.617099645779362,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":15,"leads":0},{"d":"2026-06-25","impressions":207,"clicks":4,"spend":7.974678793562516,"likes":2,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-06-26","impressions":162,"clicks":7,"spend":5.172548859032868,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0},{"d":"2026-06-27","impressions":166,"clicks":5,"spend":5.096135395900642,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-06-28","impressions":143,"clicks":3,"spend":4.201570598194966,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-06-29","impressions":263,"clicks":3,"spend":7.9675571102945,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-06-30","impressions":152,"clicks":4,"spend":4.794205978806332,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-07-01","impressions":250,"clicks":7,"spend":6.369317638760659,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":11,"leads":0},{"d":"2026-07-02","impressions":288,"clicks":7,"spend":7.269009013940564,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-07-03","impressions":225,"clicks":3,"spend":5.093651756413531,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-07-04","impressions":127,"clicks":3,"spend":3.110462788692449,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-07-05","impressions":158,"clicks":5,"spend":3.8584043396672474,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-06","impressions":215,"clicks":8,"spend":4.950061712027342,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0},{"d":"2026-07-07","impressions":277,"clicks":10,"spend":7.006000493570801,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0},{"d":"2026-07-08","impressions":104,"clicks":1,"spend":2.567858172575566,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":1,"leads":0}],"campaignName":"Engagement - company list - 06/2026 - EU"},{"post":"urn:li:share:7334230830669524992","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7334230830669524992","campaign":"urn:li:sponsoredCampaign:857400246","creatives":["urn:li:sponsoredCreative:1436827893"],"daily":[{"d":"2026-06-19","impressions":242,"clicks":9,"spend":16.430534414250623,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":12,"leads":0},{"d":"2026-06-20","impressions":108,"clicks":6,"spend":9.375966303676602,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-06-21","impressions":87,"clicks":6,"spend":6.22021661768822,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-06-22","impressions":110,"clicks":6,"spend":7.420742976327041,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-06-23","impressions":44,"clicks":5,"spend":2.5505875321564755,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-06-24","impressions":59,"clicks":3,"spend":2.546318062423821,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-06-25","impressions":73,"clicks":4,"spend":4.419328088870068,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-06-26","impressions":100,"clicks":6,"spend":5.069176878975102,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-06-27","impressions":114,"clicks":2,"spend":4.860326861763976,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-06-28","impressions":102,"clicks":6,"spend":4.50347229997529,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-06-29","impressions":143,"clicks":6,"spend":6.794793065469174,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-06-30","impressions":185,"clicks":11,"spend":8.735311991660204,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":11,"leads":0},{"d":"2026-07-01","impressions":145,"clicks":6,"spend":6.244980488696513,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0},{"d":"2026-07-02","impressions":169,"clicks":9,"spend":7.512681892462091,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0},{"d":"2026-07-03","impressions":229,"clicks":10,"spend":10.466704841831056,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0},{"d":"2026-07-04","impressions":169,"clicks":15,"spend":8.06726417439755,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":15,"leads":0},{"d":"2026-07-05","impressions":165,"clicks":8,"spend":9.161639763724562,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-06","impressions":159,"clicks":2,"spend":7.348365387907499,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-07-07","impressions":122,"clicks":6,"spend":6.169843326225259,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-07-08","impressions":70,"clicks":2,"spend":2.7671485259480373,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0}],"campaignName":"Engagement - company list - 06/2026 - USA"},{"post":"urn:li:share:7455203771044835328","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7455203771044835328","campaign":"urn:li:sponsoredCampaign:811534713","creatives":["urn:li:sponsoredCreative:1443049683"],"daily":[{"d":"2026-07-08","impressions":202,"clicks":2,"spend":8.82692951720357,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-07-09","impressions":184,"clicks":8,"spend":6.3058330579584565,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0},{"d":"2026-07-10","impressions":115,"clicks":1,"spend":4.72994491428411,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":1,"leads":0},{"d":"2026-07-11","impressions":104,"clicks":3,"spend":3.5651705939482645,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-07-12","impressions":147,"clicks":5,"spend":5.4451274681163175,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-13","impressions":177,"clicks":3,"spend":5.771799232099031,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-07-14","impressions":171,"clicks":1,"spend":5.840649145114058,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-07-15","impressions":186,"clicks":3,"spend":6.105784153014773,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-07-16","impressions":213,"clicks":8,"spend":5.951848393941349,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-17","impressions":152,"clicks":6,"spend":4.640057591982154,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-07-18","impressions":173,"clicks":4,"spend":5.5610973571699605,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-19","impressions":174,"clicks":5,"spend":4.792215234774969,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-07-20","impressions":169,"clicks":4,"spend":4.914050596453506,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-07-21","impressions":211,"clicks":5,"spend":5.166768774066045,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-22","impressions":30,"clicks":2,"spend":0.9262245530646068,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - EU - no entry level"},{"post":"urn:li:share:7476285890814930945","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7476285890814930945","campaign":"urn:li:sponsoredCampaign:811678383","creatives":["urn:li:sponsoredCreative:1455515833"],"daily":[{"d":"2026-07-24","impressions":197,"clicks":2,"spend":19.57298966894974,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-07-25","impressions":45,"clicks":1,"spend":3.8329225532510103,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":1,"leads":0},{"d":"2026-07-26","impressions":6,"clicks":0,"spend":0.7954626961340165,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":0,"leads":0},{"d":"2026-07-27","impressions":3,"clicks":1,"spend":0.13806675025406667,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":1,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - USA - no entry level - 2"},{"post":"urn:li:share:7334230588360437760","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7334230588360437760","campaign":"urn:li:sponsoredCampaign:811678383","creatives":["urn:li:sponsoredCreative:1455437553"],"daily":[{"d":"2026-07-24","impressions":145,"clicks":17,"spend":14.74537552331154,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":17,"leads":0},{"d":"2026-07-25","impressions":186,"clicks":21,"spend":20.62312746278224,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":24,"leads":0},{"d":"2026-07-26","impressions":112,"clicks":11,"spend":24.934179596508837,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":12,"leads":0},{"d":"2026-07-27","impressions":127,"clicks":5,"spend":25.353684002895214,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - USA - no entry level - 2"},{"post":"urn:li:share:7455203771044835328","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7455203771044835328","campaign":"urn:li:sponsoredCampaign:857400246","creatives":["urn:li:sponsoredCreative:1436718743"],"daily":[{"d":"2026-06-19","impressions":150,"clicks":6,"spend":8.28288905568937,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":6,"leads":0},{"d":"2026-06-20","impressions":124,"clicks":3,"spend":7.016925843853727,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-06-21","impressions":81,"clicks":2,"spend":5.69898654118285,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-06-22","impressions":77,"clicks":1,"spend":6.697691670469666,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":1,"leads":0},{"d":"2026-06-23","impressions":79,"clicks":5,"spend":6.180270932381825,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-06-24","impressions":135,"clicks":9,"spend":8.303098321016014,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":9,"leads":0},{"d":"2026-06-25","impressions":134,"clicks":7,"spend":7.558637698540483,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-06-26","impressions":106,"clicks":3,"spend":5.053500669496533,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-06-27","impressions":104,"clicks":1,"spend":4.142250012931035,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":2,"leads":0},{"d":"2026-06-28","impressions":88,"clicks":4,"spend":3.0601146246928614,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-06-29","impressions":85,"clicks":8,"spend":3.960620970518091,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-06-30","impressions":129,"clicks":5,"spend":6.066497456797946,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-01","impressions":146,"clicks":8,"spend":6.979986132461175,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":11,"leads":0},{"d":"2026-07-02","impressions":178,"clicks":10,"spend":7.078603708145391,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":10,"leads":0},{"d":"2026-07-03","impressions":124,"clicks":4,"spend":5.724363765445405,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-07-04","impressions":91,"clicks":3,"spend":4.56756184208007,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":3,"leads":0},{"d":"2026-07-05","impressions":93,"clicks":4,"spend":4.058367107473882,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":4,"leads":0},{"d":"2026-07-06","impressions":152,"clicks":5,"spend":5.964033366391246,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-07","impressions":152,"clicks":8,"spend":7.331416261185256,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0},{"d":"2026-07-08","impressions":94,"clicks":7,"spend":4.335439587868544,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":8,"leads":0}],"campaignName":"Engagement - company list - 06/2026 - USA"},{"post":"urn:li:share:7476285890814930945","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7476285890814930945","campaign":"urn:li:sponsoredCampaign:862720286","creatives":["urn:li:sponsoredCreative:1513090466"],"daily":[{"d":"2026-07-22","impressions":166,"clicks":5,"spend":5.589560330112887,"likes":1,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-23","impressions":177,"clicks":3,"spend":5.266466492737936,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-24","impressions":145,"clicks":4,"spend":6.392427776848927,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":7,"leads":0},{"d":"2026-07-25","impressions":169,"clicks":5,"spend":10.172290711633302,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":5,"leads":0},{"d":"2026-07-26","impressions":19,"clicks":0,"spend":0.7415851584191943,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":0,"leads":0},{"d":"2026-07-27","impressions":52,"clicks":0,"spend":2.2056290538937677,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":0,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - EU - no entry level - 2"},{"post":"urn:li:share:7424056511368298497","postUrl":"https://www.linkedin.com/feed/update/urn:li:share:7424056511368298497","campaign":"urn:li:sponsoredCampaign:811678383","creatives":["urn:li:sponsoredCreative:1455377573"],"daily":[{"d":"2026-07-24","impressions":165,"clicks":12,"spend":17.27163480773872,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":12,"leads":0},{"d":"2026-07-25","impressions":121,"clicks":8,"spend":11.95394998396674,"likes":0,"comments":1,"shares":0,"follows":0,"engagements":13,"leads":0},{"d":"2026-07-26","impressions":30,"clicks":1,"spend":6.270357707357149,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":1,"leads":0},{"d":"2026-07-27","impressions":27,"clicks":1,"spend":4.839979195161522,"likes":0,"comments":0,"shares":0,"follows":0,"engagements":1,"leads":0}],"campaignName":"Engagement - company list - 07/2026 - USA - no entry level - 2"}];
+const REAL_LABELS = {"urn:li:share:7334231257268076545":{"autore":"Manola Primavera","ruolo":"Quality Assurance & CEO","colore":"#0A66C2","testo":"I was chatting with one of our clients the other day...","_post_url":"https://www.linkedin.com/feed/update/urn:li:share:7334231257268076545"},"urn:li:share:7455203771044835328":{"autore":"Manola Primavera","ruolo":"Quality Assurance & CEO","colore":"#0A66C2","testo":"Let me inaugurate a new series: Rotor geometry for newbies...","_post_url":"https://www.linkedin.com/feed/update/urn:li:share:7455203771044835328"},"urn:li:share:7334230830669524992":{"autore":"Manola Primavera","ruolo":"Quality Assurance & CEO","colore":"#0A66C2","testo":"Feeler gauges or test bench?","_post_url":"https://www.linkedin.com/feed/update/urn:li:share:7334230830669524992"}};
+const REAL_META   = {"client":"Intec Rotors","period":"","windowDays":60,"granularity":"DAILY","fetchDays":120,"lastDate":"2026-07-27","updated":"2026-07-27"};
+document.getElementById('mockNote').remove();
+init(REAL_CAMPAIGNS, REAL_POSTS, REAL_LABELS, REAL_META);
+
+</script>
+</body>
+</html>
