@@ -3,238 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LinkedIn Ads Report · Wobi</title>
+<title>Wobi — LinkedIn Ads</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-:root {
-  --navy:    #062040;
-  --navy2:   #0A3060;
-  --navy3:   #0E4080;
-  --li-blue: #0A66C2;
-  --green:   #10B981;
-  --red:     #EF4444;
-  --amber:   #F59E0B;
-  --bg:      #EFF3F8;
-  --bg2:     #F7F9FC;
-  --white:   #FFFFFF;
-  --border:  #DDE4EE;
-  --border2: #C8D4E2;
-  --text:    #0A1E35;
-  --text2:   #3A5575;
-  --text3:   #7A96B2;
-  --shadow:  0 1px 3px rgba(6,32,64,0.08), 0 1px 2px rgba(6,32,64,0.05);
-  --mono: 'Inter', sans-serif;
-  --sans: 'Inter', sans-serif;
+:root{
+  /* ---- palette Wobi ---- */
+  --bg:#08080a; --bg2:#0e0e11; --panel:#141419; --panel2:#1b1b22;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+  --txt:#f6f5f7; --muted:#9a9aa4; --dim:#5f5f6a;
+  --wobi:#44becb;          /* accento signature Wobi */
+  --wobi2:#7fd6df;         /* variante più chiara */
+  --wobi-deep:#2a97a3;     /* variante scura */
+  --ink:#06262b;           /* testo su fondo accento */
+  --good:#2fd08a; --warn:#ffb23e; --bad:#ff7a3d;
+  --r:18px;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Space Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1180px;margin:0 auto;padding:26px 22px 80px}
+.kick{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.up{color:var(--good)} .down{color:var(--bad)} .flat{color:var(--muted)}
 
-/* ── HEADER ── */
-.header {
-  background: var(--navy);
-  padding: 8px 32px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 10px 16px; min-height: 56px;
-  position: sticky; top: 0; z-index: 300;
+/* ---- top bar ---- */
+.bar{position:sticky;top:0;z-index:40;background:rgba(8,8,10,.72);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{font-weight:700;letter-spacing:-.03em;font-size:18px}
+.logo b{color:var(--wobi)}
+.bar .tag{font-size:12px;color:var(--muted);border:1px solid var(--line2);padding:5px 11px;border-radius:999px}
+.bar .meta{margin-left:auto;font-size:11.5px;color:var(--dim);text-align:right;line-height:1.5;font-variant-numeric:tabular-nums}
+.bar .meta b{color:var(--muted);font-weight:600}
+
+/* ---- barra controlli ---- */
+.ctrls{position:sticky;top:57px;z-index:39;background:rgba(8,8,10,.72);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:12px 22px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.grp{display:flex;align-items:center;gap:10px}
+.grp>.lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:600}
+
+/* finestre temporali — elemento più evidente della barra */
+.ranges{display:flex;gap:7px}
+.ranges button{
+  background:var(--panel);border:1px solid var(--line);color:var(--muted);
+  min-width:56px;padding:9px 12px;border-radius:11px;cursor:pointer;
+  font-family:'Space Grotesk';font-size:15px;font-weight:700;line-height:1;
+  letter-spacing:-.01em;transition:.18s;font-variant-numeric:tabular-nums}
+.ranges button small{display:block;font-size:8.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:4px}
+.ranges button:hover{color:var(--txt);border-color:var(--line2);background:var(--panel2)}
+.ranges button.on{background:var(--wobi);border-color:var(--wobi);color:var(--ink);box-shadow:0 0 0 3px rgba(68,190,203,.20)}
+.ranges button.on small{color:rgba(6,38,43,.62)}
+
+select.more{
+  appearance:none;-webkit-appearance:none;background-color:var(--panel);
+  border:1px solid var(--line);border-radius:11px;color:var(--muted);
+  font-family:'Space Grotesk';font-size:12.5px;padding:10px 30px 10px 13px;cursor:pointer;outline:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%239a9aa4' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 11px center}
+select.more:hover{color:var(--txt);border-color:var(--line2)}
+select.more.on{border-color:var(--wobi);color:var(--txt);box-shadow:0 0 0 3px rgba(68,190,203,.20)}
+select.more option,select.more optgroup{background:#141419;color:var(--txt)}
+
+.seg{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{background:transparent;border:none;border-left:1px solid var(--line);color:var(--muted);
+  font-family:'Space Grotesk';font-size:12px;padding:8px 13px;cursor:pointer;transition:.16s}
+.seg button:first-child{border-left:none}
+.seg button:hover{color:var(--txt)}
+.seg button.on{background:var(--wobi);color:var(--ink);font-weight:600}
+
+/* ---- hero ---- */
+.hero{position:relative;border-radius:26px;overflow:hidden;padding:32px 40px 30px;border:1px solid var(--line);background:var(--bg2);margin-bottom:16px}
+.hero .mesh{position:absolute;inset:-45%;background:
+  radial-gradient(36% 42% at 22% 28%,rgba(68,190,203,.55),transparent 70%),
+  radial-gradient(40% 40% at 82% 24%,rgba(127,214,223,.40),transparent 72%),
+  radial-gradient(46% 48% at 62% 82%,rgba(42,151,163,.45),transparent 72%);
+  filter:blur(46px);animation:drift 15s ease-in-out infinite alternate;z-index:0}
+@keyframes drift{to{transform:translate(3%,3%) scale(1.09)}}
+@media (prefers-reduced-motion: reduce){.hero .mesh{animation:none}}
+.hero>*{position:relative;z-index:1}
+.heroKpis{display:flex;gap:44px;margin-top:22px;flex-wrap:wrap}
+.heroKpis .k .v{font-size:38px;font-weight:700;letter-spacing:-.02em}
+.heroKpis .k .l{font-size:11px;color:rgba(255,255,255,.62);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.heroKpis .k .d{font-size:12px;font-weight:600;margin-top:4px}
+.heroKpis .k .d .cmp{color:rgba(255,255,255,.38);font-weight:400}
+
+/* ---- card / trend ---- */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+.card .hdh{padding:18px 20px 4px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.card .hdrow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px 4px;flex-wrap:wrap}
+.card .hdrow .hdh{padding:0}
+.card .hdrow .sub{font-size:11.5px;color:var(--dim);font-variant-numeric:tabular-nums;letter-spacing:0;text-transform:none;font-weight:400;margin-top:5px}
+.chartbox{padding:14px 18px 20px}
+.cw{position:relative;height:320px}
+
+#err{display:none;margin:0 0 16px;padding:14px 18px;border:1px solid var(--wobi);border-radius:14px;background:rgba(68,190,203,.10);color:var(--txt);font-size:13px;line-height:1.5}
+
+@media(max-width:840px){
+  .ctrls{position:static;gap:14px}
+  .bar .meta{margin-left:0;text-align:left;width:100%}
+  .hero{padding:26px 22px 24px}
+  .heroKpis{gap:26px}
 }
-.header-left { display: flex; align-items: center; gap: 14px; }
-.li-icon {
-  width: 28px; height: 28px; background: #0A66C2; border-radius: 5px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--mono); font-weight: 600; font-size: 12px; color: #fff; flex-shrink: 0;
-}
-.header-title { font-size: 14px; font-weight: 600; color: #fff; }
-.header-title span { color: rgba(255,255,255,0.45); font-weight: 400; }
-
-/* ── NAV TABS ── */
-.nav-tabs {
-  display: flex; align-items: center; gap: 2px;
-  background: rgba(255,255,255,0.07); border-radius: 6px; padding: 3px;
-}
-.nav-tab {
-  padding: 5px 16px; border-radius: 4px;
-  font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.55);
-  cursor: pointer; text-decoration: none; transition: all 0.15s;
-  border: none; background: transparent;
-}
-.nav-tab:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); }
-.nav-tab.active { background: rgba(255,255,255,0.15); color: #fff; }
-
-.header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-
-/* tendina periodo */
-select.date-filter {
-  appearance: none; -webkit-appearance: none; background: var(--navy2);
-  border: 1px solid rgba(255,255,255,0.18); border-radius: 7px;
-  color: #fff; font-family: var(--sans); font-size: 12.5px; font-weight: 500;
-  padding: 8px 30px 8px 12px; cursor: pointer; outline: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 11px center;
-}
-select.date-filter:hover { background-color: #0d3a72; }
-select.date-filter option, select.date-filter optgroup { background: #0A3060; color: #fff; }
-
-/* segmented control stato campagna */
-.statusseg{display:inline-flex;align-items:center;background:var(--navy2);border:1px solid rgba(255,255,255,.18);border-radius:7px;overflow:hidden}
-.statusseg .lbl{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0 10px 0 12px}
-.statusseg button{background:transparent;border:none;color:rgba(255,255,255,.7);font-family:var(--sans);font-size:12px;font-weight:500;padding:7px 13px;cursor:pointer;transition:background .12s,color .12s;border-left:1px solid rgba(255,255,255,.12)}
-.statusseg button:hover{color:#fff}
-.statusseg button.on{background:var(--li-blue);color:#fff;font-weight:600}
-
-.win-meta{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.55);line-height:1.5;white-space:nowrap}
-.win-meta b{color:rgba(255,255,255,.9);font-weight:600}
-
-/* ── KPI BAR ── */
-.kpi-bar { background: var(--navy2); padding: 0 40px; }
-.kpi-strip { display: flex; border-left: 1px solid rgba(255,255,255,0.08); }
-.kpi-cell {
-  flex: 1; padding: 18px 22px;
-  border-right: 1px solid rgba(255,255,255,0.08);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.kpi-name { font-size: 10px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 5px; }
-.kpi-val { font-family: var(--mono); font-size: 30px; font-weight: 600; color: #fff; line-height: 1; letter-spacing: -0.5px; }
-.kpi-delta { margin-top: 6px; display: flex; align-items: center; gap: 4px; font-family: var(--mono); font-size: 10.5px; font-weight: 500; }
-.kpi-delta .cmp { color: rgba(255,255,255,0.35); font-weight: 400; }
-.delta-up   { color: #34D399; }
-.delta-down { color: #FC8181; }
-.delta-na   { color: rgba(255,255,255,0.3); font-style: italic; }
-
-/* ── SECTIONS ── */
-.section { display: none; padding: 28px 40px 60px; max-width: 1440px; margin: 0 auto; }
-.section.active { display: block; }
-
-/* ── CARD ── */
-.card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; margin-bottom: 22px; }
-.card-header {
-  background: var(--navy); padding: 10px 18px;
-  display: flex; align-items: center; justify-content: space-between; gap: 14px;
-}
-.card-title { font-size: 12px; font-weight: 600; color: #fff; letter-spacing: 0.3px; }
-.card-sub { font-family: var(--mono); font-size: 10.5px; color: rgba(255,255,255,0.45); }
-
-/* granularità trend */
-.granseg{display:inline-flex;align-items:center;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:6px;overflow:hidden}
-.granseg button{background:transparent;border:none;color:rgba(255,255,255,.65);font-family:var(--sans);font-size:11px;font-weight:500;padding:4px 11px;cursor:pointer;border-left:1px solid rgba(255,255,255,.12)}
-.granseg button:first-child{border-left:none}
-.granseg button:hover{color:#fff}
-.granseg button.on{background:var(--li-blue);color:#fff;font-weight:600}
-
-/* ── CHART ── */
-.chart-body { padding: 18px; }
-.cw { position: relative; height: 320px; }
-
-/* ── LEGENDA ── */
-.leg { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); padding: 22px 24px; }
-.leg h3 { font-size: 13px; color: var(--navy); margin-bottom: 14px; }
-.leg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.leg-item { border-left: 3px solid var(--li-blue); padding: 2px 0 2px 12px; }
-.leg-item b { display: block; font-size: 12px; color: var(--navy2); margin-bottom: 3px; }
-.leg-item span { font-size: 11.5px; color: var(--text2); line-height: 1.55; }
-
-/* ── LOADING / ERRORE ── */
-#loadError { display:none; background:#EF4444; color:#fff; padding:6px 14px; border-radius:6px; font-size:11px; max-width:420px; }
-
-@media print {
-  .nav-tabs, .date-filter, .statusseg, .granseg { display: none !important; }
-  .section { display: block !important; }
-}
-@media (max-width: 900px) {
-  .kpi-strip { flex-wrap: wrap; }
-  .kpi-cell { min-width: 50%; }
-  .section { padding: 20px 16px 40px; }
-  .leg-grid { grid-template-columns: 1fr; }
-}
+@media print{.ctrls{display:none}.hero .mesh{animation:none}}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="header-left">
-    <div class="li-icon">in</div>
-    <div class="header-title">LinkedIn Ads Report <span>· Wobi</span></div>
+<div class="bar">
+  <div class="logo">WO<b>BI</b></div>
+  <div class="tag">LinkedIn Ads · performance</div>
+  <div class="meta">Periodo <b id="periodLabel">—</b><br>Sync <b id="lastUpdated">—</b></div>
+</div>
+
+<div class="ctrls">
+  <div class="grp">
+    <span class="lbl">Finestra</span>
+    <div class="ranges" id="rangeSeg" role="radiogroup" aria-label="Finestra temporale">
+      <button role="radio" aria-checked="false" data-r="7"  onclick="setRange('7')">7<small>giorni</small></button>
+      <button role="radio" aria-checked="false" data-r="14" onclick="setRange('14')">14<small>giorni</small></button>
+      <button role="radio" aria-checked="true"  data-r="30" class="on" onclick="setRange('30')">30<small>giorni</small></button>
+      <button role="radio" aria-checked="false" data-r="60" onclick="setRange('60')">60<small>giorni</small></button>
+      <button role="radio" aria-checked="false" data-r="90" onclick="setRange('90')">90<small>giorni</small></button>
+    </div>
+    <select class="more" id="moreRange" onchange="setRange(this.value)" aria-label="Altro periodo">
+      <option value="">Altro…</option>
+      <option value="all">Dall'inizio</option>
+      <optgroup label="Per mese"></optgroup>
+    </select>
   </div>
 
-  <nav class="nav-tabs">
-    <a class="nav-tab active" href="#" onclick="showSection('performance',this);return false">Performance</a>
-  </nav>
+  <div class="grp">
+    <span class="lbl">Confronta</span>
+    <div class="seg" id="cmpSeg">
+      <button data-c="prev" class="on" onclick="setCompare('prev')">Periodo prec.</button>
+      <button data-c="none" onclick="setCompare('none')">Nessuno</button>
+    </div>
+  </div>
 
-  <div class="header-right">
-    <div class="statusseg" id="statusSeg">
-      <span class="lbl">Stato</span>
+  <div class="grp" id="statusGrp">
+    <span class="lbl">Stato</span>
+    <div class="seg" id="statusSeg">
       <button data-s="all" class="on" onclick="setStatus('all')">Tutte</button>
       <button data-s="active" onclick="setStatus('active')">Attive</button>
       <button data-s="paused" onclick="setStatus('paused')">In pausa</button>
     </div>
-    <select class="date-filter" id="dateFilter" onchange="applyFilter()">
-      <optgroup label="Ultimi giorni">
-        <option value="7">Ultimi 7 giorni</option>
-        <option value="14">Ultimi 14 giorni</option>
-        <option value="30">Ultimi 30 giorni</option>
-        <option value="60">Ultimi 60 giorni</option>
-        <option value="90" selected>Ultimi 90 giorni</option>
-        <option value="all">Dall'inizio</option>
-      </optgroup>
-      <optgroup label="Per mese"></optgroup>
-    </select>
-    <div class="win-meta">Periodo: <b id="periodLabel">—</b> · Aggiornato: <b id="lastUpdated">—</b></div>
-    <div id="loadError"></div>
   </div>
-</header>
+</div>
 
-<!-- KPI BAR -->
-<div class="kpi-bar"><div class="kpi-strip" id="kpiStrip"></div></div>
+<div class="wrap">
 
-<!-- SECTION — PERFORMANCE -->
-<div class="section active" id="section-performance">
+  <div id="err"></div>
 
-  <!-- TREND SPESA + LEAD -->
+  <div class="hero">
+    <div class="mesh"></div>
+    <div class="kick" id="heroKick">Wobi · ultimi 30 giorni</div>
+    <div class="heroKpis" id="heroKpis"></div>
+  </div>
+
   <div class="card">
-    <div class="card-header">
+    <div class="hdrow">
       <div>
-        <span class="card-title">Andamento Spesa &amp; Lead</span>
-        <span class="card-sub" id="trendSub">—</span>
+        <div class="hdh">Andamento Spesa &amp; Lead</div>
+        <div class="sub" id="trendSub">—</div>
       </div>
-      <div class="granseg" id="granSeg">
+      <div class="seg" id="granSeg">
         <button data-g="day" onclick="setGran('day')">Giorno</button>
         <button data-g="week" class="on" onclick="setGran('week')">Settimana</button>
         <button data-g="month" onclick="setGran('month')">Mese</button>
       </div>
     </div>
-    <div class="chart-body"><div class="cw"><canvas id="trendChart"></canvas></div></div>
+    <div class="chartbox"><div class="cw"><canvas id="trendChart"></canvas></div></div>
   </div>
-
-  <!-- LEGENDA -->
-  <section class="leg" id="legenda">
-    <h3>Come leggere il report</h3>
-    <div class="leg-grid">
-      <div class="leg-item">
-        <b>Spesa</b>
-        <span>Investimento pubblicitario effettivo del periodo selezionato, al netto di IVA. È il costo addebitato da LinkedIn, non il budget pianificato.</span>
-      </div>
-      <div class="leg-item">
-        <b>Lead</b>
-        <span>Contatti acquisiti tramite Lead Gen Form di LinkedIn (<code>oneClickLeads</code>): l'utente ha compilato e inviato il modulo.</span>
-      </div>
-      <div class="leg-item">
-        <b>CPL — Costo per Lead</b>
-        <span>Spesa ÷ Lead. È la metrica di efficienza: più è basso, più contatti si ottengono a parità di budget. Nel delta, un calo è positivo (verde).</span>
-      </div>
-    </div>
-  </section>
 
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════
-//  WOBI — mini dashboard. Stessa pipeline dati degli altri
-//  clienti: il sync GitHub Actions pubblica wobi-ads-data.json
-//  sul repo pubblico, qui lo leggiamo via raw URL.
+//  WOBI — dashboard LinkedIn Ads
+//  Layout dark Wobi + pipeline dati del sync GitHub Actions.
+//  KPI: Spesa · Lead · CPL · CTR (solo queste quattro).
+//  Vista: hero KPI + card "Andamento Spesa & Lead". Nient'altro.
+//  Live: https://albezln1975.github.io/linkedin-ads-public/wobi/
 // ══════════════════════════════════════════════════════════
 
 const DATA_URL   = 'https://raw.githubusercontent.com/albezln1975/linkedin-ads-public/main/wobi-ads-data.json';
@@ -244,68 +191,62 @@ let RAW = [];
 let ALL_DATES = [], LAST_DATE = '';
 let STATUS = 'all', HAS_STATUS = false;
 let GRAN = 'week';
+let RANGE = '30';        // 7|14|30|60|90|all|m-YYYY-MM
+let COMPARE = 'prev';    // prev|none
 let trendChart = null;
 const MO = ['','Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
 const MO_FULL = ['','Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
 
-// ── NAV ───────────────────────────────────────────────────
-function showSection(id, el) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById('section-' + id).classList.add('active');
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-}
-
 // ── CARICAMENTO DATI ──────────────────────────────────────
-function convertRecord(rec) {
+function convertRecord(rec){
   return {
     spend:  rec.spend || 0,
     leads:  rec.leads || 0,
+    impr:   rec.impressions || 0,
+    clicks: rec.clicks || 0,
     date:   rec.date,
     camp:   rec.campaignName,
     status: (rec.status || '').toUpperCase()
   };
 }
 
-async function loadData() {
+function fail(msg){
+  const box = document.getElementById('err');
+  box.style.display = 'block';
+  box.innerHTML = msg;
+}
+
+async function loadData(){
   let data = null;
   try {
-    const resp = await fetch(DATA_URL + '?t=' + Date.now(), {cache: 'no-store'});
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const resp = await fetch(DATA_URL + '?t=' + Date.now(), {cache:'no-store'});
+    if(!resp.ok) throw new Error('HTTP ' + resp.status);
     data = await resp.json();
-  } catch (err) {
+  } catch(err){
     // Fallback su file locale (utile prima che il sync sia in produzione)
     try {
-      const resp2 = await fetch(DATA_LOCAL + '?t=' + Date.now(), {cache: 'no-store'});
-      if (!resp2.ok) throw new Error('HTTP ' + resp2.status);
+      const resp2 = await fetch(DATA_LOCAL + '?t=' + Date.now(), {cache:'no-store'});
+      if(!resp2.ok) throw new Error('HTTP ' + resp2.status);
       data = await resp2.json();
-    } catch (err2) {
+    } catch(err2){
       console.error('Errore caricamento dati:', err, err2);
-      const box = document.getElementById('loadError');
-      box.style.display = 'block';
-      box.textContent = '⚠️ Dati non disponibili. Verifica che il sync Wobi abbia pubblicato wobi-ads-data.json sul repo pubblico.';
+      fail('<b>Dati non disponibili.</b> Verifica che il sync Wobi abbia pubblicato <code>wobi-ads-data.json</code> sul repo pubblico.');
       return;
     }
   }
 
-  if (data.lastUpdated) {
+  if(data.lastUpdated){
     const d = new Date(data.lastUpdated);
     document.getElementById('lastUpdated').textContent =
-      d.toLocaleDateString('it-IT', {day:'2-digit', month:'short', year:'numeric'});
+      d.toLocaleDateString('it-IT',{day:'2-digit',month:'short',year:'numeric'});
   }
 
   RAW = (data.campaigns || []).map(convertRecord).filter(r => r.date);
 
   HAS_STATUS = RAW.some(r => r.status);
-  const seg = document.getElementById('statusSeg');
-  if (seg && !HAS_STATUS) seg.style.display = 'none';
+  if(!HAS_STATUS) document.getElementById('statusGrp').style.display = 'none';
 
-  if (!RAW.length) {
-    const box = document.getElementById('loadError');
-    box.style.display = 'block';
-    box.textContent = 'Nessun dato disponibile nel periodo scaricato.';
-    return;
-  }
+  if(!RAW.length){ fail('Nessun dato disponibile nel periodo scaricato.'); return; }
 
   ALL_DATES = [...new Set(RAW.map(r => r.date))].sort();
   LAST_DATE = ALL_DATES[ALL_DATES.length - 1];
@@ -314,12 +255,12 @@ async function loadData() {
   applyFilter();
 }
 
-function updateMonthOptions() {
+function updateMonthOptions(){
   const months = [...new Set(RAW.map(r => r.date.slice(0,7)))].sort();
-  const optgroup = document.querySelector('#dateFilter optgroup[label="Per mese"]');
-  if (!optgroup) return;
-  optgroup.innerHTML = months.map(ym => {
-    const [y, m] = ym.split('-');
+  const og = document.querySelector('#moreRange optgroup[label="Per mese"]');
+  if(!og) return;
+  og.innerHTML = months.map(ym => {
+    const [y,m] = ym.split('-');
     return `<option value="m-${ym}">${MO_FULL[parseInt(m)]} ${y}</option>`;
   }).join('');
 }
@@ -340,16 +281,46 @@ function getRange(val){
     const[,y,m]=val.split('-');
     const start=`${y}-${m}-01`;
     const nextM=parseInt(m)===12?`${parseInt(y)+1}-01-01`:`${y}-${String(parseInt(m)+1).padStart(2,'0')}-01`;
-    const end=addDays(nextM,-1);
+    // Mese in corso: chiudi all'ultimo giorno con dati, non alla fine del calendario.
+    const end=[addDays(nextM,-1),LAST_DATE].sort()[0];
     const days=Math.round((new Date(end)-new Date(start))/86400000)+1;
-    return{start,end,prevStart:addDays(start,-days),prevEnd:addDays(start,-1)};
+    // Confronto like-for-like: stessi giorni trascorsi del mese precedente.
+    const prevM=parseInt(m)===1?`${parseInt(y)-1}-12-01`:`${y}-${String(parseInt(m)-1).padStart(2,'0')}-01`;
+    const prevLast=addDays(start,-1);
+    const prevEnd=[addDays(prevM,days-1),prevLast].sort()[0];
+    return{start,end,prevStart:prevM,prevEnd};
   }
   const days=parseInt(val);
   const end=LAST_DATE, start=addDays(end,-(days-1));
   return{start,end,prevStart:addDays(start,-days),prevEnd:addDays(start,-1)};
 }
 
-// ── FILTRO STATO ──────────────────────────────────────────
+function rangeLabel(val){
+  if(val==='all') return 'dall’inizio';
+  if(val.startsWith('m-')){const[,y,m]=val.split('-');return `${MO_FULL[parseInt(m)].toLowerCase()} ${y}`;}
+  return `ultimi ${val} giorni`;
+}
+
+// ── CONTROLLI ─────────────────────────────────────────────
+function setRange(val){
+  if(!val) return;                        // opzione placeholder della select
+  RANGE = val;
+  const preset = ['7','14','30','60','90'].includes(val);
+  document.querySelectorAll('#rangeSeg button').forEach(b=>{
+    const on = preset && b.dataset.r===val;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-checked', on ? 'true' : 'false');
+  });
+  const sel = document.getElementById('moreRange');
+  sel.value = preset ? '' : val;
+  sel.classList.toggle('on', !preset);
+  applyFilter();
+}
+function setCompare(c){
+  COMPARE=c;
+  document.querySelectorAll('#cmpSeg button').forEach(b=>b.classList.toggle('on', b.dataset.c===c));
+  applyFilter();
+}
 function matchStatus(su){
   if(!HAS_STATUS||STATUS==='all')return true;
   if(STATUS==='active')return su==='ACTIVE';
@@ -370,41 +341,50 @@ function setGran(g){
 // ── AGGREGAZIONE ──────────────────────────────────────────
 function agg(s,e){
   const f=RAW.filter(r=>r.date>=s&&r.date<=e&&matchStatus(r.status));
-  const by={}, tot={spend:0,leads:0};
+  const by={}, tot={spend:0,leads:0,impr:0,clicks:0};
   f.forEach(r=>{
-    if(!by[r.camp])by[r.camp]={spend:0,leads:0};
+    if(!by[r.camp])by[r.camp]={spend:0,leads:0,impr:0,clicks:0};
     by[r.camp].spend+=r.spend; by[r.camp].leads+=r.leads;
+    by[r.camp].impr+=r.impr;   by[r.camp].clicks+=r.clicks;
     tot.spend+=r.spend; tot.leads+=r.leads;
+    tot.impr+=r.impr;   tot.clicks+=r.clicks;
   });
   return{by,tot,filtered:f};
 }
 function cpl(t){ return t.leads>0 ? t.spend/t.leads : 0; }
+function ctr(t){ return t.impr>0 ? (t.clicks/t.impr)*100 : 0; }
 function delta(c,p,hiGood=true){
   if(!p||p===0)return null;
   const pct=((c-p)/p)*100;
-  return{pct,pos:hiGood?pct>0:pct<0};
+  // Sotto lo 0,05% il delta si arrotonda a 0,0%: mostralo neutro, non come calo.
+  return{pct,flat:Math.abs(pct)<0.05,pos:hiGood?pct>0:pct<0};
 }
-function fmtEur(v,dec=2){return '€ '+v.toLocaleString('it-IT',{minimumFractionDigits:dec,maximumFractionDigits:dec});}
+function eur(v,dec=0){return '€'+v.toLocaleString('it-IT',{minimumFractionDigits:dec,maximumFractionDigits:dec});}
+function pct2(v){return v.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';}
 
-// ── KPI BAR ───────────────────────────────────────────────
-function renderKPI(ct,pt){
+// ── HERO KPI — Spesa · Lead · CPL · CTR ───────────────────
+function renderKPI(ct,pt,noPrevData){
   const cCpl=cpl(ct), pCpl=pt?cpl(pt):0;
+  const cCtr=ctr(ct), pCtr=pt?ctr(pt):0;
   const items=[
-    {name:'Spesa', val:fmtEur(ct.spend), d:pt?delta(ct.spend,pt.spend,false):null, neutral:true},
-    {name:'Lead',  val:ct.leads.toLocaleString('it-IT'), d:pt?delta(ct.leads,pt.leads,true):null},
-    {name:'CPL — Costo per Lead', val:cCpl>0?fmtEur(cCpl):'N/D', d:(cCpl>0&&pCpl>0)?delta(cCpl,pCpl,false):null}
+    {l:'Spesa', v:eur(ct.spend), d:pt?delta(ct.spend,pt.spend,false):null, neutral:true},
+    {l:'Lead',  v:ct.leads.toLocaleString('it-IT'), d:pt?delta(ct.leads,pt.leads,true):null},
+    {l:'CPL medio', v:cCpl>0?eur(cCpl):'—', d:(cCpl>0&&pCpl>0)?delta(cCpl,pCpl,false):null},
+    {l:'CTR medio', v:cCtr>0?pct2(cCtr):'—', d:(cCtr>0&&pCtr>0)?delta(cCtr,pCtr,true):null}
   ];
-  document.getElementById('kpiStrip').innerHTML=items.map(k=>{
+  document.getElementById('heroKpis').innerHTML=items.map(k=>{
     let dh='';
     if(k.d){
-      const cl=k.neutral?'':(k.d.pos?'delta-up':'delta-down');
-      const ar=k.d.pct>=0?'▲':'▼';
-      const sg=k.d.pct>=0?'+':'';
-      dh=`<div class="kpi-delta ${cl}"><span>${ar}</span> ${sg}${k.d.pct.toFixed(1)}% <span class="cmp">vs periodo prec.</span></div>`;
-    } else if(pt) {
-      dh=`<div class="kpi-delta delta-na">— nessun confronto</div>`;
+      const cl=(k.neutral||k.d.flat)?'flat':(k.d.pos?'up':'down');
+      const ar=k.d.flat?'=':(k.d.pct>=0?'▲':'▼');
+      const sg=(k.d.flat||k.d.pct<0)?'':'+';
+      dh=`<div class="d ${cl}">${ar} ${sg}${k.d.pct.toFixed(1)}% <span class="cmp">vs prec.</span></div>`;
+    } else if(pt||noPrevData){
+      dh=`<div class="d flat">— nessun confronto</div>`;
+    } else {
+      dh=`<div class="d flat">&nbsp;</div>`;
     }
-    return`<div class="kpi-cell"><div class="kpi-name">${k.name}</div><div class="kpi-val">${k.val}</div>${dh}</div>`;
+    return`<div class="k"><div class="v num">${k.v}</div><div class="l">${k.l}</div>${dh}</div>`;
   }).join('');
 }
 
@@ -439,56 +419,59 @@ function buckets(filtered){
   };
 }
 
-// ── TREND CHART (combo doppio asse) ───────────────────────
+// ── TREND CHART (barre spesa + linea lead, doppio asse) ───
 function renderTrend(filtered,start,end){
   const{labels,spend,leads}=buckets(filtered);
-  const ctx=document.getElementById('trendChart').getContext('2d');
+  const ctxEl=document.getElementById('trendChart').getContext('2d');
   if(trendChart)trendChart.destroy();
   const granLabel={day:'giorno',week:'settimana',month:'mese'}[GRAN];
   document.getElementById('trendSub').textContent=`${fmtD(start)} – ${fmtD(end)} · per ${granLabel}`;
 
-  trendChart=new Chart(ctx,{type:'bar',data:{labels,datasets:[
-    {label:'Spesa (€)',data:spend,backgroundColor:'rgba(245,158,11,0.20)',borderColor:'rgba(245,158,11,0.65)',borderWidth:1,borderRadius:4,order:2,yAxisID:'y'},
-    {label:'Lead',data:leads,type:'line',borderColor:'#10B981',backgroundColor:'transparent',borderWidth:2.5,pointBackgroundColor:'#10B981',pointRadius:GRAN==='day'?2:4,pointHoverRadius:6,tension:0.3,order:1,yAxisID:'y2'}
+  const grid='rgba(255,255,255,.06)', tick='#9a9aa4';
+
+  trendChart=new Chart(ctxEl,{type:'bar',data:{labels,datasets:[
+    {label:'Spesa (€)',data:spend,backgroundColor:'rgba(68,190,203,.30)',borderColor:'#44becb',borderWidth:1,borderRadius:5,order:2,yAxisID:'y'},
+    {label:'Lead',data:leads,type:'line',borderColor:'#2fd08a',backgroundColor:'transparent',borderWidth:2.5,pointBackgroundColor:'#2fd08a',pointBorderColor:'#08080a',pointBorderWidth:1.5,pointRadius:GRAN==='day'?2:4,pointHoverRadius:6,tension:.3,order:1,yAxisID:'y2'}
   ]},options:{
     responsive:true,maintainAspectRatio:false,
     interaction:{mode:'index',intersect:false},
     plugins:{
-      legend:{labels:{color:'#3A5575',font:{family:'Inter',size:11},boxWidth:10,boxHeight:8,usePointStyle:false}},
+      legend:{labels:{color:tick,font:{family:'Space Grotesk',size:11},boxWidth:10,boxHeight:8}},
       tooltip:{
-        backgroundColor:'#0A1E35',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,
-        titleColor:'#fff',bodyColor:'#94B4D0',footerColor:'#F59E0B',
-        titleFont:{family:'Inter',size:11},bodyFont:{family:'Inter',size:11},footerFont:{family:'Inter',size:11,weight:'600'},
-        padding:10,
+        backgroundColor:'#1b1b22',borderColor:'rgba(255,255,255,.15)',borderWidth:1,
+        titleColor:'#f6f5f7',bodyColor:'#9a9aa4',footerColor:'#44becb',
+        titleFont:{family:'Space Grotesk',size:11},bodyFont:{family:'Space Grotesk',size:11},footerFont:{family:'Space Grotesk',size:11,weight:'600'},
+        padding:11,
         callbacks:{
           label:c=>c.dataset.label==='Spesa (€)'?` Spesa: € ${c.parsed.y.toFixed(2)}`:` Lead: ${c.parsed.y}`,
           footer:items=>{
             const s=items.find(i=>i.dataset.label==='Spesa (€)');
             const l=items.find(i=>i.dataset.label==='Lead');
-            if(!s||!l||!l.parsed.y)return 'CPL: N/D';
+            if(!s||!l||!l.parsed.y)return 'CPL: —';
             return `CPL: € ${(s.parsed.y/l.parsed.y).toFixed(2)}`;
           }
         }
       }
     },
     scales:{
-      x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#7A96B2',font:{family:'Inter',size:10},maxRotation:0,autoSkip:true,maxTicksLimit:14},border:{color:'rgba(0,0,0,0.07)'}},
-      y:{position:'left',beginAtZero:true,grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#F59E0B',font:{family:'Inter',size:10},callback:v=>'€'+v.toFixed(0)},border:{color:'rgba(0,0,0,0.07)'},title:{display:true,text:'Spesa',color:'#F59E0B',font:{family:'Inter',size:10,weight:'600'}}},
-      y2:{position:'right',beginAtZero:true,grid:{drawOnChartArea:false},ticks:{color:'#10B981',font:{family:'Inter',size:10},precision:0,callback:v=>Number.isInteger(v)?v:''},border:{color:'rgba(0,0,0,0.07)'},title:{display:true,text:'Lead',color:'#10B981',font:{family:'Inter',size:10,weight:'600'}}}
+      x:{grid:{color:grid},ticks:{color:tick,font:{family:'Space Grotesk',size:10},maxRotation:0,autoSkip:true,maxTicksLimit:14},border:{color:'rgba(255,255,255,.10)'}},
+      y:{position:'left',beginAtZero:true,grid:{color:grid},ticks:{color:'#44becb',font:{family:'Space Grotesk',size:10},callback:v=>'€'+v.toFixed(0)},border:{color:'rgba(255,255,255,.10)'},title:{display:true,text:'Spesa',color:'#44becb',font:{family:'Space Grotesk',size:10,weight:'600'}}},
+      y2:{position:'right',beginAtZero:true,grid:{drawOnChartArea:false},ticks:{color:'#2fd08a',font:{family:'Space Grotesk',size:10},precision:0,callback:v=>Number.isInteger(v)?v:''},border:{color:'rgba(255,255,255,.10)'},title:{display:true,text:'Lead',color:'#2fd08a',font:{family:'Space Grotesk',size:10,weight:'600'}}}
     }
   }});
 }
 
 // ── APPLY FILTER ──────────────────────────────────────────
 function applyFilter(){
-  const val=document.getElementById('dateFilter').value;
-  const{start,end,prevStart,prevEnd}=getRange(val);
+  const{start,end,prevStart,prevEnd}=getRange(RANGE);
   const cur=agg(start,end);
-  const prev=agg(prevStart,prevEnd);
-  const hasPrev=prev.filtered.length>0;
+  const prev=COMPARE==='prev' ? agg(prevStart,prevEnd) : null;
+  const hasPrev=!!prev && prev.filtered.length>0;
 
   document.getElementById('periodLabel').textContent=`${fmtD(start)} – ${fmtD(end)}`;
-  renderKPI(cur.tot, hasPrev?prev.tot:null);
+  document.getElementById('heroKick').textContent=`Wobi · ${rangeLabel(RANGE)}`;
+
+  renderKPI(cur.tot, hasPrev?prev.tot:null, COMPARE==='prev'&&!hasPrev);
   renderTrend(cur.filtered,start,end);
 }
 
