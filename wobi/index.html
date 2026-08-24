@@ -182,10 +182,11 @@ select.more option,select.more optgroup{background:#141419;color:var(--txt)}
 //  KPI: Spesa · Lead · CPL · CTR (solo queste quattro).
 //  Vista: hero KPI + card "Andamento Spesa & Lead". Nient'altro.
 //  Live: https://albezln1975.github.io/linkedin-ads-public/wobi/
+//  Pubblicata dal workflow: dashboard/index.html → public-repo/wobi/index.html
 // ══════════════════════════════════════════════════════════
 
 const DATA_URL   = 'https://raw.githubusercontent.com/albezln1975/linkedin-ads-public/main/wobi-ads-data.json';
-const DATA_LOCAL = 'sync/wobi-ads-data.json';   // fallback: sync girato in locale
+const DATA_LOCAL = '../wobi-ads-data.json';     // fallback: sync girato in locale (radice del repo sync)
 
 let RAW = [];
 let ALL_DATES = [], LAST_DATE = '';
