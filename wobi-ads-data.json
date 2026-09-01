@@ -1,6 +1,6 @@
 {
   "client": "wobi",
-  "lastUpdated": "2026-08-31T10:31:04.839Z",
+  "lastUpdated": "2026-09-01T13:26:18.166Z",
   "campaigns": [
     {
       "pivotValue": "urn:li:sponsoredCampaign:589630483",
@@ -41,16 +41,6 @@
       "spend": 317.59,
       "leads": 0,
       "status": "ACTIVE"
-    },
-    {
-      "pivotValue": "urn:li:sponsoredCampaign:479573283",
-      "campaignName": "WOBI_IT_Milano_Lead Generation_EVENTO AI_Prospecting",
-      "date": "2026-02-12",
-      "impressions": 18934,
-      "clicks": 102,
-      "spend": 54.73999999999977,
-      "leads": 2,
-      "status": "COMPLETED"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:589630483",
@@ -871,6 +861,16 @@
       "spend": 193.57999999999996,
       "leads": 1,
       "status": "COMPLETED"
+    },
+    {
+      "pivotValue": "urn:li:sponsoredCampaign:589630483",
+      "campaignName": "Wobi_Milano_Prospecting-Interest_Native-Form_Image_March2026",
+      "date": "2026-08-31",
+      "impressions": 6730,
+      "clicks": 49,
+      "spend": 125.04,
+      "leads": 1,
+      "status": "ACTIVE"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:589630483",
@@ -1838,7 +1838,7 @@
       "date": "2026-08-30",
       "impressions": 4845,
       "clicks": 40,
-      "spend": 90.45323869819191,
+      "spend": 90.45000000000002,
       "leads": 0,
       "status": "ACTIVE"
     },
@@ -2101,6 +2101,16 @@
       "spend": 207.92999999999998,
       "leads": 0,
       "status": "COMPLETED"
+    },
+    {
+      "pivotValue": "urn:li:sponsoredCampaign:589630483",
+      "campaignName": "Wobi_Milano_Prospecting-Interest_Native-Form_Image_March2026",
+      "date": "2026-09-01",
+      "impressions": 4332,
+      "clicks": 31,
+      "spend": 75.1659532643545,
+      "leads": 0,
+      "status": "ACTIVE"
     },
     {
       "pivotValue": "urn:li:sponsoredCampaign:706010683",
@@ -3433,16 +3443,6 @@
       "status": "ACTIVE"
     },
     {
-      "pivotValue": "urn:li:sponsoredCampaign:589630483",
-      "campaignName": "Wobi_Milano_Prospecting-Interest_Native-Form_Image_March2026",
-      "date": "2026-08-31",
-      "impressions": 2201,
-      "clicks": 14,
-      "spend": 51.756108648274704,
-      "leads": 0,
-      "status": "ACTIVE"
-    },
-    {
       "pivotValue": "urn:li:sponsoredCampaign:591401553",
       "campaignName": "Wobi_Milano_Retargeting_Native-Form_Image_March2026",
       "date": "2026-07-31",
@@ -3579,16 +3579,6 @@
       "impressions": 1989,
       "clicks": 31,
       "spend": 32.029999999999994,
-      "leads": 0,
-      "status": "COMPLETED"
-    },
-    {
-      "pivotValue": "urn:li:sponsoredCampaign:467850453",
-      "campaignName": "Wobi_Milano_Interest_Native_PNG_2026",
-      "date": "2026-02-12",
-      "impressions": 1963,
-      "clicks": 25,
-      "spend": 316.2600000000002,
       "leads": 0,
       "status": "COMPLETED"
     },
@@ -4125,6 +4115,16 @@
     {
       "pivotValue": "urn:li:sponsoredCampaign:591401553",
       "campaignName": "Wobi_Milano_Retargeting_Native-Form_Image_March2026",
+      "date": "2026-08-31",
+      "impressions": 898,
+      "clicks": 5,
+      "spend": 8.12,
+      "leads": 0,
+      "status": "ACTIVE"
+    },
+    {
+      "pivotValue": "urn:li:sponsoredCampaign:591401553",
+      "campaignName": "Wobi_Milano_Retargeting_Native-Form_Image_March2026",
       "date": "2026-06-23",
       "impressions": 888,
       "clicks": 8,
@@ -4248,7 +4248,7 @@
       "date": "2026-08-30",
       "impressions": 696,
       "clicks": 9,
-      "spend": 6.298261888771035,
+      "spend": 6.3,
       "leads": 0,
       "status": "ACTIVE"
     },
@@ -4555,16 +4555,6 @@
     {
       "pivotValue": "urn:li:sponsoredCampaign:591401553",
       "campaignName": "Wobi_Milano_Retargeting_Native-Form_Image_March2026",
-      "date": "2026-08-31",
-      "impressions": 240,
-      "clicks": 2,
-      "spend": 2.9934380373325613,
-      "leads": 0,
-      "status": "ACTIVE"
-    },
-    {
-      "pivotValue": "urn:li:sponsoredCampaign:591401553",
-      "campaignName": "Wobi_Milano_Retargeting_Native-Form_Image_March2026",
       "date": "2026-07-08",
       "impressions": 228,
       "clicks": 2,
@@ -4619,6 +4609,16 @@
       "impressions": 177,
       "clicks": 2,
       "spend": 1.57,
+      "leads": 0,
+      "status": "ACTIVE"
+    },
+    {
+      "pivotValue": "urn:li:sponsoredCampaign:591401553",
+      "campaignName": "Wobi_Milano_Retargeting_Native-Form_Image_March2026",
+      "date": "2026-09-01",
+      "impressions": 174,
+      "clicks": 1,
+      "spend": 1.6225272365570385,
       "leads": 0,
       "status": "ACTIVE"
     },
