@@ -24,7 +24,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .li-icon{width:30px;height:30px;background:var(--li-blue);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:13px;color:#fff}
 .h-title{font-size:15px;font-weight:600;color:#fff;white-space:nowrap}
 .h-title span{color:rgba(255,255,255,.5);font-weight:400}
-.toolbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-left:auto}
+.toolbar{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-left:auto}
+.menu{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.menu-link{display:inline-flex;align-items:center;color:rgba(255,255,255,.72);font-family:var(--sans);font-size:12.5px;font-weight:600;text-decoration:none;padding:8px 13px;border-radius:7px;transition:background .15s,color .15s}
+.menu-link:hover{background:var(--navy2);color:#fff}
+.periodo{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:9px;padding:7px 13px}
+.periodo-lbl{font-size:10px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .btn-pdf{display:inline-flex;align-items:center;gap:7px;background:var(--li-blue);color:#fff;border:none;border-radius:7px;padding:8px 14px;font-family:var(--sans);font-size:12.5px;font-weight:600;cursor:pointer;transition:background .15s}
 .btn-pdf:hover{background:#0950a0}
 .win-select{background:var(--navy2);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:7px;padding:8px 30px 8px 12px;font-family:var(--sans);font-size:12.5px;font-weight:500;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center}
@@ -140,11 +145,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 
 /* ── Legenda / glossario ──────────────────────────────────────── */
 html{scroll-behavior:smooth}
-.btn-legend{display:inline-flex;align-items:center;gap:7px;background:var(--li-blue);color:#fff;border:none;border-radius:7px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .15s}
-.btn-legend::before{content:"📖";font-size:13px}
-.btn-legend:hover{background:#0950a0}
+
 .leg{margin-top:44px;scroll-margin-top:14px}
-.leg-head{border-top:2px solid var(--border2);padding-top:26px}
+.leg-det{border-top:2px solid var(--border2);padding-top:22px}
+.leg-sum{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;cursor:pointer;list-style:none;padding:6px 0;user-select:none}
+.leg-sum::-webkit-details-marker{display:none}
+.leg-sum::before{content:"";align-self:center;width:0;height:0;border-left:6px solid var(--text3);border-top:5px solid transparent;border-bottom:5px solid transparent;transition:transform .15s;flex-shrink:0}
+.leg-det[open] .leg-sum::before{transform:rotate(90deg)}
+.leg-sum:hover .leg-title{color:var(--li-blue)}
+.leg-hint{font-size:12.5px;color:var(--text3)}
+.leg-inner{padding-top:4px}
 .leg-title{font-size:20px;font-weight:700;color:var(--navy);letter-spacing:-.3px}
 .leg-sub{font-size:13px;color:var(--text2);margin-top:7px;max-width:760px;line-height:1.55}
 .leg-block{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin:28px 0 13px}
@@ -185,9 +195,7 @@ html{scroll-behavior:smooth}
 .cmt-tab td:first-child{color:var(--navy);font-weight:500}
 .cmt-tab th.n,.cmt-tab td.n{text-align:right;font-family:var(--mono)}
 .cmt-tab tr:hover td{background:#F4F8FD}
-.btn-cmt{display:inline-flex;align-items:center;gap:7px;background:var(--navy2);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:7px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .15s}
-.btn-cmt::before{content:"💬";font-size:13px}
-.btn-cmt:hover{background:var(--li-blue);border-color:var(--li-blue)}
+
 
 /* ── Footer fisso ─────────────────────────────────────────────── */
 .footer{position:fixed;left:0;right:0;bottom:0;background:var(--navy);color:rgba(255,255,255,.7);height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;font-size:11.5px;z-index:20}
@@ -219,21 +227,30 @@ html{scroll-behavior:smooth}
     <div class="h-title">LinkedIn Ads Report <span id="clientName">· —</span></div>
   </div>
   <div class="toolbar">
-    <div class="statusseg" id="statusSeg">
-      <span class="lbl">Stato</span>
-      <button data-s="all" onclick="setStatus('all')">Tutte</button>
-      <button data-s="active" onclick="setStatus('active')">Attive</button>
-      <button data-s="paused" onclick="setStatus('paused')">In pausa</button>
+    <!-- Zona 1: voci di menu. Filtrano o portano a una sezione, non cambiano il periodo. -->
+    <nav class="menu">
+      <div class="statusseg" id="statusSeg">
+        <span class="lbl">Stato</span>
+        <button data-s="all" onclick="setStatus('all')">Tutte</button>
+        <button data-s="active" onclick="setStatus('active')">Attive</button>
+        <button data-s="paused" onclick="setStatus('paused')">In pausa</button>
+      </div>
+      <a class="menu-link" id="btnCommento" href="#commento">Commento</a>
+      <a class="menu-link" id="btnLegenda" href="#legenda">Legenda</a>
+    </nav>
+    <!-- Zona 2: il periodo sta in un riquadro suo. E' l'unico comando che
+         ricalcola tutti i numeri della pagina, quindi non va confuso con le
+         voci di menu qui accanto. -->
+    <div class="periodo">
+      <span class="periodo-lbl">Periodo</span>
+      <select class="win-select" id="winSelect" onchange="render()">
+        <option value="7">Ultimi 7 giorni</option>
+        <option value="14">Ultimi 14 giorni</option>
+        <option value="30">Ultimi 30 giorni</option>
+        <option value="60" selected>Ultimi 60 giorni</option>
+      </select>
+      <div class="win-meta"><b id="periodRef">—</b><br><span>aggiornato <b id="updRef">—</b></span></div>
     </div>
-    <a class="btn-cmt" id="btnCommento" href="#commento">Commento</a>
-    <a class="btn-legend" href="#legenda">Come leggere il report</a>
-    <select class="win-select" id="winSelect" onchange="render()">
-      <option value="7">Ultimi 7 giorni</option>
-      <option value="14">Ultimi 14 giorni</option>
-      <option value="30">Ultimi 30 giorni</option>
-      <option value="60" selected>Ultimi 60 giorni</option>
-    </select>
-    <div class="win-meta">Periodo: <b id="periodRef">—</b><br>Aggiornato: <b id="updRef">—</b></div>
   </div>
 </div>
 <div class="note" id="mockNote">Anteprima con dati di esempio — sostituire con i dati reali della campagna.</div>
@@ -284,12 +301,27 @@ html{scroll-behavior:smooth}
   <div class="sec-desc">Le 5 misure di interazione social: reazioni, nuovi follower, post attivi, condivisioni e commenti. Fotografano quanto le persone reagiscono ai contenuti, oltre al semplice click.</div>
   <div class="eng-grid" id="engGrid"></div>
 
-  <!-- ── Legenda / glossario ───────────────────────────────────── -->
-  <section class="leg" id="legenda">
-    <div class="leg-head">
-      <div class="leg-title">Come leggere il report</div>
-      <p class="leg-sub">Guida rapida al significato di ogni tabella e di ogni numero. La tendina in alto a destra cambia il <b>periodo</b>: tutti i valori del report si ricalcolano sulla finestra scelta (ultimi 7/14/30/60 giorni o un mese specifico).</p>
+  <!-- ── Commento al periodo ───────────────────────────────────── -->
+  <!-- Contenuto da sync/commento.html: testo redazionale, non generato
+       dai dati. Se il file manca, la sezione e il pulsante spariscono. -->
+  <section class="cmt" id="commento">
+    <div class="cmt-head">
+      <div class="cmt-title">Commento al periodo</div>
     </div>
+    <div class="cmt-body" id="commentoBody"></div>
+  </section>
+
+  <!-- ── Legenda ──────────────────────────────────────────────────
+       In fondo alla pagina e chiusa di default: si consulta una volta,
+       non deve stare tra i dati e il commento. -->
+  <section class="leg" id="legenda">
+    <details class="leg-det" id="legDet">
+      <summary class="leg-sum">
+        <span class="leg-title">Legenda</span>
+        <span class="leg-hint">Cosa significa ogni tabella e ogni numero</span>
+      </summary>
+      <div class="leg-inner">
+      <p class="leg-sub">La tendina <b>Periodo</b> in alto a destra cambia la finestra temporale: tutti i valori del report si ricalcolano sulla finestra scelta (ultimi 7/14/30/60 giorni o un mese specifico).</p>
 
     <div class="leg-block">Le metriche principali</div>
     <div class="leg-metrics">
@@ -318,16 +350,8 @@ html{scroll-behavior:smooth}
       <div class="leg-m"><div class="mi"><div class="mn">Funzione e Settori</div><div class="md">Qui le righe <b>si sovrappongono</b> (un'azienda può stare in più settori, una persona in più funzioni): la somma delle quote supera il 100%, ed è normale.</div></div><span class="leg-dir neu">attenzione</span></div>
     </div>
 
-  </section>
-
-  <!-- ── Commento al periodo ───────────────────────────────────── -->
-  <!-- Contenuto da sync/commento.html: testo redazionale, non generato
-       dai dati. Se il file manca, la sezione e il pulsante spariscono. -->
-  <section class="cmt" id="commento">
-    <div class="cmt-head">
-      <div class="cmt-title">Commento al periodo</div>
-    </div>
-    <div class="cmt-body" id="commentoBody"></div>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -690,6 +714,14 @@ function renderDemo(){
     more.style.display = 'none';
   }
 }
+
+// La legenda e' chiusa di default: il link nel menu la apre oltre a portarci,
+// altrimenti si atterra su un titolo e sembra che non ci sia niente.
+document.addEventListener('click', e => {
+  if(!e.target.closest('a[href="#legenda"]')) return;
+  const det = document.getElementById('legDet');
+  if(det) det.open = true;
+});
 
 // Commento al periodo: markup redazionale da sync/commento.html.
 // Senza contenuto, sezione e pulsante spariscono invece di restare vuoti.
