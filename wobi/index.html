@@ -79,8 +79,14 @@ select.more option,select.more optgroup{background:#141419;color:var(--txt)}
 @keyframes drift{to{transform:translate(3%,3%) scale(1.09)}}
 @media (prefers-reduced-motion: reduce){.hero .mesh{animation:none}}
 .hero>*{position:relative;z-index:1}
-.heroKpis{display:flex;gap:36px;margin-top:22px;flex-wrap:wrap}
-.heroKpis .k .v{font-size:38px;font-weight:700;letter-spacing:-.02em}
+.heroKpis{display:flex;gap:36px;margin-top:22px;flex-wrap:wrap;align-items:flex-start}
+/* due gruppi: mezzi (spesa, reach, click) e risultato (lead, CPL). Il secondo è
+   il motivo per cui il cliente apre la pagina: resta nell'hero, ma separato e un filo più grande. */
+.heroKpis .g{display:flex;gap:36px;flex-wrap:wrap}
+.heroKpis .g.res{padding-left:36px;border-left:1px solid rgba(255,255,255,.14)}
+.heroKpis .g .gl{width:100%;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.42);font-weight:600;margin-bottom:-6px}
+.heroKpis .k .v{font-size:32px;font-weight:700;letter-spacing:-.02em}
+.heroKpis .g.res .k .v{font-size:36px;color:#fff}
 .heroKpis .k .l{font-size:11px;color:rgba(255,255,255,.62);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
 .heroKpis .k .d{font-size:12px;font-weight:600;margin-top:4px}
 .heroKpis .k .d .cmp{color:rgba(255,255,255,.38);font-weight:400}
@@ -94,13 +100,27 @@ select.more option,select.more optgroup{background:#141419;color:var(--txt)}
 .chartbox{padding:14px 18px 20px}
 .cw{position:relative;height:320px}
 
+/* ---- lettura del periodo ---- */
+.read{padding:14px 20px 20px}
+.levers{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.lever{flex:1 1 150px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.lever .l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:600}
+.lever .v{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-top:3px}
+.lever .d{font-size:11.5px;font-weight:600;margin-top:2px}
+.lever .d .cmp{color:var(--dim);font-weight:400}
+.read p{font-size:14px;line-height:1.6;color:var(--txt);margin:0 0 8px}
+.read p b{color:var(--wobi2);font-weight:600}
+.read .how{font-size:11.5px;color:var(--dim);line-height:1.5;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+
 #err{display:none;margin:0 0 16px;padding:14px 18px;border:1px solid var(--wobi);border-radius:14px;background:rgba(68,190,203,.10);color:var(--txt);font-size:13px;line-height:1.5}
 
 @media(max-width:840px){
   .ctrls{position:static;gap:14px}
   .bar .meta{margin-left:0;text-align:left;width:100%}
   .hero{padding:26px 22px 24px}
-  .heroKpis{gap:26px}
+  .heroKpis{gap:22px}
+  .heroKpis .g{gap:26px}
+  .heroKpis .g.res{padding-left:0;border-left:none;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);width:100%}
 }
 @media print{.ctrls{display:none}.hero .mesh{animation:none}}
 </style>
@@ -173,6 +193,21 @@ select.more option,select.more optgroup{background:#141419;color:var(--txt)}
     <div class="chartbox"><div class="cw"><canvas id="trendChart"></canvas></div></div>
   </div>
 
+  <div class="card">
+    <div class="hdrow">
+      <div>
+        <div class="hdh">Lettura del periodo</div>
+        <div class="sub" id="readSub">—</div>
+      </div>
+    </div>
+    <div class="read">
+      <div class="levers" id="levers"></div>
+      <div id="readText"></div>
+      <div class="how">Come leggere: CPL = CPM ÷ CTR ÷ conversione click→lead. Il testo indica quale
+        leva ha mosso il CPL rispetto al periodo precedente; è una scomposizione dei numeri, non un giudizio.</div>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -180,7 +215,7 @@ select.more option,select.more optgroup{background:#141419;color:var(--txt)}
 //  WOBI — dashboard LinkedIn Ads
 //  Layout dark Wobi + pipeline dati del sync GitHub Actions.
 //  KPI: Spesa · Impression · CPM · CTR · Lead · CPL (ordine funnel).
-//  Vista: hero KPI + card "Andamento Spesa & Lead". Nient'altro.
+//  Vista: hero KPI (mezzi | risultato) + card "Andamento Spesa & Lead" + card "Lettura del periodo".
 //  Live: https://albezln1975.github.io/linkedin-ads-public/wobi/
 //  Pubblicata dal workflow: dashboard/index.html → public-repo/wobi/index.html
 // ══════════════════════════════════════════════════════════
@@ -370,15 +405,17 @@ function renderKPI(ct,pt,noPrevData){
   const cCtr=ctr(ct), pCtr=pt?ctr(pt):0;
   const cCpm=cpm(ct), pCpm=pt?cpm(pt):0;
   // Ordine funnel: quanto spendo → quanta reach compro e a che prezzo → quanto clicca → quanti lead e a che prezzo.
-  const items=[
+  const media=[
     {l:'Spesa', v:eur(ct.spend), d:pt?delta(ct.spend,pt.spend,false):null, neutral:true},
     {l:'Impression', v:ct.impr.toLocaleString('it-IT'), d:pt?delta(ct.impr,pt.impr,true):null},
     {l:'CPM medio', v:cCpm>0?eur(cCpm,2):'—', d:(cCpm>0&&pCpm>0)?delta(cCpm,pCpm,false):null},
-    {l:'CTR medio', v:cCtr>0?pct2(cCtr):'—', d:(cCtr>0&&pCtr>0)?delta(cCtr,pCtr,true):null},
+    {l:'CTR medio', v:cCtr>0?pct2(cCtr):'—', d:(cCtr>0&&pCtr>0)?delta(cCtr,pCtr,true):null}
+  ];
+  const res=[
     {l:'Lead',  v:ct.leads.toLocaleString('it-IT'), d:pt?delta(ct.leads,pt.leads,true):null},
     {l:'CPL medio', v:cCpl>0?eur(cCpl):'—', d:(cCpl>0&&pCpl>0)?delta(cCpl,pCpl,false):null}
   ];
-  document.getElementById('heroKpis').innerHTML=items.map(k=>{
+  const tile=k=>{
     let dh='';
     if(k.d){
       const cl=(k.neutral||k.d.flat)?'flat':(k.d.pos?'up':'down');
@@ -391,7 +428,81 @@ function renderKPI(ct,pt,noPrevData){
       dh=`<div class="d flat">&nbsp;</div>`;
     }
     return`<div class="k"><div class="v num">${k.v}</div><div class="l">${k.l}</div>${dh}</div>`;
+  };
+  document.getElementById('heroKpis').innerHTML=
+    `<div class="g"><div class="gl">Investimento e reach</div>${media.map(tile).join('')}</div>`+
+    `<div class="g res"><div class="gl">Risultato</div>${res.map(tile).join('')}</div>`;
+}
+
+// ── LETTURA DEL PERIODO — scomposizione del CPL nelle sue leve ──
+// CPL = CPM/1000 ÷ CTR ÷ CVR(click→lead). In log: ΔCPL = ΔCPM − ΔCTR − ΔCVR.
+// La leva col contributo maggiore in valore assoluto è quella che "spiega" il CPL.
+function cvr(t){ return t.clicks>0 ? (t.leads/t.clicks)*100 : 0; }
+function pctTxt(d){ return (d.pct>=0?'+':'')+d.pct.toFixed(1)+'%'; }
+function renderRead(ct,pt,start,end,cmpOn){
+  const FLAT=5; // sotto ±5% la leva si considera stabile
+  const cur={cpl:cpl(ct),cpm:cpm(ct),ctr:ctr(ct),cvr:cvr(ct)};
+  const prv=pt?{cpl:cpl(pt),cpm:cpm(pt),ctr:ctr(pt),cvr:cvr(pt)}:null;
+  const has=(k)=>prv&&cur[k]>0&&prv[k]>0;
+  const D={
+    cpl:has('cpl')?delta(cur.cpl,prv.cpl,false):null,
+    cpm:has('cpm')?delta(cur.cpm,prv.cpm,false):null,
+    ctr:has('ctr')?delta(cur.ctr,prv.ctr,true):null,
+    cvr:has('cvr')?delta(cur.cvr,prv.cvr,true):null
+  };
+  document.getElementById('readSub').textContent=`${fmtD(start)} – ${fmtD(end)}`+(pt?' · vs periodo precedente':'');
+
+  // strip leve
+  const levers=[
+    {l:'Costo reach · CPM', v:cur.cpm>0?eur(cur.cpm,2):'—', d:D.cpm},
+    {l:'Click · CTR', v:cur.ctr>0?pct2(cur.ctr):'—', d:D.ctr},
+    {l:'Conversione click→lead', v:cur.cvr>0?pct2(cur.cvr):'—', d:D.cvr}
+  ];
+  document.getElementById('levers').innerHTML=levers.map(k=>{
+    let dh='<div class="d flat">'+(pt?'— nessun confronto':'&nbsp;')+'</div>';
+    if(k.d){
+      const stable=Math.abs(k.d.pct)<FLAT;
+      const cl=stable?'flat':(k.d.pos?'up':'down');
+      const ar=stable?'=':(k.d.pct>=0?'▲':'▼');
+      dh=`<div class="d ${cl}">${ar} ${pctTxt(k.d)} <span class="cmp">vs prec.</span></div>`;
+    }
+    return`<div class="lever"><div class="l">${k.l}</div><div class="v num">${k.v}</div>${dh}</div>`;
   }).join('');
+
+  // testo
+  const P=[];
+  if(ct.leads===0){
+    P.push(`Nessun lead nel periodo con <b>${eur(ct.spend)}</b> di spesa`+(ct.impr>0?` e <b>${ct.impr.toLocaleString('it-IT')}</b> impression`:'')+`. Il CPL non è calcolabile.`);
+  } else if(!pt||!D.cpl){
+    P.push(`<b>${ct.leads.toLocaleString('it-IT')} lead</b> a <b>${eur(cur.cpl)}</b> di CPL con ${eur(ct.spend)} di spesa. `+
+      `Reach di ${ct.impr.toLocaleString('it-IT')} impression a ${eur(cur.cpm,2)} di CPM; CTR ${pct2(cur.ctr)}; conversione click→lead ${pct2(cur.cvr)}.`);
+    if(!cmpOn)P.push(`Attiva il confronto col periodo precedente per vedere quale leva muove il CPL.`);
+    else P.push(`Nessun periodo precedente con dati: il confronto non è possibile su questa finestra.`);
+  } else {
+    const dir=Math.abs(D.cpl.pct)<FLAT?'stabile':(D.cpl.pct>0?'in salita':'in calo');
+    P.push(`CPL <b>${eur(cur.cpl)}</b>, ${dir} (${pctTxt(D.cpl)}) rispetto a ${eur(prv.cpl)} del periodo precedente. `+
+      `Spesa ${pctTxt(delta(ct.spend,pt.spend,false)||{pct:0})}, lead ${pctTxt(delta(ct.leads,pt.leads,true)||{pct:0})} (${pt.leads} → ${ct.leads}).`);
+    // contributo in log di ciascuna leva al CPL
+    const c={cpm:Math.log(cur.cpm/prv.cpm), ctr:-Math.log(cur.ctr/prv.ctr), cvr:-Math.log(cur.cvr/prv.cvr)};
+    const word={
+      cpm:(D.cpm&&Math.abs(D.cpm.pct)>=FLAT)?(D.cpm.pct>0?'reach più cara':'reach più economica'):'reach allo stesso prezzo',
+      ctr:(D.ctr&&Math.abs(D.ctr.pct)>=FLAT)?(D.ctr.pct>0?'più click per impression':'meno click per impression'):'click stabili',
+      cvr:(D.cvr&&Math.abs(D.cvr.pct)>=FLAT)?(D.cvr.pct>0?'converte meglio':'converte peggio'):'converte uguale'
+    };
+    P.push(`Leve: ${word.cpm} (CPM ${pctTxt(D.cpm)}), ${word.ctr} (CTR ${pctTxt(D.ctr)}), il click ${word.cvr} (${pctTxt(D.cvr)}).`);
+    if(dir==='stabile'){
+      P.push(`Le leve si compensano: il CPL resta fermo.`);
+    } else {
+      const main=Object.keys(c).sort((a,b)=>Math.abs(c[b])-Math.abs(c[a]))[0];
+      const expl={
+        cpm:`Il CPL si muove soprattutto per il <b>costo della reach</b>: è l'asta LinkedIn (audience, stagionalità, concorrenza), non la creatività né il form.`,
+        ctr:`Il CPL si muove soprattutto per il <b>CTR</b>: è la creatività o il targeting a cambiare resa, la conversione a valle regge.`,
+        cvr:`Il CPL si muove soprattutto per la <b>conversione click→lead</b>: il problema (o il merito) è a valle del click — form, offerta, qualità del traffico — non il media.`
+      };
+      P.push(expl[main]);
+    }
+  }
+  document.getElementById('readText').innerHTML=P.map(t=>`<p>${t}</p>`).join('');
 }
 
 // ── BUCKET TREND (giorno / settimana / mese) ──────────────
@@ -479,6 +590,7 @@ function applyFilter(){
 
   renderKPI(cur.tot, hasPrev?prev.tot:null, COMPARE==='prev'&&!hasPrev);
   renderTrend(cur.filtered,start,end);
+  renderRead(cur.tot, hasPrev?prev.tot:null, start, end, COMPARE==='prev');
 }
 
 loadData();
