@@ -79,7 +79,7 @@ select.more option,select.more optgroup{background:#141419;color:var(--txt)}
 @keyframes drift{to{transform:translate(3%,3%) scale(1.09)}}
 @media (prefers-reduced-motion: reduce){.hero .mesh{animation:none}}
 .hero>*{position:relative;z-index:1}
-.heroKpis{display:flex;gap:44px;margin-top:22px;flex-wrap:wrap}
+.heroKpis{display:flex;gap:36px;margin-top:22px;flex-wrap:wrap}
 .heroKpis .k .v{font-size:38px;font-weight:700;letter-spacing:-.02em}
 .heroKpis .k .l{font-size:11px;color:rgba(255,255,255,.62);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
 .heroKpis .k .d{font-size:12px;font-weight:600;margin-top:4px}
@@ -179,7 +179,7 @@ select.more option,select.more optgroup{background:#141419;color:var(--txt)}
 // ══════════════════════════════════════════════════════════
 //  WOBI — dashboard LinkedIn Ads
 //  Layout dark Wobi + pipeline dati del sync GitHub Actions.
-//  KPI: Spesa · Lead · CPL · CTR (solo queste quattro).
+//  KPI: Spesa · Impression · CPM · CTR · Lead · CPL (ordine funnel).
 //  Vista: hero KPI + card "Andamento Spesa & Lead". Nient'altro.
 //  Live: https://albezln1975.github.io/linkedin-ads-public/wobi/
 //  Pubblicata dal workflow: dashboard/index.html → public-repo/wobi/index.html
@@ -354,6 +354,7 @@ function agg(s,e){
 }
 function cpl(t){ return t.leads>0 ? t.spend/t.leads : 0; }
 function ctr(t){ return t.impr>0 ? (t.clicks/t.impr)*100 : 0; }
+function cpm(t){ return t.impr>0 ? (t.spend/t.impr)*1000 : 0; }
 function delta(c,p,hiGood=true){
   if(!p||p===0)return null;
   const pct=((c-p)/p)*100;
@@ -363,15 +364,19 @@ function delta(c,p,hiGood=true){
 function eur(v,dec=0){return '€'+v.toLocaleString('it-IT',{minimumFractionDigits:dec,maximumFractionDigits:dec});}
 function pct2(v){return v.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';}
 
-// ── HERO KPI — Spesa · Lead · CPL · CTR ───────────────────
+// ── HERO KPI — Spesa · Impression · CPM · CTR · Lead · CPL ─
 function renderKPI(ct,pt,noPrevData){
   const cCpl=cpl(ct), pCpl=pt?cpl(pt):0;
   const cCtr=ctr(ct), pCtr=pt?ctr(pt):0;
+  const cCpm=cpm(ct), pCpm=pt?cpm(pt):0;
+  // Ordine funnel: quanto spendo → quanta reach compro e a che prezzo → quanto clicca → quanti lead e a che prezzo.
   const items=[
     {l:'Spesa', v:eur(ct.spend), d:pt?delta(ct.spend,pt.spend,false):null, neutral:true},
+    {l:'Impression', v:ct.impr.toLocaleString('it-IT'), d:pt?delta(ct.impr,pt.impr,true):null},
+    {l:'CPM medio', v:cCpm>0?eur(cCpm,2):'—', d:(cCpm>0&&pCpm>0)?delta(cCpm,pCpm,false):null},
+    {l:'CTR medio', v:cCtr>0?pct2(cCtr):'—', d:(cCtr>0&&pCtr>0)?delta(cCtr,pCtr,true):null},
     {l:'Lead',  v:ct.leads.toLocaleString('it-IT'), d:pt?delta(ct.leads,pt.leads,true):null},
-    {l:'CPL medio', v:cCpl>0?eur(cCpl):'—', d:(cCpl>0&&pCpl>0)?delta(cCpl,pCpl,false):null},
-    {l:'CTR medio', v:cCtr>0?pct2(cCtr):'—', d:(cCtr>0&&pCtr>0)?delta(cCtr,pCtr,true):null}
+    {l:'CPL medio', v:cCpl>0?eur(cCpl):'—', d:(cCpl>0&&pCpl>0)?delta(cCpl,pCpl,false):null}
   ];
   document.getElementById('heroKpis').innerHTML=items.map(k=>{
     let dh='';

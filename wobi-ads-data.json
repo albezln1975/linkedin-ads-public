@@ -1,6 +1,6 @@
 {
   "client": "wobi",
-  "lastUpdated": "2026-09-18T07:52:40.380Z",
+  "lastUpdated": "2026-09-18T07:59:22.082Z",
   "campaigns": [
     {
       "pivotValue": "urn:li:sponsoredCampaign:589630483",
@@ -4305,6 +4305,16 @@
     {
       "pivotValue": "urn:li:sponsoredCampaign:591401553",
       "campaignName": "Wobi_Milano_Retargeting_Native-Form_Image_March2026",
+      "date": "2026-09-18",
+      "impressions": 650,
+      "clicks": 6,
+      "spend": 29.194466560946125,
+      "leads": 0,
+      "status": "ACTIVE"
+    },
+    {
+      "pivotValue": "urn:li:sponsoredCampaign:591401553",
+      "campaignName": "Wobi_Milano_Retargeting_Native-Form_Image_March2026",
       "date": "2026-09-07",
       "impressions": 649,
       "clicks": 3,
@@ -4359,16 +4369,6 @@
       "impressions": 621,
       "clicks": 2,
       "spend": 5.87,
-      "leads": 0,
-      "status": "ACTIVE"
-    },
-    {
-      "pivotValue": "urn:li:sponsoredCampaign:591401553",
-      "campaignName": "Wobi_Milano_Retargeting_Native-Form_Image_March2026",
-      "date": "2026-09-18",
-      "impressions": 614,
-      "clicks": 4,
-      "spend": 27.256201665084383,
       "leads": 0,
       "status": "ACTIVE"
     },
@@ -4683,6 +4683,16 @@
       "status": "ACTIVE"
     },
     {
+      "pivotValue": "urn:li:sponsoredCampaign:589630483",
+      "campaignName": "Wobi_Milano_Prospecting-Interest_Native-Form_Image_March2026",
+      "date": "2026-09-18",
+      "impressions": 186,
+      "clicks": 0,
+      "spend": 6.295534969987153,
+      "leads": 0,
+      "status": "ACTIVE"
+    },
+    {
       "pivotValue": "urn:li:sponsoredCampaign:591401553",
       "campaignName": "Wobi_Milano_Retargeting_Native-Form_Image_March2026",
       "date": "2026-05-22",
@@ -4699,16 +4709,6 @@
       "impressions": 177,
       "clicks": 2,
       "spend": 1.57,
-      "leads": 0,
-      "status": "ACTIVE"
-    },
-    {
-      "pivotValue": "urn:li:sponsoredCampaign:589630483",
-      "campaignName": "Wobi_Milano_Prospecting-Interest_Native-Form_Image_March2026",
-      "date": "2026-09-18",
-      "impressions": 169,
-      "clicks": 0,
-      "spend": 5.727759473902907,
       "leads": 0,
       "status": "ACTIVE"
     },
