@@ -89,10 +89,15 @@ select.date-filter option, select.date-filter optgroup { background: #0A3060; co
 .statusseg button:hover{color:#fff}
 .statusseg button.on{background:var(--li-blue);color:#fff;font-weight:600}
 
-/* bottone "Come leggere il report" */
-.btn-legend{display:inline-flex;align-items:center;gap:7px;background:var(--li-blue);color:#fff;border:none;border-radius:7px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .15s}
-.btn-legend::before{content:"📖";font-size:13px}
-.btn-legend:hover{background:#0950a0}
+/* gruppo filtri (stato + periodo) e separatori del menu */
+.hdr-group{display:inline-flex;align-items:center;gap:6px}
+.hdr-sep{width:1px;height:26px;background:rgba(255,255,255,.14);margin:0 2px}
+
+/* bottone link esterno (foglio budget) */
+.btn-link{display:inline-flex;align-items:center;gap:7px;background:var(--li-blue);color:#fff;border:none;border-radius:7px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .15s;white-space:nowrap}
+.btn-link::before{content:"📊";font-size:13px}
+.btn-link::after{content:"↗";font-size:11px;opacity:.7}
+.btn-link:hover{background:#0950a0}
 
 /* meta periodo/aggiornato — ultima in barra, come Intec */
 .win-meta{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.55);line-height:1.5;white-space:nowrap}
@@ -254,37 +259,27 @@ select.sort-select option { background: #0A3060; }
 .lcb-cpl { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-top: 2px; }
 
 /* ── FUNNEL DI CONVERSIONE ── */
-.funnel-wrap {
-  display: grid;
-  grid-template-columns: 1fr 72px 1fr 72px 1fr;
-  align-items: center;
-  padding: 22px 24px 18px;
-}
-.funnel-stage {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px 12px 12px;
-  text-align: center;
-}
-.fs-num { font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1; }
-.fs-lbl { font-size: 9px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text3); margin-top: 5px; }
-.fs-track { height: 4px; background: var(--border); border-radius: 2px; margin-top: 10px; overflow: hidden; }
-.fs-fill  { height: 100%; border-radius: 2px; }
-.funnel-conn { text-align: center; padding: 0 4px; }
-.fc-pct  { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--navy2); }
-.fc-arrow { font-size: 20px; color: var(--border2); line-height: 1.2; }
-.fc-lbl  { font-size: 9px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text3); }
-.funnel-footer {
-  display: flex;
-  border-top: 1px solid var(--border);
-  background: var(--bg2);
-}
-.ff-item { flex: 1; text-align: center; padding: 12px 10px; border-right: 1px solid var(--border); }
-.ff-item:last-child { border-right: none; }
-.ff-lbl { display: block; font-size: 9px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text3); margin-bottom: 3px; }
-.ff-val { font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--text); }
-.ff-highlight { color: var(--green); }
+.fn{padding:22px 28px 20px;display:flex;flex-direction:column;align-items:center}
+.fn-row{width:100%;display:grid;grid-template-columns:150px 1fr 150px;align-items:center;gap:16px}
+.fn-lbl{text-align:right}
+.fn-lbl .n{font-size:12px;font-weight:600;color:var(--text)}
+.fn-lbl .d{font-size:10px;color:var(--text3);margin-top:2px}
+.fn-bar-wrap{display:flex;justify-content:center}
+.fn-bar{height:46px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:18px;font-weight:700;color:#fff;letter-spacing:-.3px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.12);transition:width .4s ease}
+.fn-bar.impr{background:linear-gradient(90deg,#0A66C2,#1E7FD8)}
+.fn-bar.click{background:linear-gradient(90deg,#0CC4B0,#26D6C3)}
+.fn-bar.lead{background:linear-gradient(90deg,#10B981,#2DD495)}
+.fn-side{font-family:var(--mono);font-size:12px;color:var(--text2)}
+.fn-side b{color:var(--navy);font-weight:700}
+.fn-conn{width:100%;display:grid;grid-template-columns:150px 1fr 150px;gap:16px;height:38px}
+.fn-conn .c{grid-column:2;position:relative;display:flex;align-items:center;justify-content:center}
+.fn-conn .c::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:2px dashed var(--border2)}
+.fn-pill{position:relative;background:var(--white);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;display:inline-flex;align-items:center;gap:7px;box-shadow:var(--shadow)}
+.fn-pill .k{font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--text3)}
+.fn-pill .v{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--navy2)}
+.fn-pill .dl{font-family:var(--mono);font-size:10px;font-weight:600}
+.fn-pill .delta-up{color:#0A7A57}.fn-pill .delta-down{color:#C0392B}
+@media(max-width:760px){.fn-row,.fn-conn{grid-template-columns:90px 1fr 0}.fn-side{display:none}.fn-bar{font-size:14px;height:38px}}
 
 /* ── DEMOGRAPHICS NOTICE ── */
 .demo-notice {
@@ -373,25 +368,9 @@ select.sort-select option { background: #0A3060; }
 
   /* Evita tagli di pagina */
   .kpi-bar, .card, .chart-card { break-inside: avoid; }
-  .header-right .statusseg, .header-right .btn-legend, select.date-filter { display: none !important; }
+  .header-right .statusseg, .header-right .btn-link, .hdr-sep, select.date-filter { display: none !important; }
 }
 
-/* ── LEGENDA "Come leggere il report" — portata da Intec ── */
-.leg{margin-top:34px;scroll-margin-top:14px}
-.leg-head{border-top:2px solid var(--border2);padding-top:26px}
-.leg-title{font-size:20px;font-weight:700;color:var(--navy);letter-spacing:-.3px}
-.leg-sub{font-size:13px;color:var(--text2);margin-top:7px;max-width:760px;line-height:1.55}
-.leg-block{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin:28px 0 13px}
-.leg-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 16px}
-.leg-m{background:var(--white);border:1px solid var(--border);border-radius:9px;box-shadow:var(--shadow);padding:13px 15px;display:flex;gap:13px;align-items:center}
-.leg-m .mi{flex:1}
-.leg-m .mn{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
-.leg-m .md{font-size:12px;color:var(--text2);line-height:1.45}
-.leg-dir{flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.2px;padding:4px 9px;border-radius:20px;white-space:nowrap}
-.leg-dir.up{background:#E7F7F0;color:#0A7A57}
-.leg-dir.down{background:#FEF3E0;color:#9A6206}
-.leg-dir.neu{background:#EEF2F7;color:var(--text2)}
-@media(max-width:760px){.leg-metrics{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -409,14 +388,14 @@ select.sort-select option { background: #0A3060; }
   </nav>
 
   <div class="header-right">
-    <!-- ordine uniforme a Intec: Stato · Come leggere · tendina · periodo/aggiornato -->
+    <!-- filtri (stato + periodo) · link esterni · meta -->
+    <div class="hdr-group">
     <div class="statusseg" id="statusSeg">
       <span class="lbl">Stato</span>
       <button data-s="all" class="on" onclick="setStatus('all')">Tutte</button>
       <button data-s="active" onclick="setStatus('active')">Attive</button>
       <button data-s="paused" onclick="setStatus('paused')">In pausa</button>
     </div>
-    <a class="btn-legend" href="#legenda">Come leggere il report</a>
     <select class="date-filter" id="dateFilter" onchange="applyFilter()">
       <optgroup label="Ultimi giorni">
         <option value="7">Ultimi 7 giorni</option>
@@ -435,6 +414,10 @@ select.sort-select option { background: #0A3060; }
         <option value="m-2026-06">Giugno 2026</option>
       </optgroup>
     </select>
+    </div>
+    <span class="hdr-sep"></span>
+    <a class="btn-link" href="https://docs.google.com/spreadsheets/d/1ja_gQE5H7bJNfPvC_X06Pw49kIAPabPzWOnYgSkyBTw/edit?usp=sharing" target="_blank" rel="noopener">Foglio budget</a>
+    <span class="hdr-sep"></span>
     <div class="win-meta">Periodo: <b id="periodLabel">—</b> · Aggiornato: <b id="lastUpdated">—</b></div>
     <div id="loadError" style="display:none;background:#EF4444;color:#fff;padding:6px 14px;border-radius:6px;font-size:11px;max-width:400px"></div>
   </div>
@@ -516,31 +499,6 @@ select.sort-select option { background: #0A3060; }
     <div id="funnelDisplay"></div>
   </div>
 
-  <!-- ── Legenda / glossario ───────────────────────────────────── -->
-  <section class="leg" id="legenda">
-    <div class="leg-head">
-      <div class="leg-title">Come leggere il report</div>
-      <p class="leg-sub">Guida rapida a ogni numero. La <b>tendina in alto a destra</b> cambia il periodo: tutti i valori si ricalcolano sulla finestra scelta (ultimi 7/14/30/60/90 giorni, un mese, o dall'inizio). Il filtro <b>Stato</b> mostra solo le campagne attive, solo quelle in pausa o tutte. <b>Clicca l'intestazione di una colonna</b> nella tabella per ordinare (▼ decrescente · ▲ crescente).</p>
-    </div>
-
-    <div class="leg-block">Le metriche principali</div>
-    <div class="leg-metrics">
-      <div class="leg-m"><div class="mi"><div class="mn">Impressioni</div><div class="md">Quante volte l'annuncio è comparso sullo schermo delle persone. Se la stessa persona lo vede 3 volte, contano 3 (non sono persone diverse). Misura la <b>visibilità</b> raggiunta.</div></div><span class="leg-dir up">↑ alto = bene</span></div>
-      <div class="leg-m"><div class="mi"><div class="mn">Click</div><div class="md">Quante volte qualcuno ha cliccato l'annuncio per approfondire (aprire il documento o il sito). È l'<b>azione concreta</b> che segnala interesse reale, non il semplice aver visto.</div></div><span class="leg-dir up">↑ alto = bene</span></div>
-      <div class="leg-m"><div class="mi"><div class="mn">CTR <span style="font-weight:400;color:var(--text3)">· tasso di click</span></div><div class="md">Su 100 persone che vedono l'annuncio, quante ci cliccano (click ÷ impressioni). Termometro di quanto il contenuto <b>attira</b>: alto = messaggio giusto sul pubblico giusto.</div></div><span class="leg-dir up">↑ alto = bene</span></div>
-      <div class="leg-m"><div class="mi"><div class="mn">Spesa</div><div class="md">Il budget investito nel periodo. Da sola non è né buona né cattiva: va letta insieme ai risultati che ha prodotto (click, lead).</div></div><span class="leg-dir neu">contesto</span></div>
-      <div class="leg-m"><div class="mi"><div class="mn">CPC <span style="font-weight:400;color:var(--text3)">· costo per click</span></div><div class="md">Quanto costa in media ogni singolo click (spesa ÷ click). Dice quanto paghi per portare <b>una persona</b> a interagire: più basso, più il budget rende.</div></div><span class="leg-dir down">↓ basso = bene</span></div>
-      <div class="leg-m"><div class="mi"><div class="mn">CPM <span style="font-weight:400;color:var(--text3)">· costo per 1.000</span></div><div class="md">Quanto costa mostrare l'annuncio 1.000 volte (spesa ÷ impressioni × 1.000). È il <b>prezzo della visibilità</b>, a prescindere dai click.</div></div><span class="leg-dir down">↓ basso = bene</span></div>
-    </div>
-
-    <div class="leg-block">Il risultato: i lead</div>
-    <div class="leg-metrics">
-      <div class="leg-m"><div class="mi"><div class="mn">Lead</div><div class="md">I contatti raccolti: persone che hanno lasciato i propri dati compilando il modulo dell'annuncio. È l'<b>obiettivo</b> di queste campagne.</div></div><span class="leg-dir up">↑ alto = bene</span></div>
-      <div class="leg-m"><div class="mi"><div class="mn">CPL <span style="font-weight:400;color:var(--text3)">· costo per lead</span></div><div class="md">Quanto costa in media ottenere un contatto (spesa ÷ lead). È la <b>misura di efficienza</b> più importante: più è basso, più contatti porti a parità di budget.</div></div><span class="leg-dir down">↓ basso = bene</span></div>
-    </div>
-
-  </section>
-
   <div class="report-footer">
     <span class="ft">FONTE: LINKEDIN CAMPAIGN MANAGER</span>
     <span class="ft" id="footerPeriod"></span>
@@ -604,7 +562,7 @@ select.sort-select option { background: #0A3060; }
 
   <div class="report-footer">
     <span class="ft">FONTE: LINKEDIN CAMPAIGN MANAGER — DEMOGRAPHIC REPORT</span>
-    <span class="ft">03 GEN 2026 → 02 APR 2026</span>
+    <span class="ft" id="footerPeriodDemo"></span>
     <span class="ft">CAMPAGNA: MALLEI 12/2025</span>
   </div>
 </div>
@@ -1040,48 +998,38 @@ function renderLeadByCamp(by){
 }
 
 // ── RENDER FUNNEL ─────────────────────────────────────────
-function renderFunnel(t){
-  const ctr=t.impr>0?t.clicks/t.impr*100:0;
-  const cvr=t.clicks>0?t.leads/t.clicks*100:0;
-  const cpc=t.clicks>0?t.spend/t.clicks:0;
-  const cpl=t.leads>0?t.spend/t.leads:0;
+// Bande centrate a larghezza decrescente: le proporzioni reali (click ≈ 0,4 %
+// delle impressioni) renderebbero invisibili gli stadi bassi, quindi la larghezza
+// è una scala visiva; i tassi reali stanno nei pill tra uno stadio e l'altro.
+function renderFunnel(t,p){
+  const rate=(a,b)=>b>0?a/b*100:0;
+  const ctr=rate(t.clicks,t.impr), cvr=rate(t.leads,t.clicks);
+  const pctr=p?rate(p.clicks,p.impr):0, pcvr=p?rate(p.leads,p.clicks):0;
+  const cpc=t.clicks>0?t.spend/t.clicks:0, cpl=t.leads>0?t.spend/t.leads:0;
   const fmt=v=>v>0?v.toLocaleString('it-IT'):'—';
-  const fmtE=(v,d=2)=>v>0?'€ '+v.toFixed(d):'—';
-  // Larghezze proporzionali per le barre di scala visiva
-  const clickBarW=t.impr>0?Math.min(ctr*15,100):5;
-  const leadBarW =t.clicks>0?Math.min(cvr*8,100):t.leads>0?3:0;
+  const fmtE=v=>v>0?'€ '+v.toFixed(2):'—';
+  const pct=v=>v.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
+  const dl=(c,pv)=>{
+    if(!pv||pv<=0)return '';
+    const d=(c-pv)/pv*100;
+    const cls=d>=0?'delta-up':'delta-down';
+    return `<span class="dl ${cls}">${d>=0?'▲':'▼'} ${Math.abs(d).toFixed(0)}%</span>`;
+  };
+  const stage=(cls,num,lbl,desc,w,side)=>`
+    <div class="fn-row">
+      <div class="fn-lbl"><div class="n">${lbl}</div><div class="d">${desc}</div></div>
+      <div class="fn-bar-wrap"><div class="fn-bar ${cls}" style="width:${w}%">${num}</div></div>
+      <div class="fn-side">${side}</div>
+    </div>`;
+  const conn=(k,v,d)=>`
+    <div class="fn-conn"><div class="c"><div class="fn-pill"><span class="k">${k}</span><span class="v">${v}</span>${d}</div></div></div>`;
   document.getElementById('funnelDisplay').innerHTML=`
-    <div class="funnel-wrap">
-      <div class="funnel-stage">
-        <div class="fs-num">${fmt(t.impr)}</div>
-        <div class="fs-lbl">Impressioni</div>
-        <div class="fs-track"><div class="fs-fill" style="width:100%;background:#0A66C2"></div></div>
-      </div>
-      <div class="funnel-conn">
-        <div class="fc-pct">${ctr.toFixed(2)}%</div>
-        <div class="fc-arrow">→</div>
-        <div class="fc-lbl">CTR</div>
-      </div>
-      <div class="funnel-stage">
-        <div class="fs-num">${fmt(t.clicks)}</div>
-        <div class="fs-lbl">Click</div>
-        <div class="fs-track"><div class="fs-fill" style="width:${clickBarW.toFixed(1)}%;background:#0CC4B0"></div></div>
-      </div>
-      <div class="funnel-conn">
-        <div class="fc-pct">${cvr.toFixed(2)}%</div>
-        <div class="fc-arrow">→</div>
-        <div class="fc-lbl">Conv.</div>
-      </div>
-      <div class="funnel-stage">
-        <div class="fs-num">${fmt(t.leads)}</div>
-        <div class="fs-lbl">Lead</div>
-        <div class="fs-track"><div class="fs-fill" style="width:${leadBarW.toFixed(1)}%;background:#10B981"></div></div>
-      </div>
-    </div>
-    <div class="funnel-footer">
-      <div class="ff-item"><span class="ff-lbl">CPC</span><span class="ff-val">${fmtE(cpc)}</span></div>
-      <div class="ff-item"><span class="ff-lbl">CPL</span><span class="ff-val ff-highlight">${fmtE(cpl)}</span></div>
-      <div class="ff-item"><span class="ff-lbl">Spesa totale</span><span class="ff-val">${t.spend>0?'€ '+t.spend.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2}):'—'}</span></div>
+    <div class="fn">
+      ${stage('impr',fmt(t.impr),'Impressioni','annuncio mostrato',100,'')}
+      ${conn('CTR',pct(ctr),dl(ctr,pctr))}
+      ${stage('click',fmt(t.clicks),'Click','apertura contenuto',62,`CPC <b>${fmtE(cpc)}</b>`)}
+      ${conn('Conversione',pct(cvr),dl(cvr,pcvr))}
+      ${stage('lead',fmt(t.leads),'Lead','modulo compilato',32,`CPL <b>${fmtE(cpl)}</b>`)}
     </div>`;
 }
 
@@ -1093,11 +1041,12 @@ function applyFilter(){
   const prev=agg(prevStart,prevEnd);
   document.getElementById('periodLabel').textContent=`${fmtD(start)} → ${fmtD(end)}`;
   document.getElementById('footerPeriod').textContent=`PERIODO: ${fmtD(start)} → ${fmtD(end)}`;
+  document.getElementById('footerPeriodDemo').textContent=`PERIODO: ${fmtD(start)} → ${fmtD(end)} (STIMA)`;
   renderKPI(curr.tot,prev.tot);
   renderTable();
   renderTrend(curr.filtered,start,end);
   renderLeadByCamp(curr.by);
-  renderFunnel(curr.tot);
+  renderFunnel(curr.tot,prev.tot);
   renderDemographics();
 }
 
