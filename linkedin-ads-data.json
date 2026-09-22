@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-22T08:34:08.560Z",
+  "lastUpdated": "2026-09-22T08:34:57.363Z",
   "campaigns": [
     {
       "pivotValue": "urn:li:sponsoredCampaign:831168164",
@@ -6671,7 +6671,7 @@
       "pivotValue": "urn:li:sponsoredCampaign:831168164",
       "campaignName": "Document Ads - 07/2026 - LM2+4+6",
       "date": "2026-09-22",
-      "impressions": 85,
+      "impressions": 92,
       "clicks": 0,
       "conversions": 0,
       "spend": 0,
