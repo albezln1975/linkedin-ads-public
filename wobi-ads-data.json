@@ -1,6 +1,6 @@
 {
   "client": "wobi",
-  "lastUpdated": "2026-10-09T08:09:50.879Z",
+  "lastUpdated": "2026-10-09T08:13:24.923Z",
   "campaigns": [
     {
       "pivotValue": "urn:li:sponsoredCampaign:589630483",
@@ -4596,9 +4596,19 @@
       "pivotValue": "urn:li:sponsoredCampaign:895373043",
       "campaignName": "Video View - 09/2026 - 2 - T2",
       "date": "2026-10-09",
-      "impressions": 771,
+      "impressions": 777,
       "clicks": 2,
-      "spend": 15.40219316562219,
+      "spend": 15.472188488636927,
+      "leads": 0,
+      "status": "ACTIVE"
+    },
+    {
+      "pivotValue": "urn:li:sponsoredCampaign:895274353",
+      "campaignName": "Video View - 09/2026 - 2 - T1",
+      "date": "2026-10-09",
+      "impressions": 729,
+      "clicks": 4,
+      "spend": 13.557440518946395,
       "leads": 0,
       "status": "ACTIVE"
     },
@@ -4609,16 +4619,6 @@
       "impressions": 724,
       "clicks": 6,
       "spend": 50.52000000000001,
-      "leads": 0,
-      "status": "ACTIVE"
-    },
-    {
-      "pivotValue": "urn:li:sponsoredCampaign:895274353",
-      "campaignName": "Video View - 09/2026 - 2 - T1",
-      "date": "2026-10-09",
-      "impressions": 723,
-      "clicks": 4,
-      "spend": 13.485021281866798,
       "leads": 0,
       "status": "ACTIVE"
     },
@@ -5186,7 +5186,7 @@
       "pivotValue": "urn:li:sponsoredCampaign:895392713",
       "campaignName": "Lead Gen - Prospecting SA - 09/2026 - Tier_2",
       "date": "2026-10-09",
-      "impressions": 24,
+      "impressions": 25,
       "clicks": 2,
       "spend": 3.6875,
       "leads": 0,
