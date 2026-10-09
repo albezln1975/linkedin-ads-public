@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-09T08:13:30.448Z",
+  "lastUpdated": "2026-10-09T10:06:03.566Z",
   "campaigns": [
     {
       "pivotValue": "urn:li:sponsoredCampaign:895921413",
@@ -6693,7 +6693,7 @@
       "pivotValue": "urn:li:sponsoredCampaign:895921413",
       "campaignName": "urn:li:sponsoredCampaign:895921413",
       "date": "2026-10-09",
-      "impressions": 28,
+      "impressions": 107,
       "clicks": 0,
       "conversions": 0,
       "spend": 0,
@@ -6704,7 +6704,7 @@
       "v50": 0,
       "v75": 0,
       "v100": 0,
-      "engagements": 2,
+      "engagements": 7,
       "likes": 0,
       "comments": 0,
       "shares": 0,
