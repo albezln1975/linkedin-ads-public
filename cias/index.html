@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CIAS LinkedIn Report</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#BA243D; --red-2:#CE123C;
+  --ink:#191817; --ink-2:#2B2B2B; --muted:#5F646B; --faint:#8A9098;
+  --line:#E6E9EB; --bg:#F7F7F7; --card:#FFFFFF;
+  --p1:#2F72A8; --p2:#BA243D;
+  --good:#1E7F4F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red)}
+.num{font-variant-numeric:tabular-nums}
+
+/* top bar */
+.top{background:#fff;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{height:34px;width:auto;display:block}
+.logo-fallback{font-weight:800;font-size:24px;letter-spacing:1px;color:var(--red)}
+.top-meta{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:right}
+
+/* hero */
+.hero{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:0;bottom:0;width:420px;background:var(--red);transform:skewX(-18deg);opacity:.92}
+.hero .wrap{position:relative;z-index:1;padding-top:56px;padding-bottom:48px}
+.hero h1{font-size:44px;line-height:1.1;font-weight:800;letter-spacing:-.5px;max-width:720px;margin:14px 0 14px}
+.hero .sub{color:#C2C5C7;font-size:16px;max-width:640px}
+.hero .sub strong{color:#fff;font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.14);margin-top:40px;border:1px solid rgba(255,255,255,.14)}
+.kpi{background:var(--ink);padding:22px 22px 20px}
+.kpi .lab{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C2C5C7}
+.kpi .val{font-size:34px;font-weight:800;line-height:1.15;margin-top:8px;letter-spacing:-.5px}
+.kpi .note{font-size:13px;color:#C2C5C7;margin-top:4px}
+.kpi.accent{background:var(--red)}
+.kpi.accent .lab,.kpi.accent .note{color:#fff;opacity:.88}
+
+/* sections */
+section{padding:56px 0 8px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:22px;flex-wrap:wrap}
+.sec-head h2{font-size:28px;font-weight:800;letter-spacing:-.3px;margin-top:6px}
+.sec-head p{color:var(--muted);max-width:520px;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);padding:28px}
+.card h3{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+
+/* funnel */
+.funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--card);border:1px solid var(--line)}
+.step{padding:26px 24px;border-right:1px solid var(--line);position:relative}
+.step:last-child{border-right:0;background:var(--ink);color:#fff}
+.step .lab{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.step:last-child .lab{color:#C2C5C7}
+.step .val{font-size:32px;font-weight:800;margin-top:6px;letter-spacing:-.5px}
+.step .bar{height:6px;background:var(--line);margin-top:16px}
+.step .bar i{display:block;height:100%;background:var(--red)}
+.step .rate{margin-top:14px;font-size:13px;color:var(--muted)}
+.step:last-child .rate{color:#C2C5C7}
+.step .rate b{color:var(--ink);font-weight:700}
+.step:last-child .rate b{color:#fff}
+
+/* phases */
+.phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.phase{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c);padding:22px 24px}
+.phase .name{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+.sw{width:12px;height:12px;background:var(--c);display:inline-block;flex:none}
+.phase .when{color:var(--muted);font-size:13px;margin-top:2px}
+.phase .row{display:flex;gap:28px;margin-top:16px;flex-wrap:wrap}
+.phase .row div{font-size:12px;color:var(--muted)}
+.phase .row b{display:block;font-size:22px;color:var(--ink);font-weight:800}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:2px solid var(--ink)}
+td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+td.r,th.r{text-align:right}
+.delta{font-weight:700;font-size:13px;white-space:nowrap}
+.delta.up{color:var(--good)} .delta.down{color:var(--red)} .delta.flat{color:var(--muted)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--ink-2);white-space:nowrap}
+.tag .sw{width:9px;height:9px}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* charts */
+.charts{display:grid;grid-template-columns:1fr;gap:20px}
+.legend{display:flex;gap:18px;font-size:13px;color:var(--ink-2);margin:-6px 0 14px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.chart{position:relative;width:100%}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.axis text{font-size:11px;fill:var(--faint);font-family:Manrope,sans-serif}
+.grid line{stroke:var(--line);stroke-width:1}
+.hit{fill:transparent;cursor:default}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;line-height:1.45;padding:10px 12px;min-width:150px;opacity:0;transform:translate(-50%,calc(-100% - 12px));transition:opacity .12s;z-index:5;white-space:nowrap}
+.tip b{font-weight:700}
+.tip .k{color:#C2C5C7}
+.tip .sw{width:8px;height:8px;margin-right:6px}
+
+/* leads */
+.leads-grid{display:grid;grid-template-columns:1.7fr 1fr;gap:20px;align-items:start}
+.fn-row{margin-bottom:16px}
+.fn-row .t{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px;gap:12px}
+.fn-row .t span:last-child{color:var(--muted);font-weight:600;white-space:nowrap}
+.fn-bar{height:10px;background:var(--bg)}
+.fn-bar i{display:block;height:100%;background:var(--ink-2)}
+.fn-bar.top i{background:var(--red)}
+.pending td{color:var(--muted);font-style:italic}
+.small-note{font-size:12px;color:var(--muted);margin-top:14px}
+
+/* takeaways */
+.takeaways{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.take{background:var(--card);border:1px solid var(--line);padding:26px 24px;position:relative}
+.take .n{font-size:13px;font-weight:800;color:var(--red);letter-spacing:2px}
+.take h4{font-size:19px;font-weight:800;line-height:1.25;margin:10px 0 10px;letter-spacing:-.2px}
+.take p{font-size:14px;color:var(--muted)}
+.take p b{color:var(--ink)}
+
+footer{margin-top:64px;background:var(--ink);color:#C2C5C7;font-size:13px}
+footer .wrap{padding-top:28px;padding-bottom:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{color:#fff;font-weight:700}
+
+@media (max-width:980px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .kpi.accent{grid-column:1 / -1}
+  .funnel{grid-template-columns:repeat(2,1fr)}
+  .step:nth-child(2){border-right:0}
+  .step:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .leads-grid,.takeaways{grid-template-columns:1fr}
+  .hero::after{width:240px;right:-140px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .top .wrap{height:60px}
+  .logo{height:26px}
+  .top-meta{font-size:10px;letter-spacing:1.5px}
+  .hero .wrap{padding-top:36px;padding-bottom:32px}
+  .hero h1{font-size:30px}
+  .hero::after{display:none}
+  .kpi{padding:16px}
+  .kpi .val{font-size:26px}
+  .phase-grid{grid-template-columns:1fr}
+  .funnel{grid-template-columns:1fr}
+  .step{border-right:0;border-bottom:1px solid var(--line)}
+  .card{padding:20px 16px}
+  .chart{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .chart svg{min-width:620px}
+  .sec-head h2{font-size:23px}
+  section{padding-top:40px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <img class="logo" src="https://www.cias.it/wp-content/uploads/2025/10/cropped-CIAS-logo-rosso-trasparente.png" alt="CIAS"
+         onerror="this.outerHTML='<span class=&quot;logo-fallback&quot;>CIAS</span>'">
+    <div class="top-meta">LinkedIn Ads<br>Campaign Report</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#fff;opacity:.8">Lead generation · Security Managers</div>
+    <h1>LinkedIn campaign results for USA, Canada &amp; Mexico</h1>
+    <p class="sub" id="heroSub"></p>
+    <div class="kpis" id="kpis"></div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section>
+    <div class="sec-head">
+      <div><div class="eyebrow">01 · The path to a lead</div><h2>From impression to lead</h2></div>
+      <p>How many people moved through each step, from seeing an ad to sending their contact details through the LinkedIn form.</p>
+    </div>
+    <div class="funnel" id="funnel"></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div><div class="eyebrow">02 · Two phases</div><h2>One campaign, two flights</h2></div>
+      <p>The campaign ran in two consecutive phases on the same audience. Phase 2 started on 16 October and ran to 15 November.</p>
+    </div>
+    <div class="phase-grid" id="phases"></div>
+    <div class="card">
+      <h3>Phase 1 vs Phase 2</h3>
+      <div class="table-scroll"><table id="cmp"></table></div>
+      <p class="small-note">Change compares Phase 2 to Phase 1. Green means better for CIAS: for costs, lower is better.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div><div class="eyebrow">03 · Over time</div><h2>Weekly activity</h2></div>
+      <p>Budget invested each week, and the day each lead came in. Hover over a bar or a dot for the details.</p>
+    </div>
+    <div class="charts">
+      <div class="card">
+        <h3>Budget invested per week (€)</h3>
+        <div class="legend"><span><i class="sw" style="--c:var(--p1)"></i>Phase 1</span><span><i class="sw" style="--c:var(--p2)"></i>Phase 2</span></div>
+        <div class="chart" id="spendChart"></div>
+      </div>
+      <div class="card">
+        <h3>Leads received, by day</h3>
+        <div class="legend"><span><i class="sw" style="--c:var(--p1)"></i>Phase 1</span><span><i class="sw" style="--c:var(--p2)"></i>Phase 2</span></div>
+        <div class="chart" id="leadChart"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div><div class="eyebrow">04 · Who responded</div><h2>The leads</h2></div>
+      <p>Organisations that asked for the CIAS content through the LinkedIn form. Contact details are kept out of this page and were shared with the CIAS sales team.</p>
+    </div>
+    <div class="leads-grid">
+      <div class="card">
+        <h3>Lead list</h3>
+        <div class="table-scroll"><table id="leadTable"></table></div>
+      </div>
+      <div class="card">
+        <h3>Leads by job function</h3>
+        <div id="fnBars"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div><div class="eyebrow">05 · Takeaways</div><h2>What the numbers say</h2></div>
+    </div>
+    <div class="takeaways" id="takeaways"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>CIAS · LinkedIn Ads report</b><br>Campaign "Lead Generation CIAS per Security Manager | USA, CAN, MEX"</div>
+    <div id="footSrc" style="text-align:right"></div>
+  </div>
+</footer>
+
+<script>
+const DATA = {"meta": {"campaign": "Lead Generation CIAS per Security Manager | USA,CAN,MEX", "budget": 3100.0, "currency": "EUR", "reportStart": "2026-09-18", "reportEnd": "2026-11-15", "generated": "November 16, 2026, 2:35 PM"}, "daily": [{"date": "2026-09-18", "phase": "p1", "spend": 62.62, "impressions": 187, "clicks": 0, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 5}, {"date": "2026-09-19", "phase": "p1", "spend": 48.19, "impressions": 227, "clicks": 0, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 13}, {"date": "2026-09-20", "phase": "p1", "spend": 45.9, "impressions": 171, "clicks": 1, "formsOpened": 1, "leads": 1, "leadsWorkEmail": 1, "engagements": 18}, {"date": "2026-09-21", "phase": "p1", "spend": 75.0, "impressions": 224, "clicks": 0, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 6}, {"date": "2026-09-22", "phase": "p1", "spend": 61.24, "impressions": 223, "clicks": 0, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 2}, {"date": "2026-09-23", "phase": "p1", "spend": 61.27, "impressions": 311, "clicks": 0, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 28}, {"date": "2026-09-24", "phase": "p1", "spend": 63.47, "impressions": 373, "clicks": 3, "formsOpened": 2, "leads": 0, "leadsWorkEmail": 0, "engagements": 35}, {"date": "2026-09-25", "phase": "p1", "spend": 75.0, "impressions": 609, "clicks": 3, "formsOpened": 1, "leads": 1, "leadsWorkEmail": 0, "engagements": 64}, {"date": "2026-09-26", "phase": "p1", "spend": 75.0, "impressions": 985, "clicks": 5, "formsOpened": 3, "leads": 0, "leadsWorkEmail": 0, "engagements": 40}, {"date": "2026-09-27", "phase": "p1", "spend": 68.06, "impressions": 1158, "clicks": 5, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 67}, {"date": "2026-09-28", "phase": "p1", "spend": 39.0, "impressions": 911, "clicks": 2, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 30}, {"date": "2026-09-29", "phase": "p1", "spend": 59.36, "impressions": 537, "clicks": 4, "formsOpened": 0, "leads": 1, "leadsWorkEmail": 1, "engagements": 40}, {"date": "2026-09-30", "phase": "p1", "spend": 30.0, "impressions": 805, "clicks": 2, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 35}, {"date": "2026-10-01", "phase": "p1", "spend": 43.5, "impressions": 742, "clicks": 3, "formsOpened": 3, "leads": 0, "leadsWorkEmail": 0, "engagements": 37}, {"date": "2026-10-02", "phase": "p1", "spend": 45.0, "impressions": 1279, "clicks": 3, "formsOpened": 3, "leads": 0, "leadsWorkEmail": 0, "engagements": 75}, {"date": "2026-10-03", "phase": "p1", "spend": 44.25, "impressions": 1184, "clicks": 3, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 75}, {"date": "2026-10-04", "phase": "p1", "spend": 72.92, "impressions": 836, "clicks": 5, "formsOpened": 3, "leads": 0, "leadsWorkEmail": 0, "engagements": 41}, {"date": "2026-10-05", "phase": "p1", "spend": 73.5, "impressions": 535, "clicks": 5, "formsOpened": 2, "leads": 0, "leadsWorkEmail": 0, "engagements": 49}, {"date": "2026-10-06", "phase": "p1", "spend": 49.87, "impressions": 788, "clicks": 4, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 39}, {"date": "2026-10-07", "phase": "p1", "spend": 28.5, "impressions": 935, "clicks": 2, "formsOpened": 2, "leads": 0, "leadsWorkEmail": 0, "engagements": 30}, {"date": "2026-10-08", "phase": "p1", "spend": 73.5, "impressions": 628, "clicks": 5, "formsOpened": 3, "leads": 1, "leadsWorkEmail": 1, "engagements": 63}, {"date": "2026-10-09", "phase": "p1", "spend": 57.15, "impressions": 471, "clicks": 4, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 41}, {"date": "2026-10-10", "phase": "p1", "spend": 44.25, "impressions": 635, "clicks": 3, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 52}, {"date": "2026-10-11", "phase": "p1", "spend": 55.41, "impressions": 620, "clicks": 4, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 57}, {"date": "2026-10-12", "phase": "p1", "spend": 45.0, "impressions": 910, "clicks": 3, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 28}, {"date": "2026-10-13", "phase": "p1", "spend": 25.16, "impressions": 1345, "clicks": 2, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 54}, {"date": "2026-10-14", "phase": "p1", "spend": 51.38, "impressions": 915, "clicks": 4, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 33}, {"date": "2026-10-15", "phase": "p1", "spend": 75.0, "impressions": 693, "clicks": 6, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 43}, {"date": "2026-10-16", "phase": "p1", "spend": 14.25, "impressions": 482, "clicks": 1, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 43}, {"date": "2026-10-16", "phase": "p2", "spend": 53.69, "impressions": 739, "clicks": 3, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 26}, {"date": "2026-10-17", "phase": "p2", "spend": 44.79, "impressions": 415, "clicks": 2, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 25}, {"date": "2026-10-18", "phase": "p2", "spend": 38.58, "impressions": 340, "clicks": 1, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 17}, {"date": "2026-10-19", "phase": "p2", "spend": 52.26, "impressions": 337, "clicks": 0, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 16}, {"date": "2026-10-20", "phase": "p2", "spend": 54.44, "impressions": 401, "clicks": 1, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 18}, {"date": "2026-10-21", "phase": "p2", "spend": 53.56, "impressions": 397, "clicks": 4, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 22}, {"date": "2026-10-22", "phase": "p2", "spend": 46.63, "impressions": 605, "clicks": 1, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 35}, {"date": "2026-10-23", "phase": "p2", "spend": 36.51, "impressions": 714, "clicks": 3, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 57}, {"date": "2026-10-24", "phase": "p2", "spend": 45.0, "impressions": 685, "clicks": 3, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 55}, {"date": "2026-10-25", "phase": "p2", "spend": 15.0, "impressions": 736, "clicks": 1, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 31}, {"date": "2026-10-26", "phase": "p2", "spend": 45.0, "impressions": 632, "clicks": 3, "formsOpened": 2, "leads": 0, "leadsWorkEmail": 0, "engagements": 24}, {"date": "2026-10-27", "phase": "p2", "spend": 14.22, "impressions": 797, "clicks": 1, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 44}, {"date": "2026-10-28", "phase": "p2", "spend": 53.25, "impressions": 772, "clicks": 3, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 47}, {"date": "2026-10-29", "phase": "p2", "spend": 78.93, "impressions": 2081, "clicks": 4, "formsOpened": 3, "leads": 1, "leadsWorkEmail": 0, "engagements": 172}, {"date": "2026-10-30", "phase": "p2", "spend": 76.61, "impressions": 821, "clicks": 5, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 45}, {"date": "2026-10-31", "phase": "p2", "spend": 39.0, "impressions": 1072, "clicks": 2, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 40}, {"date": "2026-11-01", "phase": "p2", "spend": 58.0, "impressions": 1012, "clicks": 3, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 47}, {"date": "2026-11-02", "phase": "p2", "spend": 39.0, "impressions": 1137, "clicks": 2, "formsOpened": 2, "leads": 2, "leadsWorkEmail": 2, "engagements": 90}, {"date": "2026-11-03", "phase": "p2", "spend": 75.64, "impressions": 496, "clicks": 5, "formsOpened": 4, "leads": 0, "leadsWorkEmail": 0, "engagements": 44}, {"date": "2026-11-04", "phase": "p2", "spend": 40.0, "impressions": 1078, "clicks": 2, "formsOpened": 2, "leads": 1, "leadsWorkEmail": 1, "engagements": 62}, {"date": "2026-11-05", "phase": "p2", "spend": 73.63, "impressions": 358, "clicks": 5, "formsOpened": 2, "leads": 0, "leadsWorkEmail": 0, "engagements": 24}, {"date": "2026-11-06", "phase": "p2", "spend": 57.24, "impressions": 973, "clicks": 3, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 40}, {"date": "2026-11-07", "phase": "p2", "spend": 54.52, "impressions": 776, "clicks": 3, "formsOpened": 2, "leads": 0, "leadsWorkEmail": 0, "engagements": 39}, {"date": "2026-11-08", "phase": "p2", "spend": 39.0, "impressions": 777, "clicks": 3, "formsOpened": 2, "leads": 0, "leadsWorkEmail": 0, "engagements": 49}, {"date": "2026-11-09", "phase": "p2", "spend": 32.19, "impressions": 1079, "clicks": 2, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 49}, {"date": "2026-11-10", "phase": "p2", "spend": 35.1, "impressions": 1570, "clicks": 2, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 72}, {"date": "2026-11-11", "phase": "p2", "spend": 35.1, "impressions": 1116, "clicks": 2, "formsOpened": 0, "leads": 0, "leadsWorkEmail": 0, "engagements": 58}, {"date": "2026-11-12", "phase": "p2", "spend": 78.75, "impressions": 635, "clicks": 5, "formsOpened": 2, "leads": 0, "leadsWorkEmail": 0, "engagements": 16}, {"date": "2026-11-13", "phase": "p2", "spend": 17.1, "impressions": 895, "clicks": 1, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 38}, {"date": "2026-11-14", "phase": "p2", "spend": 34.4, "impressions": 779, "clicks": 2, "formsOpened": 2, "leads": 1, "leadsWorkEmail": 1, "engagements": 58}, {"date": "2026-11-15", "phase": "p2", "spend": 30.56, "impressions": 970, "clicks": 2, "formsOpened": 1, "leads": 0, "leadsWorkEmail": 0, "engagements": 64}], "leads": [{"date": "2026-09-20", "phase": "p1", "company": "Reyes Coca-Cola Bottling", "function": "Military and Protective Services", "creative": "5-White-CIAS-educational"}, {"date": "2026-09-25", "phase": "p1", "company": "Israel Ministry of Energy", "function": "Military and Protective Services", "creative": "5-White-CIAS-educational"}, {"date": "2026-09-29", "phase": "p1", "company": "Senset Soluciones en Seguridad Electrónica", "function": "Sales", "creative": "5-White-CIAS-educational"}, {"date": "2026-10-08", "phase": "p1", "company": "Kwantlen Polytechnic University", "function": "Military and Protective Services", "creative": "6-White-CIAS-real-world"}, {"date": "2026-10-29", "phase": "p2", "company": "Bay Gardens Resorts", "function": "Operations", "creative": "White 5 - educational CIAS (titolo 2 - PAS)"}, {"date": "2026-11-02", "phase": "p2", "company": "Towson University", "function": "Military and Protective Services", "creative": "White 5 - educational CIAS (titolo 2 - PAS)"}, {"date": "2026-11-02", "phase": "p2", "company": "KBR, Inc.", "function": "Military and Protective Services", "creative": "White 5 - educational CIAS (titolo 2 - PAS)"}, {"date": "2026-11-14", "phase": "p2", "company": "360 Privacy", "function": "Operations", "creative": "White 5 - educational CIAS (titolo 2 - PAS)"}], "builtAt": "2026-11-18 19:02"};
+
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+const nf0 = new Intl.NumberFormat('en-GB',{maximumFractionDigits:0});
+const nf1 = new Intl.NumberFormat('en-GB',{minimumFractionDigits:1,maximumFractionDigits:1});
+const nf2 = new Intl.NumberFormat('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2});
+const eur0 = v => '€' + nf0.format(v);
+const eur2 = v => '€' + nf2.format(v);
+const pct = (v,d=2) => (v*100).toFixed(d) + '%';
+const parse = s => { const [y,m,d] = s.split('-').map(Number); return new Date(Date.UTC(y,m-1,d)); };
+const fmtDay = d => d.toLocaleDateString('en-GB',{day:'numeric',month:'short',timeZone:'UTC'});
+const fmtDayY = d => d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
+const DAY = 864e5;
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const PH = {p1:{name:'Phase 1',c:'var(--p1)'},p2:{name:'Phase 2',c:'var(--p2)'}};
+
+function sum(rows){
+  const t = {spend:0,impressions:0,clicks:0,formsOpened:0,leads:0,leadsWorkEmail:0,engagements:0,days:0};
+  rows.forEach(r=>{ for(const k in t) if(k!=='days') t[k]+=r[k]; t.days++; });
+  t.ctr = t.impressions ? t.clicks/t.impressions : 0;
+  t.cpm = t.impressions ? t.spend/t.impressions*1000 : 0;
+  t.cpc = t.clicks ? t.spend/t.clicks : 0;
+  t.cpl = t.leads ? t.spend/t.leads : 0;
+  t.formRate = t.formsOpened ? t.leads/t.formsOpened : 0;
+  t.clickToForm = t.clicks ? t.formsOpened/t.clicks : 0;
+  return t;
+}
+
+const D = DATA.daily;
+const T = sum(D);
+const P = {p1:sum(D.filter(r=>r.phase==='p1')), p2:sum(D.filter(r=>r.phase==='p2'))};
+const range = ph => { const ds = D.filter(r=>r.phase===ph).map(r=>r.date).sort(); return [parse(ds[0]),parse(ds[ds.length-1])]; };
+const start = parse(DATA.meta.reportStart), end = parse(DATA.meta.reportEnd);
+const budget = DATA.meta.budget;
+
+/* ---------- hero ---------- */
+const weeks = Math.round((end-start)/DAY/7);
+$('heroSub').innerHTML = `<strong>${fmtDayY(start)} – ${fmtDayY(end)}</strong> · ${weeks} weeks of activity aimed at security managers, with a downloadable white paper offered through a LinkedIn lead form.`;
+
+const kpis = [
+  {lab:'Budget invested', val:eur0(T.spend), note:`${Math.round(T.spend/budget*100)}% of the €${nf0.format(budget)} budget`},
+  {lab:'Impressions', val:nf0.format(T.impressions), note:`${eur2(T.cpm)} per 1,000 views`},
+  {lab:'Clicks', val:nf0.format(T.clicks), note:`${pct(T.ctr)} click-through rate`},
+  {lab:'Forms opened', val:nf0.format(T.formsOpened), note:`${pct(T.formRate,0)} of them completed`},
+  {lab:'Leads', val:nf0.format(T.leads), note:`${eur0(T.cpl)} per lead`, accent:true},
+];
+$('kpis').innerHTML = kpis.map(k=>`<div class="kpi${k.accent?' accent':''}"><div class="lab">${k.lab}</div><div class="val num">${k.val}</div><div class="note">${k.note}</div></div>`).join('');
+
+/* ---------- funnel ---------- */
+const steps = [
+  {lab:'Impressions', v:T.impressions, rate:'Times the ads were shown to the target audience'},
+  {lab:'Clicks', v:T.clicks, rate:`<b>1 in ${Math.round(T.impressions/T.clicks)}</b> impressions became a click`},
+  {lab:'Forms opened', v:T.formsOpened, rate:`<b>${pct(T.clickToForm,0)}</b> of clicks opened the lead form`},
+  {lab:'Leads', v:T.leads, rate:`<b>${pct(T.formRate,0)}</b> of opened forms were sent · <b>${eur0(T.cpl)}</b> each`},
+];
+// bar width on a log scale so the last steps stay visible
+const lmax = Math.log10(T.impressions);
+$('funnel').innerHTML = steps.map(s=>`<div class="step"><div class="lab">${s.lab}</div><div class="val num">${nf0.format(s.v)}</div><div class="bar"><i style="width:${Math.max(4,Math.log10(Math.max(s.v,1))/lmax*100)}%"></i></div><div class="rate">${s.rate}</div></div>`).join('');
+
+/* ---------- phases ---------- */
+$('phases').innerHTML = ['p1','p2'].map(ph=>{
+  const [a,b] = range(ph), t = P[ph];
+  return `<div class="phase" style="--c:${PH[ph].c}">
+    <div class="name"><i class="sw"></i>${PH[ph].name}</div>
+    <div class="when">${fmtDayY(a)} – ${fmtDayY(b)} · ${t.days} days</div>
+    <div class="row">
+      <div><b class="num">${eur0(t.spend)}</b>invested</div>
+      <div><b class="num">${nf0.format(t.impressions)}</b>impressions</div>
+      <div><b class="num">${t.leads}</b>leads</div>
+      <div><b class="num">${eur0(t.cpl)}</b>per lead</div>
+    </div></div>`;
+}).join('');
+
+const cmpRows = [
+  ['Budget invested', 'spend', eur0, null],
+  ['Impressions', 'impressions', v=>nf0.format(v), 'high'],
+  ['Cost per 1,000 impressions', 'cpm', eur2, 'low'],
+  ['Clicks', 'clicks', v=>nf0.format(v), 'high'],
+  ['Click-through rate', 'ctr', v=>pct(v), 'high'],
+  ['Cost per click', 'cpc', eur2, 'low'],
+  ['Forms opened', 'formsOpened', v=>nf0.format(v), 'high'],
+  ['Form completion rate', 'formRate', v=>pct(v,1), 'high'],
+  ['Leads', 'leads', v=>nf0.format(v), 'high'],
+  ['Cost per lead', 'cpl', eur0, 'low'],
+];
+$('cmp').innerHTML = `<thead><tr><th>Metric</th><th class="r"><span class="tag"><i class="sw" style="--c:var(--p1)"></i>Phase 1</span></th><th class="r"><span class="tag"><i class="sw" style="--c:var(--p2)"></i>Phase 2</span></th><th class="r">Change</th></tr></thead><tbody>` +
+  cmpRows.map(([lab,k,f,better])=>{
+    const a=P.p1[k], b=P.p2[k], ch = a ? (b-a)/a : 0;
+    let cls='flat';
+    if(better && Math.abs(ch)>=0.005) cls = ((ch>0)===(better==='high')) ? 'up' : 'down';
+    const sign = ch>0?'+':(ch<0?'−':'');
+    return `<tr><td>${lab}</td><td class="r num">${f(a)}</td><td class="r num">${f(b)}</td><td class="r"><span class="delta ${cls} num">${sign}${Math.abs(ch*100).toFixed(0)}%</span></td></tr>`;
+  }).join('') + '</tbody>';
+
+/* ---------- tooltip ---------- */
+function attachTip(box){
+  const tip = document.createElement('div'); tip.className='tip'; box.appendChild(tip);
+  box.addEventListener('mousemove',e=>{
+    const t = e.target.closest('[data-tip]');
+    if(!t){ tip.style.opacity=0; return; }
+    const br = box.getBoundingClientRect(), r = t.getBoundingClientRect();
+    tip.innerHTML = t.getAttribute('data-tip');
+    let x = r.left + r.width/2 - br.left;
+    const half = tip.offsetWidth/2;
+    x = Math.max(half, Math.min(br.width-half, x));
+    tip.style.left = x+'px'; tip.style.top = (r.top-br.top)+'px'; tip.style.opacity=1;
+  });
+  box.addEventListener('mouseleave',()=>tip.style.opacity=0);
+}
+
+/* ---------- weekly spend (stacked by phase, one axis) ---------- */
+(function(){
+  const mondayOf = d => new Date(d.getTime() - ((d.getUTCDay()+6)%7)*DAY);
+  const wk = new Map();
+  D.forEach(r=>{
+    const m = mondayOf(parse(r.date)).getTime();
+    if(!wk.has(m)) wk.set(m,{p1:0,p2:0,leads:0,impr:0});
+    const w = wk.get(m); w[r.phase]+=r.spend; w.leads+=r.leads; w.impr+=r.impressions;
+  });
+  const rows = [...wk.entries()].sort((a,b)=>a[0]-b[0]);
+  const W=1000,H=300,ml=46,mr=8,mt=22,mb=34, iw=W-ml-mr, ih=H-mt-mb;
+  const maxV = Math.max(...rows.map(([,w])=>w.p1+w.p2));
+  const top = Math.ceil(maxV/100)*100, ticks=[0,top/4,top/2,top*3/4,top];
+  const y = v => mt + ih - v/top*ih;
+  const bw = iw/rows.length, barW = Math.min(64, bw*0.56);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Budget invested per week by phase">`;
+  s += `<g class="grid">${ticks.map(t=>`<line x1="${ml}" x2="${W-mr}" y1="${y(t)}" y2="${y(t)}"/>`).join('')}</g>`;
+  s += `<g class="axis">${ticks.map(t=>`<text x="${ml-8}" y="${y(t)+4}" text-anchor="end">€${nf0.format(t)}</text>`).join('')}</g>`;
+  rows.forEach(([m,w],i)=>{
+    const cx = ml + bw*i + bw/2, x = cx-barW/2;
+    const d0 = new Date(m), d1 = new Date(m+6*DAY);
+    const total = w.p1+w.p2;
+    // stack: p1 at bottom, p2 on top, 2px surface gap between
+    let base = 0, segs='';
+    [['p1',w.p1],['p2',w.p2]].forEach(([ph,v])=>{
+      if(v<=0) return;
+      const y0=y(base), y1=y(base+v), gap = base>0?2:0;
+      segs += `<rect x="${x}" y="${y1}" width="${barW}" height="${Math.max(1,y0-y1-gap)}" fill="${ph==='p1'?'#2F72A8':'#BA243D'}"/>`;
+      base += v;
+    });
+    s += segs;
+    s += `<text class="axis" x="${cx}" y="${y(total)-7}" text-anchor="middle" style="font-size:11px;fill:#5F646B;font-weight:700">€${nf0.format(total)}</text>`;
+    s += `<g class="axis"><text x="${cx}" y="${H-12}" text-anchor="middle">${fmtDay(d0)}</text></g>`;
+    const tipHtml = `<b>Week of ${fmtDay(d0)} – ${fmtDay(d1)}</b><br>` +
+      (w.p1?`<i class="sw" style="--c:#2F72A8"></i><span class="k">Phase 1</span> ${eur0(w.p1)}<br>`:'') +
+      (w.p2?`<i class="sw" style="--c:#BA243D"></i><span class="k">Phase 2</span> ${eur0(w.p2)}<br>`:'') +
+      `<span class="k">Impressions</span> ${nf0.format(w.impr)}<br><span class="k">Leads</span> ${w.leads}`;
+    s += `<rect class="hit" x="${ml+bw*i}" y="${mt}" width="${bw}" height="${ih}" data-tip='${tipHtml.replace(/'/g,"&#39;")}'/>`;
+  });
+  s += `<line x1="${ml}" x2="${W-mr}" y1="${y(0)}" y2="${y(0)}" stroke="#191817" stroke-width="1"/>`;
+  s += '</svg>';
+  $('spendChart').innerHTML = s; attachTip($('spendChart'));
+})();
+
+/* ---------- lead timeline (one dot per lead) ---------- */
+(function(){
+  const L = DATA.leads;
+  // leads counted by LinkedIn per day/phase; any not in the export are shown as "details pending"
+  const byKey = {};
+  L.forEach(l=>{ const k=l.date+'|'+l.phase; (byKey[k]=byKey[k]||[]).push(l); });
+  const dots = [];
+  D.forEach(r=>{
+    const k=r.date+'|'+r.phase, list = byKey[k]||[];
+    for(let i=0;i<r.leads;i++) dots.push({date:r.date, phase:r.phase, lead:list[i]||null});
+  });
+  // leads in the export without a matching day in the report (should not happen) are appended
+  L.forEach(l=>{ if(!dots.some(d=>d.lead===l)) dots.push({date:l.date,phase:l.phase,lead:l}); });
+
+  const W=1000,H=150,ml=46,mr=8,base=104;
+  const span = (end-start)/DAY;
+  const x = d => ml + (parse(d)-start)/DAY/span*(W-ml-mr);
+  const stackCount = {};
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Leads received by day">`;
+  // phase spans
+  ['p1','p2'].forEach(ph=>{
+    const [a,b]=range(ph), xa=x(a.toISOString().slice(0,10)), xb=x(b.toISOString().slice(0,10));
+    const yy = ph==='p1'?base+14:base+22;
+    s += `<rect x="${xa}" y="${yy}" width="${Math.max(2,xb-xa)}" height="4" fill="${ph==='p1'?'#2F72A8':'#BA243D'}" opacity=".35"/>`;
+  });
+  s += `<line x1="${ml}" x2="${W-mr}" y1="${base}" y2="${base}" stroke="#191817" stroke-width="1"/>`;
+  // month ticks
+  for(let d=new Date(Date.UTC(start.getUTCFullYear(),start.getUTCMonth()+1,1)); d<=end; d=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth()+1,1))){
+    const xx=x(d.toISOString().slice(0,10));
+    s += `<line x1="${xx}" x2="${xx}" y1="${base}" y2="${base+6}" stroke="#191817"/><text class="axis" x="${xx}" y="${H-4}" text-anchor="middle" style="font-size:11px;fill:#8A9098">1 ${d.toLocaleDateString('en-GB',{month:'short',timeZone:'UTC'})}</text>`;
+  }
+  s += `<text x="${ml}" y="${H-4}" style="font-size:11px;fill:#8A9098">${fmtDay(start)}</text>`;
+  s += `<text x="${W-mr}" y="${H-4}" text-anchor="end" style="font-size:11px;fill:#8A9098">${fmtDay(end)}</text>`;
+  dots.forEach(d=>{
+    const n = stackCount[d.date] = (stackCount[d.date]||0)+1;
+    const cx = x(d.date), cy = base - 14 - (n-1)*20;
+    const col = d.phase==='p1'?'#2F72A8':'#BA243D';
+    const tip = `<b>${fmtDayY(parse(d.date))}</b><br><i class="sw" style="--c:${col}"></i><span class="k">${PH[d.phase].name}</span><br>` +
+      (d.lead ? `${esc(d.lead.company)}<br><span class="k">${esc(d.lead.function)}</span>` : `<span class="k">Details to be added</span>`);
+    s += d.lead
+      ? `<circle cx="${cx}" cy="${cy}" r="7" fill="${col}" stroke="#fff" stroke-width="2"/>`
+      : `<circle cx="${cx}" cy="${cy}" r="6" fill="#fff" stroke="${col}" stroke-width="2"/>`;
+    s += `<circle class="hit" cx="${cx}" cy="${cy}" r="13" data-tip='${tip.replace(/'/g,"&#39;")}'/>`;
+  });
+  s += '</svg>';
+  $('leadChart').innerHTML = s; attachTip($('leadChart'));
+  window.__pending = dots.filter(d=>!d.lead);
+})();
+
+/* ---------- lead table + functions ---------- */
+(function(){
+  const L = DATA.leads;
+  const pending = window.__pending || [];
+  const rows = L.map(l=>({...l})).concat(pending.map(p=>({date:p.date,phase:p.phase,company:null})))
+    .sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:0);
+  $('leadTable').innerHTML = `<thead><tr><th>#</th><th>Date</th><th>Company</th><th>Job function</th><th>Phase</th></tr></thead><tbody>` +
+    rows.map((l,i)=> l.company
+      ? `<tr><td class="num" style="color:#8A9098">${i+1}</td><td class="num" style="white-space:nowrap">${fmtDay(parse(l.date))}</td><td style="font-weight:700">${esc(l.company)}</td><td>${esc(l.function)}</td><td><span class="tag"><i class="sw" style="--c:${PH[l.phase].c}"></i>${PH[l.phase].name}</span></td></tr>`
+      : `<tr class="pending"><td class="num">${i+1}</td><td class="num" style="white-space:nowrap">${fmtDay(parse(l.date))}</td><td colspan="2">Lead recorded by LinkedIn · details to be added</td><td><span class="tag" style="font-style:normal"><i class="sw" style="--c:${PH[l.phase].c}"></i>${PH[l.phase].name}</span></td></tr>`
+    ).join('') + '</tbody>';
+
+  const fn = {};
+  L.forEach(l=>{ const k=l.function||'Not stated'; fn[k]=(fn[k]||0)+1; });
+  const list = Object.entries(fn).sort((a,b)=>b[1]-a[1]);
+  const max = list[0][1];
+  $('fnBars').innerHTML = list.map(([k,v],i)=>`<div class="fn-row"><div class="t"><span>${esc(k)}</span><span class="num">${v} of ${L.length}</span></div><div class="fn-bar${i===0?' top':''}"><i style="width:${v/max*100}%"></i></div></div>`).join('') +
+    `<p class="small-note">Job function as stated on the member's LinkedIn profile${pending.length?`. Based on the ${L.length} leads with details available`:''}.</p>`;
+  window.__fn = list;
+})();
+
+/* ---------- takeaways (computed, so they stay true if data changes) ---------- */
+(function(){
+  const ch = (a,b) => Math.round(Math.abs((b-a)/a)*100);
+  const fnTop = window.__fn[0], L = DATA.leads;
+  const cards = [];
+  if(P.p2.cpl < P.p1.cpl){
+    cards.push({h:`Phase 2 brought the cost per lead down by ${ch(P.p1.cpl,P.p2.cpl)}%`,
+      p:`From <b>${eur0(P.p1.cpl)}</b> to <b>${eur0(P.p2.cpl)}</b>. The main driver was cheaper reach: each 1,000 impressions cost <b>${ch(P.p1.cpm,P.p2.cpm)}% less</b> (${eur2(P.p1.cpm)} → ${eur2(P.p2.cpm)}), so the same budget reached more of the audience.`});
+  }
+  cards.push({h:`${fnTop[1]} of ${L.length} leads work in ${fnTop[0]}`,
+    p:`The campaign reached the people it was built for: security and protection professionals. Respondents include organisations such as ${L.filter(l=>l.function===fnTop[0]).slice(0,3).map(l=>'<b>'+esc(l.company)+'</b>').join(', ')}.`});
+  cards.push({h:`The lead form is where most interest was lost`,
+    p:`<b>${T.formsOpened}</b> people opened the form, but only <b>${T.leads}</b> sent it (${pct(T.formRate,0)}). If the campaign starts again, testing a shorter form or a clearer promise of what the white paper contains is the cheapest way to turn more of that interest into contacts.`});
+  $('takeaways').innerHTML = cards.map((c,i)=>`<div class="take"><div class="n">0${i+1}</div><h4>${c.h}</h4><p>${c.p}</p></div>`).join('');
+})();
+
+$('footSrc').innerHTML = `Source: LinkedIn Campaign Manager export${DATA.meta.generated?`, ${esc(DATA.meta.generated.split(',').slice(0,2).join(','))}`:''}<br>Amounts in ${esc(DATA.meta.currency||'EUR')} · Dates in UTC`;
+</script>
+</body>
+</html>
