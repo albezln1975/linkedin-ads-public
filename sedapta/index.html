@@ -587,7 +587,7 @@ let ADSET_META = {};
 function detectType(name) {
   const n = name.toLowerCase();
   if (n.includes('video view') || n.includes('video post')) return 'video';
-  if (n.includes('engagement') || n.includes('rebrand')) return 'engage';
+  if (n.includes('engagement') || n.includes('rebrand') || n.startsWith('tla ')) return 'engage';
   return 'lead';
 }
 
